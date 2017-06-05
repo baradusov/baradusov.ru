@@ -31,14 +31,18 @@ a  {
   border-bottom: 1px solid #b2ccf0;
 }
 
-a:hover {
-  color: #c00;
-  border-color: #f0b2b2;
-}
-
 a:visited {
   color: #b40eb4;
   border-color: #e0b2e0;
+}
+
+.title a:visited {
+  color: #333;
+}
+
+a:hover {
+  color: #c00;
+  border-color: #f0b2b2;
 }
 
 li {
