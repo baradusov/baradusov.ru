@@ -63,6 +63,7 @@ footer {
   text-align: center;
   font-size: 12px;
 }
+
 /* Увеличивать ширину колонки на смартфонах */
 @media screen and (max-width: 480px) {
   .title, nav, section {
