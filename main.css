@@ -4,7 +4,7 @@
 }
 
 html {
-  border-top: 3px solid #008ace;
+  border-top: 5px solid #008ace;
 }
 
 body {
@@ -17,7 +17,7 @@ header {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 32px;
 }
 
 .main-section {
