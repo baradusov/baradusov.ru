@@ -83,7 +83,9 @@ footer {
   padding-top: 30px;
 }
 
+
 /* Увеличивать ширину колонки на смартфонах */
+
 @media screen and (max-width: 768px) {
   .flex {
     width: 80%;
