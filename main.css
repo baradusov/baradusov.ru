@@ -9,7 +9,7 @@ body {
 }
 
 .flex {
-  max-width: 50%;
+  max-width: 60%;
   height: 100vh;
   margin: auto;
   display: flex;
@@ -88,6 +88,6 @@ footer {
 
 @media screen and (max-width: 768px) {
   .flex {
-    width: 80%;
+    max-width: 80%;
   }
 }
