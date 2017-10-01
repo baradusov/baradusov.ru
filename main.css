@@ -1,20 +1,32 @@
-* {
+body {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html {
-  border-top: 3px solid #b2ccf0;
-}
-
-body {
   color: #222;
   font-family: monospace;
+  font-size: 14px;
   background-color: #fff;
 }
 
+.flex {
+  max-width: 50%;
+  height: 100vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 header {
-  margin-top: 40px;
+  margin-top: 10px;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+p {
+  margin-top: 10px;
 }
 
 h1 {
@@ -22,37 +34,25 @@ h1 {
 }
 
 h2 {
+  margin-bottom: 0;
   color: #222;
-  transition: color 0.5s ease;
+  transition: color 0.3s ease;
 }
 
 h2:hover {
   color: #666;
 }
 
-.main-section {
-  margin: 40px 0;
-}
-
-h1, nav, section {
-  max-width: 50%;
-  margin: 0 auto;
-}
-
 a {
   text-decoration: none;
   color: #008ace;
   border-bottom: 1px solid #b2ccf0;
-  transition: color 0.5s ease;
+  transition: color 0.3s ease;
 }
 
 a:visited {
   color: #b40eb4;
   border-color: #e0b2e0;
-}
-
-.title a:visited {
-  color: #333;
 }
 
 a:hover {
@@ -63,7 +63,11 @@ a:hover {
 .title a {
   color: #222;
   border-bottom: 5px solid #222;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
+}
+
+.title a:visited {
+  color: #333;
 }
 
 .title a:hover {
@@ -71,31 +75,17 @@ a:hover {
   border: 0 solid transparent;
 }
 
-li {
-  display: inline-block;
-  padding-right: 8px;
-}
-
-p {
-  margin-top: 0;
-}
-
-h1 {
-  margin-bottom: 6px;
-}
-
 footer {
   width: 100%;
   text-align: center;
   font-size: 12px;
   border-top: 1px solid #eee;
-  padding-top: 40px;
+  padding-top: 30px;
 }
 
 /* Увеличивать ширину колонки на смартфонах */
-
-@media screen and (max-width: 480px) {
-  h1, nav, section {
-    width: 75%;
+@media screen and (max-width: 768px) {
+  .flex {
+    width: 80%;
   }
 }
