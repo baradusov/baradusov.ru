@@ -6,6 +6,7 @@
 body {
   color: #222;
   font-family: monospace;
+  background-color: #fff;
 }
 
 header {
@@ -16,23 +17,29 @@ h1 {
   font-size: 3em;
 }
 
+h2 {
+  color: #222;
+  transition: color 0.5s ease;
+}
+
+h2:hover {
+  color: #666;
+}
+
 .main-section {
   margin: 40px 0;
 }
 
-.title, nav, section {
-  width: 50%;
+h1, nav, section {
+  max-width: 50%;
   margin: 0 auto;
 }
-.title a {
-  color: #333;
-  border-bottom: none;
-}
 
-a  {
+a {
   text-decoration: none;
   color: #008ace;
   border-bottom: 1px solid #b2ccf0;
+  transition: color 0.5s ease;
 }
 
 a:visited {
@@ -47,6 +54,17 @@ a:visited {
 a:hover {
   color: #c00;
   border-color: #f0b2b2;
+}
+
+.title a {
+  color: #222;
+  border-bottom: 5px solid #222;
+  transition: all 0.5s ease;
+}
+
+.title a:hover {
+  color: #666;
+  border: 0 solid transparent;
 }
 
 li {
@@ -70,18 +88,10 @@ footer {
   padding-top: 40px;
 }
 
-.telegram::before {
-  content: '';
-  position: fixed;
-  display: block;
-  top: 0; bottom: 0; left: 0; right: 0;
-  z-index: -1;
-  background-color: #e5e5e5;
-}
-
 /* Увеличивать ширину колонки на смартфонах */
+
 @media screen and (max-width: 480px) {
-  .title, nav, section {
+  h1, nav, section {
     width: 75%;
   }
 }
