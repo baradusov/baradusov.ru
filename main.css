@@ -90,4 +90,8 @@ footer {
   .flex {
     max-width: 80%;
   }
+
+  footer {
+    margin-bottom: 30px;
+  }
 }
