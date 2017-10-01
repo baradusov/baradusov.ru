@@ -3,10 +3,6 @@
   box-sizing: border-box;
 }
 
-html {
-  border-top: 3px solid #008ace;
-}
-
 body {
   color: #222;
   font-family: monospace;
@@ -72,6 +68,15 @@ footer {
   font-size: 12px;
   border-top: 1px solid #eee;
   padding-top: 40px;
+}
+
+.telegram::before {
+  content: '';
+  position: fixed;
+  display: block;
+  top: 0; bottom: 0; left: 0; right: 0;
+  z-index: -1;
+  background-color: #e5e5e5;
 }
 
 /* Увеличивать ширину колонки на смартфонах */
