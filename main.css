@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+html {
+  border-top: 3px solid #b2ccf0;
+}
+
 body {
   color: #222;
   font-family: monospace;
