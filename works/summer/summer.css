@@ -95,6 +95,7 @@ h2 {
   background-color: #94008a;
 }
 
+
 /* end header styling */
 
 
@@ -171,8 +172,9 @@ footer {
 
 .freedom {
   background-image: url("img/freedom.png");
-  box-shadow: inset 100px -104px 203px -51px rgba(141,43,99,0.74);
+  box-shadow: inset 100px -104px 203px -51px rgba(141, 43, 99, 0.74);
 }
+
 .city {
   position: relative;
   background-image: url("img/city.png");
@@ -196,6 +198,15 @@ footer {
 .city h2 {
   top: 70%;
   font-size: 18px;
+}
+
+.arrow {
+  top: 72%;
+  left: 43%;
+  position: absolute;
+  width: 15px;
+  height: 9px;
+  background-image: url("img/arrow.png");
 }
 
 .about {
