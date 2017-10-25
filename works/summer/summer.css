@@ -1,11 +1,15 @@
+/* RESET STYLING*/
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+/* //RESET STYLING*/
 
-/* header styling */
+
+/* HEADER SECTION*/
 
 header {
   height: 100vh;
@@ -95,32 +99,29 @@ h2 {
   background-color: #94008a;
 }
 
+/* //HEADER SECTION*/
 
-/* end header styling */
 
-
-/* footer styling */
+/* FOOTER SECTION*/
 
 footer {
+  display: flex;
+  justify-content: center;
   background: #eee;
 }
 
 .footer-wrap {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 160px;
-  margin: 0 120px 0 120px;
-  padding: 50px 0 50px 0;
+  width: 900px;
+  /*margin: 0 120px;*/
+  padding: 50px 0;
 }
 
 .footer-wrap nav {
   margin-left: -80px;
-}
-
-.social div {
-  display: inline-block;
 }
 
 .footer-wrap a {
@@ -136,29 +137,41 @@ footer {
   font-weight: 800;
 }
 
+.social-item {
+  display: inline-block;
+  width: 37px;
+  height: 37px;
+}
 
-/*end footer styling*/
+.facebook {
+  background-image: url("img/facebook.png");
+}
+
+.twitter {
+  background-image: url("img/twitter.png");
+}
+
+/* //FOOTER SECTION*/
 
 
-/*section styling*/
+/* CRUISER SECTION*/
 
 .cruiser {
-  margin-top: 45px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  margin: 45px auto 0 auto;
+  max-width: 900px;
 }
 
 .cruiser h2 {
   position: relative;
-  top: 260px;
+  top: 240px;
   text-align: center;
 }
 
 .cruiser-bg {
   position: relative;
-  height: 400px;
-  width: 320px;
+  height: 375px;
+  width: 302px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -166,7 +179,7 @@ footer {
 
 .cruiser-bg img {
   position: absolute;
-  top: 91%;
+  top: 90%;
   left: 35%;
 }
 
@@ -196,7 +209,7 @@ footer {
 }
 
 .city h2 {
-  top: 70%;
+  top: 35px;
   font-size: 18px;
 }
 
@@ -209,9 +222,14 @@ footer {
   background-image: url("img/arrow.png");
 }
 
+/* //CRUISER SECTION*/
+
+
+/* ABOUT SECTION*/
+
 .about {
   max-width: 900px;
-  margin: 100px auto 100px auto;
+  margin: 100px auto;
 }
 
 .about, .about a, .about h2 {
@@ -236,5 +254,96 @@ footer {
   line-height: 1.8;
 }
 
+/* //ABOUT SECTION*/
 
-/*end section styling*/
+/* LADY CRUISER SECTION*/
+
+.lady-cruiser {
+  display: flex;
+  margin: 0 auto;
+  max-width: 900px;
+  height: 394px;
+  background-color: #59DADB;
+}
+
+.lady-bg {
+  width: 595px;
+  height: 394px;
+  background-image: url("img/lady-cruiser.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.lady-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 35px;
+  width: 365px;
+}
+
+.lady-cruiser h2 {
+  margin: 25px 0 35px 0;
+  font-size: 48px;
+  letter-spacing: 2px;
+}
+
+.lady-cruiser p {
+  color: #ffffff;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.lady-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 195px;
+  height: 50px;
+  background-color: #049294;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+
+.wave-blue {
+  margin: 75px auto;
+  width: 168px;
+  height: 16px;
+  background-image: url("img/wave-blue.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dtwo {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  max-width: 900px;
+}
+
+.letter {
+  width: 225px;
+  height: 335px;
+  background-color: #049294;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.d-letter {
+  background-image: url("img/d-letter.png");
+}
+
+.t-letter {
+  background-image: url("img/t-letter.png");
+}
+
+.w-letter {
+  background-image: url("img/w-letter.png");
+}
+
+.o-letter {
+  background-image: url("img/o-letter.png");
+}
+
+
+/* //LADY CRUISER SECTION*/
