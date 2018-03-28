@@ -1,8 +1,13 @@
 /* RESET STYLING*/
 
-* {
-  padding: 0;
+
+*, *::after, *::before {
   margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
   box-sizing: border-box;
 }
 
@@ -10,6 +15,10 @@
 
 
 /* HEADER SECTION*/
+
+.body {
+  min-width: 1024px;
+}
 
 header {
   height: 100vh;
