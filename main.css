@@ -24,7 +24,6 @@ body {
   margin: auto;
   padding-top: 10px;
   max-width: 60%;
-  height: 90vh;
 }
 
 a {
@@ -119,6 +118,60 @@ a:focus {
   font-size: 0.9em;
 
   border-top: 1px solid #eee;
+}
+
+/* Стили для постов */
+.post-header {
+  margin-bottom: 30px;
+}
+
+.post-title {
+  margin-bottom: 15px;
+}
+
+.post-content a {
+  border: none;
+}
+
+.post-content {
+  margin-bottom: 20px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 50px;
+}
+
+.post-note {
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Спойлер */
+
+#spoiler-checkbox {
+  display: none;
+}
+
+.spoiler label {
+  border-bottom: 1px dotted;
+  color: #008ace;
+  cursor: pointer;
+}
+
+.spoiler label:hover,
+.spoiler label:focus {
+  color: #c00;
+}
+
+.spoiler >  input + .spoiler-text {
+	display: none;
+}
+
+.spoiler >  input:checked + .spoiler-text {
+	display: block;
 }
 
 /* Увеличивать ширину .container на  экранах меньше 768px */
