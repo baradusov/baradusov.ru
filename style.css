@@ -257,6 +257,7 @@ section {
 
 .main-menu {
   width: 258px;
+  height: 300px;
   background-color: #fff;
   padding-top: 25px;
   float: left;
@@ -333,15 +334,15 @@ section {
 }
 
 .top-slider {
-  height: 369px;
+  height: 381px;
 }
 
-/* .top-slider-slick {
-    position: absolute;
-    right: 47px;
-    top: 9px;
-    width: 744px;
-} */
+.top-slider-slick {
+  position: absolute;
+  right: 47px;
+  top: 9px;
+  width: 744px;
+}
 
 .top-image {
   position: absolute;
@@ -375,9 +376,9 @@ section {
   float: left;
 }
 
-/* .top-slider-slick .slide.slick-slide {
-	height: 361px;
-} */
+.top-slider-slick .slide.slick-slide {
+  height: 360px;
+}
 
 .top-slider-slick .slick-dots li button::before {
   background-image: url(/images/dotted_passive.png);
@@ -390,6 +391,11 @@ section {
 .top-slider-slick .slick-dots li.slick-active button::before {
   background-image: url(/images/dotted_active.png);
 }
+
+/* .prod {
+  padding-top: 36px;
+  margin-bottom: 5px;
+} */
 
 .prod {
   padding-top: 67px;
@@ -1075,7 +1081,7 @@ section.content {
 
 .nav a:hover,
 .nav ul li.active {
-  /* background-color: #e7e7e7; */
+  /*     background-color: #e7e7e7; */
   transition: 0.3s;
 }
 
@@ -1427,10 +1433,10 @@ li.divider {
 }
 
 .private_cabinet {
-  position: relative;
   float: left;
   width: 346px;
   padding-bottom: 40px;
+  position: relative;
   margin-top: 80px;
   height: 509px;
 }
@@ -1550,12 +1556,11 @@ textarea {
 }
 
 /* span.product-slide-header {
-	   position: absolute;
-	   top: 50px;
-	   width: 240px;
-	   left: 420px;
+    position: absolute;
+    top: 50px;
+    width: 240px;
+    left: 420px;
 } */
-
 .product-slider .slick-prev {
   background-image: url(/images/prev.png);
   left: 0;
