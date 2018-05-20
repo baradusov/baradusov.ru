@@ -5,7 +5,7 @@ body {
   padding: 0;
 
   font-family: 'Roboto', Verdana, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5em;
   color: #222;
 }
@@ -126,7 +126,7 @@ a:focus {
 }
 
 .post-title {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .post-content a {
@@ -149,6 +149,11 @@ img {
   font-style: italic;
 }
 
+.post-date {
+  color: #a1a1a1;
+  font-size: 14px;
+}
+
 /* Спойлер */
 
 #spoiler-checkbox {
@@ -166,12 +171,12 @@ img {
   color: #c00;
 }
 
-.spoiler >  input + .spoiler-text {
-	display: none;
+.spoiler > input + .spoiler-text {
+  display: none;
 }
 
-.spoiler >  input:checked + .spoiler-text {
-	display: block;
+.spoiler > input:checked + .spoiler-text {
+  display: block;
 }
 
 /* Увеличивать ширину .container на  экранах меньше 768px */
@@ -180,6 +185,7 @@ img {
   .container {
     max-width: 80%;
   }
+
   .main-footer {
     margin-bottom: 30px;
   }
