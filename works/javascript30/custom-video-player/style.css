@@ -83,7 +83,7 @@ body {
 }
 
 .player__controls > * {
-  flex:1;
+  flex:2;
 }
 
 .progress {
@@ -101,7 +101,7 @@ body {
   width:50%;
   background:#ffc600;
   flex:0;
-  flex-basis:50%;
+  flex-basis: 0;
 }
 
 /* unholy css to style input type="range" */
@@ -153,4 +153,9 @@ input[type=range]::-moz-range-thumb {
   border-radius: 50px;
   background: #ffc600;
   cursor: pointer;
+}
+
+.player__fullscreen {
+  flex: 1;
+  backg
 }
