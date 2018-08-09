@@ -22,3 +22,25 @@ p {
   margin: 0;
   margin-bottom: 10px;
 }
+
+.todo-container {
+  display:  flex;
+  flex-direction: column;
+}
+
+.todo-title {
+  font-size: 32px;
+  text-align: center;
+}
+
+.todo-add {
+  margin-bottom:  30px;
+}
+
+label {
+  font-size: 16px;
+}
+
+input[type="checkbox"] {
+  margin-right: 20px;
+}
