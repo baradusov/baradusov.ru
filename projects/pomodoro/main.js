@@ -1,3 +1,4 @@
+// Таймер
 let countdown;
 // let isRunning = false;
 
@@ -46,3 +47,31 @@ buttonStart.addEventListener('click', () => {
   // isRunning = true;
   pomodoro((Number(minutesValue) * 60) + Number(secondsValue));
 });
+
+
+// Список задач
+const input = document.querySelector('.todo-input');
+const button = document.querySelector('.todo-add');
+const list = document.querySelector('.todo-container');
+
+const addItem = () => {
+  if (input.value.length > 0) {
+    const checkbox = document.createElement('input');
+    checkbox.type = "checkbox";
+
+    const label = document.createElement('label');
+    label.append(checkbox);
+
+    label.append(input.value);
+    list.append(label);
+    input.value = '';
+  }
+};
+
+button.addEventListener('click', addItem);
+input.addEventListener('keyup', e => {
+  if (e.keyCode === 13) {
+    addItem();
+  }
+});
+
