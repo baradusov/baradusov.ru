@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
-
 html {
   height: 100%;
 }
@@ -18,4 +16,9 @@ body {
   align-items: center;
   font-size: 128px;
   font-family: Roboto, sans-serif;
+}
+
+p {
+  margin: 0;
+  margin-bottom: 10px;
 }
