@@ -5,9 +5,10 @@ let countdown;
 const buttonStart = document.querySelector('.start');
 const audio = document.querySelector('audio');
 const minutes = document.querySelector('.minutes');
-let minutesValue = minutes.textContent;
 const seconds = document.querySelector('.seconds');
+let minutesValue = minutes.textContent;
 let secondsValue = seconds.textContent;
+
 // const buttonPause = document.querySelector('.pause');
 
 const pomodoro = (customSeconds) => {
@@ -21,14 +22,15 @@ const pomodoro = (customSeconds) => {
     const secondsLeft = customSeconds - secondsPassed;
     const remainderSeconds = secondsLeft % 60;
     const minutesLeft = Math.floor(secondsLeft / 60);
-    const timer = `${minutesLeft}:${remainderSeconds < 10 ? 0 : ''}${remainderSeconds}`;
-
-    p.textContent = timer;
-    document.title = timer;
+    minutes.textContent = `${minutesLeft}`;
+    seconds.textContent = `${remainderSeconds < 10 ? 0 : ''}${remainderSeconds}`;
+    //p.textContent = timer;
+    //document.title = timer;
 
     if (secondsLeft < 0) {
       clearInterval(countdown);
-      p.textContent = '0:00';
+      minutes.textContent = minutesValue;
+      seconds.textContent = secondsValue;
       document.title = '0:00';
       audio.play();
     }
