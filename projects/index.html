@@ -9,8 +9,17 @@
   <title>Нуриль Барадусов</title>
   <style>
     body {
+      max-width: 60%;
+      margin: 0 auto;
+      padding: 16px;
       font-size: 1.2em;
       font-family: sans-serif;
+    }
+    img {
+      display: block;
+      height: auto;
+      max-width: 100%;
+      margin-bottom: 16px;
     }
     .logo {
       margin-bottom: 48px;
@@ -19,6 +28,7 @@
       margin: 0;
     }
     .logo .title {
+      margin-top: 0.67em;
       margin-bottom: 12px;
       font-size: 1.8em;
       font-weight: bold;
@@ -31,57 +41,82 @@
     .logo a:focus {
       text-decoration: underline;
     }
+    footer {
+      margin-top: 48px;
+    }
+    @media (max-width: 768px) {
+      body {
+        max-width: none;
+      }
+    }
+    .visually-hidden {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
   </style>
 </head>
 
 <body>
-  <div class="logo">
+  <header class="logo">
     <p class="title">
       <a href="/">Нуриль Барадусов</a>
     </p>
     <p>Верстальщик из&nbsp;Самары.</p>
-  </div>
+  </header>
 
-  <h2>Вёрстка</h2>
-  <ul>
-    <li><a href="/remontok">Ремонток</a></li>
-    <li><a href="/ostov">Остов</a></li>
-  </ul>
-  <h2>JS30</h2>
-  <ol>
-    <li><a style="text-decoration: line-through;" href="javascript30/drum-kit/index.html">Драм-кит</a></li>
-    <li><a style="text-decoration: line-through;" href="javascript30/clock/index.html">Часы</a></li>
-    <li><a style="text-decoration: line-through;" href="javascript30/variables/index.html">CSS-переменные</a></li>
-    <li><a style="text-decoration: line-through;" href="javascript30/type-ahead/index.html">Автодополнение в поиске</a></li>
-    <li><a style="text-decoration: line-through;" href="javascript30/html5-canvas/index.html">Канвас</a></li>
-    <li><a style="text-decoration: line-through;" href="javascript30/flex-gallery/index.html">Флекс-галлерея</a></li>
-    <li><a style="text-decoration: line-through;" href="javascript30/dev-tools/index.html">Девтулз</a></li>
-    <li><a style="text-decoration: line-through;" href="javascript30/custom-video-player/index.html">Кастомный видеоплеер</a></li>
-    <li><a style="text-decoration: line-through;" href="javascript30/shift-checkboxes/index.html">Чекбоксы и шифт</a></li>
-    <li><a style="text-decoration: line-through;" href="javascript30/array-cardio-1/index.html">Массивы 1</a></li>
-    <li><a style="text-decoration: line-through;" href="javascript30/array-cardio-2/index.html">Массивы 2</a></li>
+  <main>
+    <h1 class="visually-hidden">Проекты</h1>
+    <h2>Вёрстка</h2>
+    <ul>
+      <li><a href="/remontok">Ремонток</a></li>
+      <li><a href="/ostov">Остов</a></li>
+    </ul>
+    
+    <h2><abbr title="JavaScript 30">JS30</abbr></h2>
+    <ol>
+      <li><a style="text-decoration: line-through;" href="javascript30/drum-kit/index.html">Драм-кит</a></li>
+      <li><a style="text-decoration: line-through;" href="javascript30/clock/index.html">Часы</a></li>
+      <li><a style="text-decoration: line-through;" href="javascript30/variables/index.html">CSS-переменные</a></li>
+      <li><a style="text-decoration: line-through;" href="javascript30/type-ahead/index.html">Автодополнение в поиске</a></li>
+      <li><a style="text-decoration: line-through;" href="javascript30/html5-canvas/index.html">Канвас</a></li>
+      <li><a style="text-decoration: line-through;" href="javascript30/flex-gallery/index.html">Флекс-галлерея</a></li>
+      <li><a style="text-decoration: line-through;" href="javascript30/dev-tools/index.html">Девтулз</a></li>
+      <li><a style="text-decoration: line-through;" href="javascript30/custom-video-player/index.html">Кастомный видеоплеер</a></li>
+      <li><a style="text-decoration: line-through;" href="javascript30/shift-checkboxes/index.html">Чекбоксы и шифт</a></li>
+      <li><a style="text-decoration: line-through;" href="javascript30/array-cardio-1/index.html">Массивы 1</a></li>
+      <li><a style="text-decoration: line-through;" href="javascript30/array-cardio-2/index.html">Массивы 2</a></li>
 
-    <!-- Невыполненные -->
-    <li><a href="javascript30/key-sequence/index-START.html">Последовательность нажатых кнопок</a></li>
-    <li><a href="javascript30/slide-in-on-scroll/index-START.html">Слайд при скролле</a></li>
-    <li><a href="javascript30/js-reference-vs-copy/index-START.html">JS ссылка против копирования</a></li>
-    <li><a href="javascript30/localstorage/index-START.html">Локальное хранилище</a></li>
-    <li><a href="javascript30/mouse-move-shadow/index-START.html">Мышка и тень</a></li>
-    <li><a href="javascript30/sort-without-articles/index-START.html">Сортировка массива</a></li>
-    <li><a href="javascript30/adding-up-times-reduce/index-START.html">Reduce</a></li>
-    <li><a href="javascript30/webcam-fun/index.html">Вебкамера</a></li>
-    <li><a href="javascript30/speech-detection/index-START.html">Распознование речи</a></li>
-    <li><a href="javascript30/geolocation/index-START.html">Геолокация</a></li>
-    <li><a href="javascript30/link-highlighter/index-START.html">Подсветка ссылки</a></li>
-    <li><a href="javascript30/speech-synthesis/index-START.html">Синтезирование речи</a></li>
-    <li><a href="javascript30/sticky-nav/index-START.html">Прилипающая навигация</a></li>
-    <li><a href="javascript30/event-capture/index-START.html">Захват событий, остановка событий и всплытие</a></li>
-    <li><a href="javascript30/follow-nav/index-START.html">Преследующее выпадающее меню</a></li>
-    <li><a href="javascript30/click-drag/index-START.html">Кликни и перетащи</a></li>
-    <li><a href="javascript30/video-speed-controller/index-START.html">Управление скоростью видео</a></li>
-    <li><a href="javascript30/countdown-timer/index.html">Таймер</a></li>
-    <li><a href="javascript30/whack-a-mole/index-START.html">Убей крота</a></li>
-  </ol>
+      <!-- Невыполненные -->
+      <li><a href="javascript30/key-sequence/index-START.html">Последовательность нажатых кнопок</a></li>
+      <li><a href="javascript30/slide-in-on-scroll/index-START.html">Слайд при скролле</a></li>
+      <li><a href="javascript30/js-reference-vs-copy/index-START.html">JS ссылка против копирования</a></li>
+      <li><a href="javascript30/localstorage/index-START.html">Локальное хранилище</a></li>
+      <li><a href="javascript30/mouse-move-shadow/index-START.html">Мышка и тень</a></li>
+      <li><a href="javascript30/sort-without-articles/index-START.html">Сортировка массива</a></li>
+      <li><a href="javascript30/adding-up-times-reduce/index-START.html">Reduce</a></li>
+      <li><a href="javascript30/webcam-fun/index.html">Вебкамера</a></li>
+      <li><a href="javascript30/speech-detection/index-START.html">Распознование речи</a></li>
+      <li><a href="javascript30/geolocation/index-START.html">Геолокация</a></li>
+      <li><a href="javascript30/link-highlighter/index-START.html">Подсветка ссылки</a></li>
+      <li><a href="javascript30/speech-synthesis/index-START.html">Синтезирование речи</a></li>
+      <li><a href="javascript30/sticky-nav/index-START.html">Прилипающая навигация</a></li>
+      <li><a href="javascript30/event-capture/index-START.html">Захват событий, остановка событий и всплытие</a></li>
+      <li><a href="javascript30/follow-nav/index-START.html">Преследующее выпадающее меню</a></li>
+      <li><a href="javascript30/click-drag/index-START.html">Кликни и перетащи</a></li>
+      <li><a href="javascript30/video-speed-controller/index-START.html">Управление скоростью видео</a></li>
+      <li><a href="javascript30/countdown-timer/index.html">Таймер</a></li>
+      <li><a href="javascript30/whack-a-mole/index-START.html">Убей крота</a></li>
+    </ol>
+  </main>
+
+  <footer>&copy;&nbsp;2018 <a href="https://www.baradusov.ru">Нуриль Барадусов</a><br><a href="mailto:baradusovnh@gmail.com">baradusovnh@gmail.com</a></footer>
 </body>
 
 </html>
