@@ -5,12 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#008ace">
   <meta name="description" content="Нуриль Барадусов, верстальщик.">
   <title>Нуриль Барадусов</title>
   <style>
     body {
+      max-width: 60%;
+      margin: 0 auto;
+      padding: 16px;
       font-size: 1.2em;
       font-family: sans-serif;
+    }
+    img {
+      display: block;
+      height: auto;
+      max-width: 100%;
+      margin-bottom: 16px;
     }
     .logo {
       margin-bottom: 48px;
@@ -19,8 +29,25 @@
       margin: 0;
     }
     .logo .title {
-      font-size: 1.8em;
       margin-bottom: 12px;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+    .logo a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .logo a:hover,
+    .logo a:focus {
+      text-decoration: underline;
+    }
+    footer {
+      margin-top: 48px;
+    }
+    @media (max-width: 768px) {
+      body {
+        max-width: none;
+      }
     }
   </style>
   <script>
@@ -30,11 +57,20 @@
 
 <body>
   <div class="logo">
-    <h1 class="title">Нуриль Барадусов</h1>
+    <p class="title">
+      <a href="/">Нуриль Барадусов</a>
+    </p>
     <p>Верстальщик из&nbsp;Самары.</p>
   </div>
-  <p>Контакты: baradusovnh@gmail.com, @baradusov на&nbsp;твиттере,&nbsp;телеграме и&nbsp;<a href="https://github.com/baradusov">гитхабе</a>.</p>
-  <p>Пишу на&nbsp;<a href="https://medium.com/@baradusov">медиум</a> переводы и&nbsp;конспекты про вёрстку и&nbsp;депрессию.</p>
+
+  <main>
+    <h1>Заметки</h1>
+    <ul>
+      <li><a href="instruction\index.html">Инструкция участнику Юбилейной встречи выпускников</a> — <time datetime="2018-05-20">20.05.2018</time></li>
+    </ul>
+  </main>
+
+  <footer>&copy;&nbsp;2018 <a href="https://www.baradusov.ru">Нуриль Барадусов</a><br><a href="mailto:baradusovnh@gmail.com">baradusovnh@gmail.com</a></footer>
 </body>
 
 </html>
