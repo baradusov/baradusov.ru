@@ -1,8 +1,6 @@
 # robot.txt
 User-agent: *
-Disallow: /tightpussies
-Disallow: /projects
-Disallow: /ostov
+Allow: /
 Disallow: /remontok
-Disallow: /pomodoro
 Disallow: /sedona
+Disallow: /ostov
