@@ -1,6 +1,7 @@
 # Redirect default Netlify subdomain to primary domain
 http://baradusov.netlify.com/* http://www.baradusov.ru/:splat 301!
 /remontok/*  https://remontok.netlify.com/:splat  200
+/remontok/css/*  https://remontok.netlify.com/css/:splat  200
 /ostov/*  https://ostov.netlify.com/:splat  200
 /sedona/*  https://sedona-b.netlify.com/:splat  200
 /pomodoro/*  https://pomodorrro.netlify.com/:splat  200
