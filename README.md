@@ -1,2 +1,3 @@
-# baradusov
-My Personal Page
+# baradusov.ru
+
+Личный сайт.
