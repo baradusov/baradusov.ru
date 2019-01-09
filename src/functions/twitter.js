@@ -11,9 +11,6 @@ exports.handler = function(event, context, callback) {
   });
 
   const slackURL = process.env.SLACK_URL;
-  const slackPayload = {
-    text: "Аватар обновлён https://twitter.com/baradusov"
-  };
 
   T.post(
     "account/update_profile_image",
@@ -31,9 +28,17 @@ exports.handler = function(event, context, callback) {
       });
 
       request.post(
-        { url: slackURL, json: slackPayload },
+        {
+          url: slackURL,
+          json: {
+            text: `
+            Аватар обновлён https://twitter.com/baradusov.
+            Картиночка: ${response.profile_image_url_https}
+            `
+          }
+        },
         (err, httpResponse, body) => {
-          return console.log(slackPayload);
+          return console.log("Slack message sent");
         }
       );
     }
