@@ -12,6 +12,7 @@ exports.handler = function(event, context, callback) {
   const slackURL = process.env.SLACK_URL;
 
   const sendToSlack = message => {
+    callback(null, {body: message})
     fetch(slackURL, {
       method: "POST",
       body: JSON.stringify({
@@ -27,7 +28,7 @@ exports.handler = function(event, context, callback) {
     },
     (err, data, response) => {
       sendToSlack(`Аватар обновлён https://twitter.com/baradusov`);
-      return callback(null, {
+      callback(null, {
         statusCode: 200,
         body: JSON.stringify({
           message: data,
