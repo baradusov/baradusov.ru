@@ -11,7 +11,9 @@ exports.handler = function(event, context, callback) {
   });
 
   const slackURL = process.env.SLACK_URL;
-  const slackPayload = `Аватар обновлён https://twitter.com/baradusov`;
+  const slackPayload = {
+    text: "Аватар обновлён https://twitter.com/baradusov"
+  };
 
   T.post(
     "account/update_profile_image",
