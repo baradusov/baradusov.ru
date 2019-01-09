@@ -9,24 +9,15 @@ exports.handler = function(event, context, callback) {
     access_token_secret: process.env.ACCESS_TOKEN_SECRET
   });
 
-  const slack = {
-    first: process.env.SLACK_FIRST,
-    second: process.env.SLACK_SECOND,
-    third: process.env.SLACK_THIRD
-  };
+  const slackURL = process.env.SLACK_URL;
 
   const sendToSlack = message => {
-    fetch(
-      `https://hooks.slack.com/services/${slack.first}/${slack.second}/${
-        slack.third
-      }`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          message: message
-        })
-      }
-    );
+    fetch(slackURL, {
+      method: "POST",
+      body: JSON.stringify({
+        message: message
+      })
+    });
   };
 
   T.post(
@@ -35,7 +26,8 @@ exports.handler = function(event, context, callback) {
       image: image
     },
     (err, data, response) => {
-      callback(null, {
+      sendToSlack(`Аватар обновлён https://twitter.com/baradusov`);
+      return callback(null, {
         statusCode: 200,
         body: JSON.stringify({
           message: data,
@@ -43,11 +35,6 @@ exports.handler = function(event, context, callback) {
           response: response
         })
       });
-      sendToSlack(
-        `Аватар обновлён https://twitter.com/baradusov: ${
-          response.profile_image_url
-        }.`
-      );
     }
   );
 };
