@@ -12,6 +12,7 @@
   "homepage": "https://github.com/baradusov/baradusov.ru#readme",
   "dependencies": {
     "twit": "^2.2.11",
-    "netlify-lambda": "^1.1.0"
+    "netlify-lambda": "^1.1.0",
+    "request": "^2.88.0"
   }
 }

@@ -1,4 +1,5 @@
 var Twit = require("twit");
+var request = require("request");
 
 exports.handler = function(event, context, callback) {
   const image = event.queryStringParameters["image"].split(",")[1];
@@ -10,16 +11,7 @@ exports.handler = function(event, context, callback) {
   });
 
   const slackURL = process.env.SLACK_URL;
-
-  const sendToSlack = message => {
-    callback(null, {body: message})
-    fetch(slackURL, {
-      method: "POST",
-      body: JSON.stringify({
-        message: message
-      })
-    });
-  };
+  const slackPayload = `Аватар обновлён https://twitter.com/baradusov`;
 
   T.post(
     "account/update_profile_image",
@@ -27,7 +19,6 @@ exports.handler = function(event, context, callback) {
       image: image
     },
     (err, data, response) => {
-      sendToSlack(`Аватар обновлён https://twitter.com/baradusov`);
       callback(null, {
         statusCode: 200,
         body: JSON.stringify({
@@ -36,6 +27,13 @@ exports.handler = function(event, context, callback) {
           response: response
         })
       });
+
+      request.post(
+        { url: slackURL, json: slackPayload },
+        (err, httpResponse, body) => {
+          return console.log(slackPayload);
+        }
+      );
     }
   );
 };
