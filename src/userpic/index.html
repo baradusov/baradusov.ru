@@ -79,11 +79,13 @@
           button.textContent = "Обновление аватара...";
           fetch(
             `/.netlify/functions/twitter`,
-            method: "POST",
-            body: JSON.stringify(userpic),
-            headers: {
-              "Content-Type": "application/json"
-            },
+            {
+              method: "POST",
+              body: JSON.stringify(userpic),
+              headers: {
+                "Content-Type": "application/json"
+              }
+            }
           )
             .then(response => {
               return response.json();
