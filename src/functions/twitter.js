@@ -31,9 +31,9 @@ exports.handler = function(event, context, callback) {
         {
           url: slackURL,
           json: {
-            text: `Аватар обновлён https://twitter.com/baradusov. Картиночка: ${
-              message.profile_image_url_https
-            }`
+            text:
+              "Аватар обновлён https://twitter.com/baradusov. Картиночка: " +
+              data.profile_image_url_https
           }
         },
         (err, httpResponse, body) => {
