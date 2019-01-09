@@ -43,7 +43,6 @@ exports.handler = function(event, context, callback) {
           response: response
         })
       });
-
       sendToSlack(
         `Аватар обновлён https://twitter.com/baradusov: ${
           response.profile_image_url
