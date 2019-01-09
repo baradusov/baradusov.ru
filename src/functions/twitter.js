@@ -2,7 +2,7 @@ var Twit = require("twit");
 var request = require("request");
 
 exports.handler = function(event, context, callback) {
-  const image = event.queryStringParameters["image"].split(",")[1];
+  const image = event.body.split(",")[1];
   const T = new Twit({
     consumer_key: process.env.CONSUMER_KEY,
     consumer_secret: process.env.CONSUMER_SECRET,
