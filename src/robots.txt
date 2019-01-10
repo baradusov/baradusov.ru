@@ -1,6 +1,6 @@
--# robot.txt
--User-agent: *
--Allow: /
--Disallow: /remontok
--Disallow: /sedona
--Disallow: /ostov
+# robot.txt
+User-agent: *
+Allow: /
+Disallow: /remontok
+Disallow: /sedona
+Disallow: /ostov
