@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="Нуриль Барадусов, верстальщик.">
   <title>Нуриль Барадусов</title>
   <style>
@@ -35,13 +36,16 @@
     if (darkMode) {
       document.body.classList.toggle("dark");
       document.querySelector("#dark-theme").checked = true;
+      document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
     }
     const changeTheme = e => {
       if (document.querySelector("#dark-theme").checked) {
         document.body.classList.add("dark");
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000”);
         localStorage.setItem("darkMode", true);
       } else {
         document.body.classList.remove("dark");
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff"); 
         localStorage.removeItem("darkMode");
       }
     };
