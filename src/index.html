@@ -1,55 +1,125 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="Нуриль Барадусов, верстальщик." />
+    <title>Нуриль Барадусов</title>
+    <style>
+      body {
+        max-width: 60%;
+        margin: 0 auto;
+        padding: 16px;
+        font-size: 1.2em;
+        font-family: sans-serif;
+      }
+      @media (max-width: 768px) {
+        body {
+          max-width: none;
+        }
+      }
+      .logo {
+        margin-bottom: 48px;
+      }
+      .logo p {
+        margin: 0;
+      }
+      .logo .title {
+        font-size: 1.8em;
+        margin-bottom: 12px;
+      }
+      address {
+        font-style: normal;
+      }
+      .dark {
+        color: #fff;
+        background-color: #000;
+      }
+      .dark a {
+        color: #6060ff;
+      }
+      input:focus + label {
+        outline: auto;
+      }
+      label::before {
+        content: "■";
+        cursor: pointer;
+        color: #000;
+      }
+      .dark label::before {
+        color: #fff;
+      }
+      .vh {
+        position: absolute;
+        display: block;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px);
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: inset(1px);
+        white-space: nowrap;
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Нуриль Барадусов, верстальщик.">
-  <title>Нуриль Барадусов</title>
-  <style>
-    body{max-width:60%;margin:0 auto;padding:16px;font-size:1.2em;font-family:sans-serif}.logo{margin-bottom:48px}.logo p{margin:0}.logo .title{font-size:1.8em;margin-bottom:12px}address{font-style:normal}@media (max-width:768px){body{max-width:none}}.dark{color:#fff;background-color:#000}.dark a{color:#6060ff}input:focus+label{outline:auto}label::before{content:"■";cursor:pointer;color:#000}.dark label::before{color:#fff}.vh{position:absolute;display:block;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(1px);white-space:nowrap}
-  </style>
-</head>
-
-<body>
-  <header class="logo">
+  <body>
+    <header class="logo">
       <h1 class="title">
-        <input class="vh" id="dark-theme" type="checkbox">
-        <label for="dark-theme"></label>
-        Нуриль Барадусов
+        <input class="vh" id="dark-theme" type="checkbox" />
+        <label for="dark-theme"></label> Нуриль Барадусов
       </h1>
       <p>Верстальщик из&nbsp;Самары.</p>
-  </header>
+    </header>
 
-  <main>
-    <p>Верстаю, пишу на&nbsp;<a href="https://medium.com/@baradusov">медиум</a> переводы и&nbsp;конспекты про вёрстку и&nbsp;депрессию, веду канал в&nbsp;телеграме «<a href="https://tlinks.run/tightpussies">тесные киски</a>».</p>
-    <address>
-      <p>Со&nbsp;мной можно связаться по&nbsp;почте <a href="mailto:baradusovnh@gmail.com">baradusovnh@gmail.com</a>, в&nbsp;<a href="https://twitter.com/baradusov">твиттере</a>, <a href="https://tlinks.run/baradusov">телеграме</a> и&nbsp;<a href="https://github.com/baradusov">гитхабе</a>.</p>
-    </address>
-    <p>А ещё вы можете <a href="/userpic">нарисовать мне аватар</a> для твиттера.</p>
-  </main>
-  <script>
-    const darkMode = localStorage.getItem("darkMode");
-    if (darkMode) {
-      document.body.classList.toggle("dark");
-      document.querySelector("#dark-theme").checked = true;
-      document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
-    }
-    const changeTheme = e => {
-      if (document.querySelector("#dark-theme").checked) {
-        document.body.classList.add("dark");
-        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
-        localStorage.setItem("darkMode", true);
-      } else {
-        document.body.classList.remove("dark");
-        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
-        localStorage.removeItem("darkMode");
+    <main>
+      <p>
+        Верстаю, пишу на&nbsp;<a href="https://medium.com/@baradusov">медиум</a>
+        переводы и&nbsp;конспекты про вёрстку и&nbsp;депрессию, веду канал
+        в&nbsp;телеграме «<a href="https://tlinks.run/tightpussies">тесные киски</a>».
+      </p>
+      <address>
+        <p>
+          Со&nbsp;мной можно связаться по&nbsp;почте
+          <a href="mailto:baradusovnh@gmail.com">baradusovnh@gmail.com</a>,
+          в&nbsp;<a href="https://twitter.com/baradusov">твиттере</a>,
+          <a href="https://tlinks.run/baradusov">телеграме</a> и&nbsp;<a href="https://github.com/baradusov">гитхабе</a>.
+        </p>
+      </address>
+      <p>
+        А ещё вы можете <a href="/userpic">нарисовать мне аватар</a> для
+        твиттера.
+      </p>
+    </main>
+    <script>
+      const darkMode = localStorage.getItem("darkMode");
+      if (darkMode) {
+        document.body.classList.toggle("dark");
+        document.querySelector("#dark-theme").checked = true;
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute("content", "#000000");
       }
-    };
-    document.querySelector("#dark-theme").addEventListener("change", changeTheme);
-  </script>
-</body>
-
+      const changeTheme = e => {
+        if (document.querySelector("#dark-theme").checked) {
+          document.body.classList.add("dark");
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute("content", "#000000");
+          localStorage.setItem("darkMode", true);
+        } else {
+          document.body.classList.remove("dark");
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute("content", "#ffffff");
+          localStorage.removeItem("darkMode");
+        }
+      };
+      document
+        .querySelector("#dark-theme")
+        .addEventListener("change", changeTheme);
+    </script>
+  </body>
 </html>
