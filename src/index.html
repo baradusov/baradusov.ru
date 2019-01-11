@@ -32,7 +32,6 @@
   </main>
   <script>
     const darkMode = localStorage.getItem("darkMode");
-    console.log(darkMode)
     if (darkMode) {
       document.body.classList.toggle("dark");
       document.querySelector("#dark-theme").checked = true;
@@ -41,11 +40,11 @@
     const changeTheme = e => {
       if (document.querySelector("#dark-theme").checked) {
         document.body.classList.add("dark");
-        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000”);
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
         localStorage.setItem("darkMode", true);
       } else {
         document.body.classList.remove("dark");
-        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff"); 
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
         localStorage.removeItem("darkMode");
       }
     };
