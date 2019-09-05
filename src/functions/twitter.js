@@ -33,7 +33,7 @@ exports.handler = function(event, context, callback) {
           json: {
             text:
               "Аватар обновлён https://twitter.com/baradusov. Картиночка: " +
-              data.profile_image_url_https.replace("_normal", "");
+              data.profile_image_url_https.replace("_normal", "")
           }
         },
         (err, httpResponse, body) => {
