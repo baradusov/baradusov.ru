@@ -33,43 +33,13 @@
       address {
         font-style: normal;
       }
-      .dark {
-        color: #fff;
-        background-color: #000;
-      }
-      .dark a {
-        color: #6060ff;
-      }
-      input:focus + label {
-        outline: auto;
-      }
-      label::before {
-        content: "■";
-        cursor: pointer;
-        color: #000;
-      }
-      .dark label::before {
-        color: #fff;
-      }
-      .vh {
-        position: absolute;
-        display: block;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-        clip: rect(1px 1px 1px 1px);
-        clip: rect(1px, 1px, 1px, 1px);
-        clip-path: inset(1px);
-        white-space: nowrap;
-      }
     </style>
   </head>
 
   <body>
     <header class="logo">
       <h1 class="title">
-        <input class="vh" id="dark-theme" type="checkbox" />
-        <label for="dark-theme"></label> Нуриль Барадусов
+        Нуриль Барадусов
       </h1>
       <p>Верстальщик из&nbsp;Самары.</p>
     </header>
@@ -93,33 +63,5 @@
         твиттера.
       </p>
     </main>
-    <script>
-      const darkMode = localStorage.getItem("darkMode");
-      if (darkMode) {
-        document.body.classList.toggle("dark");
-        document.querySelector("#dark-theme").checked = true;
-        document
-          .querySelector('meta[name="theme-color"]')
-          .setAttribute("content", "#000000");
-      }
-      const changeTheme = e => {
-        if (document.querySelector("#dark-theme").checked) {
-          document.body.classList.add("dark");
-          document
-            .querySelector('meta[name="theme-color"]')
-            .setAttribute("content", "#000000");
-          localStorage.setItem("darkMode", true);
-        } else {
-          document.body.classList.remove("dark");
-          document
-            .querySelector('meta[name="theme-color"]')
-            .setAttribute("content", "#ffffff");
-          localStorage.removeItem("darkMode");
-        }
-      };
-      document
-        .querySelector("#dark-theme")
-        .addEventListener("change", changeTheme);
-    </script>
   </body>
 </html>
