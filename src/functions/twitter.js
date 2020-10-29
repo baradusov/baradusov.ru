@@ -27,21 +27,21 @@ exports.handler = function (event, context, callback) {
         }),
       });
 
-      T.post("media/upload", { media_data: image }, function (
-        err,
-        data,
-        response
-      ) {
-        const params = {
-          status: "@baradusov кто-то нарисовал новый аватар",
-          in_reply_to_status_id: "1082952476331044864",
-          media_ids: [data.media_id_string],
-        };
+      // T.post("media/upload", { media_data: image }, function (
+      //   err,
+      //   data,
+      //   response
+      // ) {
+      //   const params = {
+      //     status: "@baradusov кто-то нарисовал новый аватар",
+      //     in_reply_to_status_id: "1082952476331044864",
+      //     media_ids: [data.media_id_string],
+      //   };
 
-        T.post("statuses/update", params, function (err, data, response) {
-          console.log(data);
-        });
-      });
+      //   T.post("statuses/update", params, function (err, data, response) {
+      //     console.log(data);
+      //   });
+      // });
 
       request.post(
         {
