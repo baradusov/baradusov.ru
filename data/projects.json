@@ -1,0 +1,29 @@
+{
+  "projects": [
+    {
+      "name": "Webpage to PDF bot",
+      "url": "https://t.me/html_to_pdf_bot",
+      "description": "Телеграм-бот, который помогает сохранять статьи как pdf-файл. Кидаешь ссылку — получаешь читабельную пдфку"
+    },
+    {
+      "name": "GTFPL",
+      "url": "https://t.me/GetTheFuckingPublicLinkBot",
+      "description": "Телеграм-бот для получения публичной ссылки на файл"
+    },
+    {
+      "name": "Лёгкая версия Медузы",
+      "url": "https://meduza-lite.vercel.app",
+      "description": "Облегчённая версия новостного издания Meduza.io"
+    },
+    {
+      "name": "тесные киски",
+      "url": "https://t.me/tightpussies",
+      "description": "Телеграм-канал про кошек, оказавшихся в тесных местах"
+    },
+    {
+      "name": "russianstreetwear.club",
+      "url": "https://russianstreetwear.club",
+      "description": "Каталог российских брендов уличной одежды"
+    }
+  ]
+}

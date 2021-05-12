@@ -1,0 +1,55 @@
+html,
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: system-ui;
+}
+
+body {
+  margin: 0;
+  font-size: 18px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a {
+  display: inline-block;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  padding: 15px;
+  max-width: 800px;
+  min-height: 100vh;
+}
+
+.logo {
+  margin-top: 22px;
+  margin-bottom: 22px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+footer {
+  margin-top: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+.pussy {
+  cursor: url("/pussy.png"), auto;
+}

@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+}
+
+@media (min-width: 800px) {
+  .container {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .date {
+    margin-left: 10px;
+  }
+}

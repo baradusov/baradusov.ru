@@ -1,0 +1,10 @@
+.contacts {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contacts li:nth-child(n + 2) {
+  margin-left: 10px;
+}
