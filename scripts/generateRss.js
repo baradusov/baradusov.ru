@@ -53,15 +53,18 @@ const generateRss = async () => {
         path.join(__dirname, '..', 'data', 'posts', name)
       );
       const { content, data } = matter(source);
-      const { renderedOutput } = await renderToString(content);
-      const description = absolutify(renderedOutput);
 
-      feed.item({
-        title: data.title,
-        url: 'https://baradusov.ru/' + name.replace(/\.mdx?/, ''),
-        date: data.created,
-        description: description,
-      });
+      if (!data.draft) {
+        const { renderedOutput } = await renderToString(content);
+        const description = absolutify(renderedOutput);
+
+        feed.item({
+          title: data.title,
+          url: 'https://baradusov.ru/' + name.replace(/\.mdx?/, ''),
+          date: data.created,
+          description: description,
+        });
+      }
     })
   );
 
