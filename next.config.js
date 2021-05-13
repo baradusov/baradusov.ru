@@ -8,7 +8,7 @@ module.exports = withMDX({
     webpack5: true,
   },
   webpack: (config, { dev, isServer }) => {
-    if (isServer) {
+    if (!dev && isServer) {
       require('./scripts/generateRss');
     }
 
