@@ -37,6 +37,8 @@ const absolutify = (input) => {
  * Generate rss feed
  */
 const generateRss = async () => {
+  console.log('Started generating RSS feed...');
+
   const feed = new RSS({
     title: 'Нуриль Барадусов',
     site_url: 'https://baradusov.ru',
@@ -64,6 +66,8 @@ const generateRss = async () => {
   );
 
   await fs.writeFile('./public/feed.xml', feed.xml({ indent: true }));
+
+  console.log('Finished generating RSS feed');
 };
 
 generateRss();
