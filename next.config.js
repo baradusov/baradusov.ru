@@ -7,4 +7,11 @@ module.exports = withMDX({
   future: {
     webpack5: true,
   },
+  webpack: (config, { dev, isServer }) => {
+    if (isServer) {
+      require('./scripts/generateRss');
+    }
+
+    return config;
+  },
 });

@@ -9,7 +9,14 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="ru">
-        <Head />
+        <Head>
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="baradusov.ru"
+            href="/feed.xml"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
