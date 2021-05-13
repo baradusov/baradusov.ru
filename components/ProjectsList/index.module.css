@@ -1,0 +1,11 @@
+.list {
+  grid-template-columns: 1fr;
+  column-gap: 2em;
+}
+
+@media (min-width: 800px) {
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
