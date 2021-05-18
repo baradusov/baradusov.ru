@@ -16,6 +16,12 @@ class MyDocument extends Document {
             title="baradusov.ru"
             href="/feed.xml"
           />
+          <script
+            async
+            defer
+            datadomain="baradusov.ru"
+            src="https://open.baradusov.ru/js/plausible.js"
+          ></script>
         </Head>
         <body>
           <Main />
