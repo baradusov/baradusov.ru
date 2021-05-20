@@ -19,7 +19,7 @@ class MyDocument extends Document {
           <script
             async
             defer
-            datadomain="baradusov.ru"
+            data-domain="baradusov.ru"
             src="https://open.baradusov.ru/js/plausible.js"
           ></script>
         </Head>
