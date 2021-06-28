@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { getPosts, getPostBySlug } from '@lib/posts';
+import { getPaths, getPostBySlug } from '@lib/posts';
 import { MDXRemote } from 'next-mdx-remote';
 
 const Home = (props) => {
@@ -21,7 +21,7 @@ const Home = (props) => {
           <MDXRemote {...mdxSource} />
         </div>
         <time className="dt-published" dateTime={`${created}T00:00:00.000Z`}>
-          <a href={`/${slug}`} className="u-url">
+          <a href={`/posts/${slug}`} className="u-url">
             {localCreated}
           </a>
         </time>
@@ -34,26 +34,19 @@ const Home = (props) => {
 };
 
 export const getStaticProps = async (context) => {
-  const { slug } = context.params;
-  const post = await getPostBySlug(slug);
+  const { year, slug } = context.params;
+  const post = await getPostBySlug(year, slug);
 
   return {
     props: {
       post,
-      slug,
+      slug: `${year}/${slug}`,
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const posts = await getPosts();
-  const paths = posts.map((post) => {
-    const { slug } = post;
-
-    return {
-      params: { slug },
-    };
-  });
+  const paths = await getPaths();
 
   return {
     paths,

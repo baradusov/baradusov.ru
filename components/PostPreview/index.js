@@ -1,15 +1,15 @@
 import Link from '@components/Link';
 import styles from './index.module.css';
 
-const Project = (props) => {
-  const { post } = props;
+const PostPreview = (props) => {
+  const { post, year } = props;
   const { data, slug } = post;
   const { title, description, created } = data;
   const localCreated = new Date(created).toLocaleDateString('ru-RU');
 
   return (
     <div className={`${styles.container} h-entry`}>
-      <Link href={`/${slug}`} className="u-url p-name">
+      <Link href={`/posts/${year}/${slug}`} className="u-url p-name">
         <h3>{title}</h3>
       </Link>
       <time
@@ -22,4 +22,4 @@ const Project = (props) => {
   );
 };
 
-export default Project;
+export default PostPreview;

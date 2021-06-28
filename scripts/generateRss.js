@@ -45,30 +45,45 @@ const generateRss = async () => {
     feed_url: 'https://baradusov.ru/feed.xml',
   });
 
-  const posts = await fs.readdir(path.join(__dirname, '..', 'data', 'posts'));
-
-  await Promise.all(
-    posts.map(async (name) => {
-      const source = await fs.readFile(
-        path.join(__dirname, '..', 'data', 'posts', name)
-      );
-      const { content, data } = matter(source);
-
-      if (!data.draft) {
-        const { renderedOutput } = await renderToString(content);
-        const description = absolutify(renderedOutput);
-
-        feed.item({
-          title: data.title,
-          url: 'https://baradusov.ru/' + name.replace(/\.mdx?/, ''),
-          date: data.created,
-          description: description,
-        });
-      }
-    })
+  const dirsByYears = await fs.readdir(
+    path.join(__dirname, '..', 'data', 'posts')
   );
+  const dirsByYearsSorted = dirsByYears.sort((a, b) => Number(b) - Number(a));
 
-  await fs.writeFile('./public/feed.xml', feed.xml({ indent: true }));
+  for (let year of dirsByYearsSorted) {
+    const posts = await fs.readdir(
+      path.join(__dirname, '..', 'data', 'posts', year)
+    );
+
+    await Promise.all(
+      posts.map(async (name) => {
+        const source = await fs.readFile(
+          path.join(__dirname, '..', 'data', 'posts', year, name)
+        );
+        const { content, data } = matter(source);
+
+        if (!data.draft) {
+          const { renderedOutput } = await renderToString(content);
+          const description = absolutify(renderedOutput);
+
+          feed.item({
+            title: data.title,
+            url: `https://baradusov.ru/posts/${year}/${name.replace(
+              /\.mdx?/,
+              ''
+            )}`,
+            date: data.created,
+            description: description,
+          });
+        }
+      })
+    );
+  }
+
+  await fs.writeFile(
+    path.join(__dirname, '..', 'public', 'feed.xml'),
+    feed.xml({ indent: true })
+  );
 
   console.log('Finished generating RSS feed');
 };

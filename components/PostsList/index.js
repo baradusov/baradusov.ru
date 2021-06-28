@@ -1,17 +1,19 @@
 import PostPreview from '@components/PostPreview';
 
 const PostList = (props) => {
-  const { posts, title } = props;
+  const { posts, year } = props;
+
+  if (posts.length === 0 ) return null;
 
   return (
     <section className="h-feed">
-      {title && <h3>{title}</h3>}
+      {year && <h3>{year}</h3>}
 
       <ul>
         {posts.map((post, index) => {
           return (
             <li key={index}>
-              <PostPreview post={post} />
+              <PostPreview post={post} year={year} />
             </li>
           );
         })}

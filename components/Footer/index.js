@@ -1,9 +1,11 @@
-import styles from './index.module.css';
+import Link from '@components/Link';
 
 const Footer = () => {
   return (
     <footer>
-      <p>Нуриль Барадусов, фронтендер из Самары</p>
+      <p>
+        Следить за обновлениями можно через <Link href="/feed.xml">RSS</Link>
+      </p>
     </footer>
   );
 };
