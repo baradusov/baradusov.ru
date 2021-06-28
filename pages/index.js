@@ -19,7 +19,7 @@ export const getStaticProps = async () => {
 
 const Home = (props) => {
   const { projects, postsByYear } = props;
-  const years = Object.keys(postsByYear).sort((a, b) => b > a);
+  const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
 
   return (
     <>
