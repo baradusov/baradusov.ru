@@ -5,7 +5,7 @@ import { MDXRemote } from 'next-mdx-remote';
 const Home = (props) => {
   const { post, slug } = props;
   const { data, mdxSource } = post;
-  const { title, description, created } = data;
+  const { title, description = 'Фронтендер из Самары', created } = data;
   const localCreated = new Date(created).toLocaleDateString('ru-RU');
 
   return (
@@ -13,6 +13,15 @@ const Home = (props) => {
       <Head>
         <title>{`Нуриль Барадусов | ${title}`}</title>
         {description && <meta name="description" content={description} />}
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:url"
+          content={`https://baradusov.ru/posts/${slug}`}
+        />
+        <meta property="og:title" content={`Нуриль Барадусов | ${title}`} />
+        {description && (
+          <meta property="og:description" content={description} />
+        )}
       </Head>
 
       <main className="h-entry">
