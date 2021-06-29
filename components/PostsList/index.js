@@ -6,7 +6,7 @@ const PostList = (props) => {
   if (posts.length === 0 ) return null;
 
   return (
-    <section className="h-feed">
+    <section>
       {year && <h3>{year}</h3>}
 
       <ul>

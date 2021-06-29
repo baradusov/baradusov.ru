@@ -32,10 +32,14 @@ const Home = (props) => {
         <About />
         <ProjectsList projects={projects} />
 
-        <h2>Пишу</h2>
-        {years.map((year, key) => {
-          return <PostsList key={key} posts={postsByYear[year]} year={year} />;
-        })}
+        <div className="h-feed">
+          <h2>Пишу</h2>
+          {years.map((year, key) => {
+            return (
+              <PostsList key={key} posts={postsByYear[year]} year={year} />
+            );
+          })}
+        </div>
       </main>
     </>
   );
