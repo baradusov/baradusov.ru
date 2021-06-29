@@ -9,6 +9,7 @@ body {
 body {
   margin: 0;
   font-size: 18px;
+  word-break: break-word;
 }
 
 *,
