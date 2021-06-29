@@ -22,6 +22,14 @@ class MyDocument extends Document {
             data-domain="baradusov.ru"
             src="https://open.baradusov.ru/js/plausible.js"
           ></script>
+          <link
+            rel="webmention"
+            href="https://webmention.io/baradusov.ru/webmention"
+          />
+          <link
+            rel="pingback"
+            href="https://webmention.io/baradusov.ru/xmlrpc"
+          />
         </Head>
         <body>
           <Main />
