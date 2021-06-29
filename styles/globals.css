@@ -17,6 +17,11 @@ body {
   box-sizing: inherit;
 }
 
+hr {
+  max-width: 100px;
+  margin: 50px auto;
+}
+
 a {
   display: inline-block;
 }
@@ -51,5 +56,5 @@ footer {
 }
 
 .pussy {
-  cursor: url("/pussy.png"), auto;
+  cursor: url('/pussy.png'), auto;
 }
