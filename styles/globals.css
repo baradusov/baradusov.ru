@@ -59,3 +59,31 @@ footer {
 .pussy {
   cursor: url('/pussy.png'), auto;
 }
+
+.responses ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.likes ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.likes li {
+  margin-right: 10px;
+}
+
+.likes img {
+  width: 100%;
+  max-width: 36px;
+}
+
+.replies p {
+  margin: 4px 0;
+}
+
+.replies li {
+  margin-bottom: 20px;
+}

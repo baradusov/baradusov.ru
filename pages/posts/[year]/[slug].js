@@ -37,6 +37,7 @@ const Home = (props) => {
         <a className="p-author h-card hidden" href="https://baradusov.ru">
           Нуриль Барадусов
         </a>
+        <div id="webmentions" className="responses"></div>
       </main>
     </>
   );
