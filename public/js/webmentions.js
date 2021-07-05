@@ -3,7 +3,7 @@
  * @returns {array} вебменшены
  */
 const getWebmentions = async () => {
-  const target = document.location.url;
+  const target = document.location.pathname;
   const response = await fetch(
     `https://webmention.io/api/mentions.jf2?target=https://baradusov.ru${target}`
   );
