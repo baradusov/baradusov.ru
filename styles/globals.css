@@ -23,12 +23,24 @@ hr {
   margin: 50px auto;
 }
 
+h3 {
+  margin-top: 0;
+}
+
 a {
   display: inline-block;
 }
 
 img {
   max-width: 100%;
+}
+
+p {
+  margin: 8px 0;
+}
+
+li {
+  margin-bottom: 12px;
 }
 
 .container {
