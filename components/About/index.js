@@ -31,8 +31,12 @@ const About = () => {
         .
       </p>
       <p>
-        А ещё вы можете <a href="/userpic/index.html">нарисовать мне аватар</a> для
-        твиттера.
+        Веду список просмотренных <Link href="/movies">фильмов</Link> и
+        прочитанных <Link href="/books">книг</Link>.
+      </p>
+      <p>
+        А ещё вы можете <a href="/userpic/index.html">нарисовать мне аватар</a>{' '}
+        для твиттера.
       </p>
     </section>
   );

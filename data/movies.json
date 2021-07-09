@@ -1,0 +1,244 @@
+{
+  "2021": [
+    {
+      "title": "Убить Билла. Фильм 2",
+      "originalTitle": "Kill Bill: Vol. 2",
+      "releaseYear": "2004"
+    },
+    {
+      "title": "Убить Билла. Фильм 1",
+      "originalTitle": "Kill Bill: Vol. 1",
+      "releaseYear": "2003"
+    },
+    {
+      "title": "Порочная связь",
+      "originalTitle": "The Ties",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Парень из пузыря",
+      "originalTitle": "Bubble Boy",
+      "releaseYear": "2001"
+    },
+    { "title": "Хакеры", "originalTitle": "Hackers", "releaseYear": "1995" },
+    {
+      "title": "Земля кочевников",
+      "originalTitle": "Nomadland",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Разрушение",
+      "originalTitle": "Demolition",
+      "releaseYear": "2015"
+    },
+    { "title": "Душа", "originalTitle": "Soul", "releaseYear": "2020" },
+    {
+      "title": "Выживут только любовники",
+      "originalTitle": "Only Lovers Left Alive",
+      "releaseYear": "2013"
+    },
+    {
+      "title": "Охотники за головами",
+      "originalTitle": "Headhunters",
+      "releaseYear": "2011"
+    },
+    {
+      "title": "Самый пьяный округ в мире",
+      "originalTitle": "Lawless",
+      "releaseYear": "2012"
+    },
+    {
+      "title": "Билли Айлиш: Слегка размытый мир",
+      "originalTitle": "Billie Eilish: The World's a Little Blurry",
+      "releaseYear": "2021"
+    },
+    { "title": "ДМБ", "releaseYear": "2000" },
+    { "title": "Патерсон", "originalTitle": "Paterson", "releaseYear": "2016" },
+    { "title": "Глубже!", "releaseYear": "2020" },
+    {
+      "title": "Зависнуть в Палм-Спрингс",
+      "originalTitle": "Palm Springs",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "День сурка",
+      "originalTitle": "Groundhog Day",
+      "releaseYear": "1993"
+    },
+    { "title": "Тюльпан", "releaseYear": "2008" },
+    {
+      "title": "Пёс-призрак: путь самурая",
+      "originalTitle": "Ghost Dog: The Way of the Samurai",
+      "releaseYear": "1999"
+    },
+    {
+      "title": "Матрица: Революция",
+      "originalTitle": "The Matrix Revolutions",
+      "releaseYear": "2003"
+    },
+    {
+      "title": "Матрица: Перезагрузка",
+      "originalTitle": "The Matrix Reloaded",
+      "releaseYear": "2003"
+    },
+    {
+      "title": "Матрица",
+      "originalTitle": "The Matrix",
+      "releaseYear": "1999"
+    },
+    {
+      "title": "Американский пирог 2",
+      "originalTitle": "American Pie 2",
+      "releaseYear": "2001"
+    },
+    {
+      "title": "Американский пирог",
+      "originalTitle": "American Pie",
+      "releaseYear": "1999"
+    },
+    {
+      "title": "Очень страшное кино",
+      "originalTitle": "Scary Movie",
+      "releaseYear": "2000"
+    },
+    {
+      "title": "Не грози Южному централу, попивая сок у себя в квартале",
+      "originalTitle": "Don't Be a Menace to South Central While Drinking Your Juice in the Hood",
+      "releaseYear": "1996"
+    }
+  ],
+  "2020": [
+    {
+      "title": "Три одинаковых незнакомца",
+      "originalTitle": "Three Identical Strangers",
+      "releaseYear": "2018"
+    },
+    {
+      "title": "Суд над чикагской семёркой",
+      "originalTitle": "The Trial of the Chicago 7",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Побег из Претории",
+      "originalTitle": "Escape From Pretoria",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Пушки Акимбо",
+      "originalTitle": "Guns Akimbo",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Дэйв сделал лабиринт",
+      "originalTitle": "Dave Made a Maze",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Хрустальное небо вчерашнего дня",
+      "originalTitle": "Crystal Sky of Yesterday",
+      "releaseYear": "2018"
+    },
+    {
+      "title": "Взрывная блондинка",
+      "originalTitle": "Atomic Blonde",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Я иду искать",
+      "originalTitle": "Ready or Not",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Американские животные",
+      "originalTitle": "American Animals",
+      "releaseYear": "2018"
+    },
+    {
+      "title": "Достать ножи",
+      "originalTitle": "Knives Out",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Приходит дракон",
+      "originalTitle": "A Dragon Arrives! ",
+      "releaseYear": "2016"
+    },
+    { "title": "Завтра была война", "releaseYear": "1987" },
+    { "title": "Иди и смотри", "releaseYear": "1985" },
+    {
+      "title": "Выпускник",
+      "originalTitle": "The Graduate",
+      "releaseYear": "1967"
+    },
+    {
+      "title": "Дитя человеческое",
+      "originalTitle": "Children of Men",
+      "releaseYear": "2006"
+    },
+    {
+      "title": "Бегущий по лезвию",
+      "originalTitle": "Blade Runner",
+      "releaseYear": "1982"
+    },
+    {
+      "title": "Бегущий по лезвию 2049",
+      "originalTitle": "Blade Runner 2049",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Платформа",
+      "originalTitle": "The Platform",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Искусство самообороны",
+      "originalTitle": "The Art of Self-Defense",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Клуб «Завтрак»",
+      "originalTitle": "The Breakfast Club",
+      "releaseYear": "1985"
+    },
+    {
+      "title": "Акварель",
+      "originalTitle": "Aquarela",
+      "releaseYear": "2018"
+    },
+    { "title": "Знаки", "originalTitle": "Signs", "releaseYear": "2002" },
+    {
+      "title": "Человек кусает собаку",
+      "originalTitle": "Man Bites Dog",
+      "releaseYear": "1992"
+    },
+    {
+      "title": "Маяк",
+      "originalTitle": "The Lighthouse ",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Окно напротив",
+      "originalTitle": "The Neighbor's Window",
+      "releaseYear": "2019"
+    },
+    { "title": "Холоп", "releaseYear": "2019" },
+    { "title": "Рома", "originalTitle": "Roma", "releaseYear": "2018" },
+    { "title": "Клаус", "originalTitle": "Klaus", "releaseYear": "2019" },
+    { "title": "1917", "originalTitle": "1917", "releaseYear": "2019" },
+    {
+      "title": "Паразиты",
+      "originalTitle": "Parasite",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Полицейский с Рублёвки. Новогодний беспредел 2",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Робин Гуд",
+      "originalTitle": "Robin Hood",
+      "releaseYear": "1973"
+    },
+    { "title": "Джокер", "originalTitle": "Joker", "releaseYear": "2019" }
+  ]
+}
