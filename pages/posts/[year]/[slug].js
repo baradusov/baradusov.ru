@@ -26,7 +26,7 @@ const Home = (props) => {
 
       <main className="h-entry">
         <h1 className="p-name">{title}</h1>
-        <div className="e-content">
+        <div className="content e-content">
           <MDXRemote {...mdxSource} />
         </div>
         <time className="dt-published" dateTime={`${created}T00:00:00.000Z`}>
