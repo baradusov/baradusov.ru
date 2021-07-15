@@ -19,14 +19,14 @@ const twitter = new Twit({
 });
 
 const updateProfileCallback = async (data, tRes, res) => {
-  res.status(tRes.statusCode).json({
-    response: { statusCode: tRes.statusCode },
-  });
-
   const newUserPic = data.profile_image_url_https.replace('_normal', '');
   bot.telegram.sendPhoto(MY_TELEGRAM_ID, newUserPic, {
     caption: `Кто-то нарисовал аватарку [для твиттера](https://twitter.com/baradusov).`,
     parse_mode: 'Markdown',
+  });
+
+  res.status(tRes.statusCode).json({
+    response: { statusCode: tRes.statusCode },
   });
 };
 
