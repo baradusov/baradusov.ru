@@ -1,40 +1,57 @@
 var Twit = require('twit');
-var request = require('request');
+const { Telegraf } = require('telegraf');
+
+const {
+  MY_TELEGRAM_ID,
+  BOT_TOKEN,
+  CONSUMER_KEY,
+  CONSUMER_SECRET,
+  ACCESS_TOKEN,
+  ACCESS_TOKEN_SECRET,
+} = process.env;
+
+const bot = new Telegraf(BOT_TOKEN);
+const twitter = new Twit({
+  consumer_key: CONSUMER_KEY,
+  consumer_secret: CONSUMER_SECRET,
+  access_token: ACCESS_TOKEN,
+  access_token_secret: ACCESS_TOKEN_SECRET,
+});
+
+const updateProfileCallback = async (data, tRes, res) => {
+  res.status(tRes.statusCode).json({
+    response: { statusCode: tRes.statusCode },
+  });
+
+  const newUserPic = data.profile_image_url_https.replace('_normal', '');
+  bot.telegram.sendPhoto(MY_TELEGRAM_ID, newUserPic, {
+    caption: `Кто-то нарисовал аватарку [для твиттера](https://twitter.com/baradusov).`,
+    parse_mode: 'Markdown',
+  });
+};
 
 export default (req, res) => {
   const image = req.body.split(',')[1];
-  const T = new Twit({
-    consumer_key: process.env.CONSUMER_KEY,
-    consumer_secret: process.env.CONSUMER_SECRET,
-    access_token: process.env.ACCESS_TOKEN,
-    access_token_secret: process.env.ACCESS_TOKEN_SECRET,
-  });
+  const options = {
+    image: image,
+  };
 
-  const slackURL = process.env.SLACK_URL;
-
-  T.post(
-    'account/update_profile_image',
-    {
-      image: image,
-    },
-    (err, data, response) => {
-      res.status(response.statusCode).json({
-        response: { statusCode: response.statusCode },
+  twitter.post('account/update_profile_image', options, (err, data, tRes) => {
+    if (err) {
+      console.log('Аватар не обновлён:', err.message);
+      return res.status(tRes.statusCode).json({
+        response: { statusCode: tRes.statusCode },
       });
-
-      request.post(
-        {
-          url: slackURL,
-          json: {
-            text:
-              'Аватар обновлён https://twitter.com/baradusov. Картиночка: ' +
-              data.profile_image_url_https.replace('_normal', ''),
-          },
-        },
-        (err, httpResponse, body) => {
-          return console.log('Slack message sent');
-        }
-      );
     }
-  );
+
+    updateProfileCallback(data, tRes, res);
+  });
+};
+
+// fix for false positive message 'API resolved without sending a response for /api/twitter, this may result in stalled requests.'
+// https://nextjs.org/docs/api-routes/api-middlewares#custom-config
+export const config = {
+  api: {
+    externalResolver: true,
+  },
 };

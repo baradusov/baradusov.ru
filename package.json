@@ -15,7 +15,7 @@
     "next-mdx-remote": "^3.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "request": "^2.88.2",
+    "telegraf": "^4.4.0",
     "twit": "^2.2.11"
   },
   "devDependencies": {
