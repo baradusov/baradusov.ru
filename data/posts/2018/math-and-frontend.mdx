@@ -6,7 +6,7 @@ tags: 'перевод'
 
 _Перевод статьи_ [_Math and front-end: Context is so much more important than degree of difficulty_](https://blog.logrocket.com/math-and-front-end-context-is-so-much-more-important-than-degree-of-difficulty-6b689f999edc) _Хуэй Цзин Чэнь в блоге_ [_LogRocket_](https://blog.logrocket.com/)_._
 
-![](https://cdn-images-1.medium.com/max/2560/1*UCqSM9zFEHlBHUOGw6XwCg.jpeg)
+![](/img/1*UCqSM9zFEHlBHUOGw6XwCg.jpeg)
 
 Если вы были одним из тех детей, которые удивлялись, зачем вам уроки математики и все эти углы и алгебра, ну, вот таким был и я. Признаюсь, я был слишком неугомонным и мне быстро наскучило быть хорошим учеником. Но когда я стал старше, я понял, что определённые математические принципы имеют практическое применение в моей ежедневной работе (не дифференциальные исчисления, я же не ракетостроитель).
 
@@ -60,7 +60,7 @@ main {
 
 Без дополнительной стилизации, высота шапки и подвала должна быть `1em` из-за текста внутри них. Использование `min-height` вместо `height` гарантирует, что подвал останется в обычном потоке, если контента будет больше высоты размера окна.
 
-![](https://cdn-images-1.medium.com/max/800/1*SRAqZw1QiuH8qtBKcpDbMg.gif)
+![](/img/1*SRAqZw1QiuH8qtBKcpDbMg.gif)
 
 Подвал всегда внизу окна браузера
 
@@ -80,11 +80,11 @@ body {
 
 Формула Майка Ритмюллера выглядит так:
 
-![](https://cdn-images-1.medium.com/max/800/1*mFLbptG3QlTnkg8t8mcdjA.png)
+![](/img/1*mFLbptG3QlTnkg8t8mcdjA.png)
 
 [Флоренс Вёршелд](https://fvsch.com/) сделал глубокий анализ CSS-шлюзов в статье [The math of CSS locks](https://fvsch.com/css-locks), выразив отношение `font-size` к `line-height` как линейную функцию. Линейные функции можно представить в виде графика, который легко позволяет визуализировать отношение `font-size`/`line-height` и размером окна.
 
-![](https://cdn-images-1.medium.com/max/800/1*kOH4IwREyObitnEExlBtpw@2x.png)
+![](/img/1*kOH4IwREyObitnEExlBtpw@2x.png)
 
 График из статьи [The math of CSS locks](https://fvsch.com/css-locks), [Флоренс Вёршелд](https://fvsch.com/)
 
@@ -100,17 +100,17 @@ body {
 
 Свойство `border-radius` на самом деле является сокращением для четырёх `border-*-radius` свойств, где `*` — это `top-left`, `top-right`, `bottom-left` или `bottom-right`. И оно может принимать два значения, разделённые символом `/`, первое значение — горизонтальный радиус, второе значение — вертикальный радиус. Диаграмма для наглядности:
 
-![](https://cdn-images-1.medium.com/max/800/1*tTZ5eGVf7B_mIjyuZq-bCg.png)
+![](/img/1*tTZ5eGVf7B_mIjyuZq-bCg.png)
 
 Когда мы используем проценты как значения, горизонтальный радиус будет равен этому значению в процентах от ширины границы блока, а вертикальный — высоты границы блока. Поэтому `border-radius: 50%` даёт нам идеальный круг или овал.
 
 Рассмотрим кое-что более интересное, что тоже требует границы — треугольники. Треугольники на чистом CSS возможно сделать, «хакнув» границы элемента. Когда мы создаём границы вокруг элемента, края границ сталкиваются диагонально. Если задать достаточно толстые границы элементу, то можно увидеть, что границы являются трапециями.
 
-![](https://cdn-images-1.medium.com/max/800/1*Tz0tDzxwi_5dkyK47ydb4w.png)
+![](/img/1*Tz0tDzxwi_5dkyK47ydb4w.png)
 
 Если задать нулевые ширину и высоту элементу, трапеции станут треугольниками, и вуаля, получаем треугольники на чистом CSS.
 
-![](https://cdn-images-1.medium.com/max/800/1*S2mJPLYfi2LrkqYPfLOqYg.png)
+![](/img/1*S2mJPLYfi2LrkqYPfLOqYg.png)
 
 Обычно нам не нужен набор из четырёх треугольников, поэтому соседние границы нужно будет сделать невидимыми, задав им прозрачный цвет (`transparent`), и также не устанавливать значения границы напротив.
 
@@ -124,11 +124,11 @@ body {
 }
 ```
 
-![](https://cdn-images-1.medium.com/max/800/1*A1SEukmLooo5ClBBf-xgKw.png)
+![](/img/1*A1SEukmLooo5ClBBf-xgKw.png)
 
 Очевидно, нам не всегда требуется равнобедренный треугольник (как раз его мы получаем, установив одно значение для ширины всей границы), поэтому тут также пригодится геометрия. Можно использовать [теорему Пифагора](https://ru.wikipedia.org/wiki/%D0%A2%D0%B5%D0%BE%D1%80%D0%B5%D0%BC%D0%B0_%D0%9F%D0%B8%D1%84%D0%B0%D0%B3%D0%BE%D1%80%D0%B0), чтобы подсчитать требуемую высоту треугольника:
 
-![](https://cdn-images-1.medium.com/max/800/1*wCwyJDlZys7n4BCYwrRLpQ.png)
+![](/img/1*wCwyJDlZys7n4BCYwrRLpQ.png)
 
 ```css
 .triangle-up {
