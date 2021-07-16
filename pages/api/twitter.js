@@ -31,21 +31,41 @@ const updateProfileCallback = async (data, tRes, res) => {
 };
 
 export default (req, res) => {
-  const image = req.body.split(',')[1];
-  const options = {
-    image: image,
+  const { userpic, banner } = req.body;
+  const userpicOptions = {
+    image: userpic.split(',')[1],
+  };
+  const bannerOptions = {
+    banner: banner.split(',')[1],
   };
 
-  twitter.post('account/update_profile_image', options, (err, data, tRes) => {
-    if (err) {
-      console.log('Аватар не обновлён:', err.message);
-      return res.status(tRes.statusCode).json({
-        response: { statusCode: tRes.statusCode },
-      });
-    }
+  twitter.post(
+    'account/update_profile_image',
+    userpicOptions,
+    (err, data, tRes) => {
+      if (err) {
+        console.log('Аватар не обновлён:', err.message);
+        return res.status(tRes.statusCode).json({
+          response: { statusCode: tRes.statusCode },
+        });
+      }
 
-    updateProfileCallback(data, tRes, res);
-  });
+      twitter.post(
+        'account/update_profile_banner',
+        bannerOptions,
+        (err, data, tRes) => {
+          if (err) {
+            console.log('Баннер не обновлён:', err.message);
+            return res.status(tRes.statusCode).json({
+              response: { statusCode: tRes.statusCode },
+            });
+          }
+        }
+      );
+
+      updateProfileCallback(data, tRes, res);
+    }
+  );
 };
 
 // fix for false positive message 'API resolved without sending a response for /api/twitter, this may result in stalled requests.'

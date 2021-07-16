@@ -13,7 +13,6 @@
       src="https://open.baradusov.ru/js/plausible.js"
     ></script>
     <style>
-      #board,
       html {
         height: 100%;
       }
@@ -40,10 +39,10 @@
         font-size: 1.2em;
         font-family: sans-serif;
       }
-      #board {
-        width: 100%;
-        max-width: 400px;
-        height: 400px;
+      .container {
+        position: relative;
+        display: flex;
+        justify-content: center;
         margin-bottom: 20px;
       }
       .drawing-board-canvas-wrapper {
@@ -51,6 +50,25 @@
       }
       .drawing-board-controls {
         overflow-x: initial;
+        pointer-events: auto;
+      }
+      #banner-board {
+        width: 620px;
+        height: 200px;
+        z-index: 0;
+      }
+      #userpic-board {
+        position: absolute;
+        bottom: -103px;
+        left: 16px;
+        width: 134px;
+        height: 134px;
+        pointer-events: none;
+      }
+      #userpic-board .drawing-board-canvas-wrapper,
+      #userpic-board .drawing-board-canvas {
+        border-radius: 50%;
+        pointer-events: auto;
       }
       details {
         margin-bottom: 25px;
@@ -103,7 +121,10 @@
         </p>
       </div>
     </details>
-    <div id="board"></div>
+    <div class="container">
+      <div id="banner-board"></div>
+      <div id="userpic-board"></div>
+    </div>
     <button data-update-userpic>Обновить аватар</button>
 
     <script src="/userpic/jquery.min.js"></script>
@@ -111,19 +132,28 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         // Рисуем аватарку
-        const board = new DrawingBoard.Board('board', {
+        const userpicBoard = new DrawingBoard.Board('userpic-board', {
+          controlsPosition: 'bottom',
+          enlargeYourContainer: true,
+        });
+        const bannerBoard = new DrawingBoard.Board('banner-board', {
           controlsPosition: 'center',
+          enlargeYourContainer: true,
         });
 
         // Загружаем base64-аватарку в твиттер
         const button = document.querySelector('[data-update-userpic]');
 
         button.addEventListener('click', () => {
-          const userpic = board.getImg();
+          const userpic = userpicBoard.getImg();
+          const banner = bannerBoard.getImg();
           button.textContent = 'Обновление аватара...';
           fetch(`/api/twitter`, {
             method: 'POST',
-            body: JSON.stringify(userpic),
+            body: JSON.stringify({
+              userpic: userpic,
+              banner: banner,
+            }),
             headers: {
               'Content-Type': 'application/json',
             },
