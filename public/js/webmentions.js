@@ -45,10 +45,12 @@ const e = (type, props = {}, ...children) => {
  * @param  {...function} components
  */
 const render = (container, state, ...components) => {
-  for (const component of components) {
-    const node = component(state);
-    if (node) {
-      container.appendChild(node);
+  if (container) {
+    for (const component of components) {
+      const node = component(state);
+      if (node) {
+        container.appendChild(node);
+      }
     }
   }
 };
