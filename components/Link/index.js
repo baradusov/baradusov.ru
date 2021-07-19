@@ -8,7 +8,7 @@ const Link = (props) => {
   };
 
   return isExternalLink(href) ? (
-    <a {...props} />
+    <a {...props} target="_blank" rel="noopener noreferrer nofollow" />
   ) : (
     <NextLink href={href}>
       <a {...restProps} />
