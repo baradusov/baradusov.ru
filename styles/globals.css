@@ -43,6 +43,10 @@ li {
   margin-bottom: 12px;
 }
 
+pre {
+  overflow-x: auto;
+}
+
 .container {
   display: flex;
   flex-direction: column;
