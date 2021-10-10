@@ -6,7 +6,9 @@ const About = () => {
       <a className="p-name u-url hidden" href="https://baradusov.ru">
         Нуриль Барадусов
       </a>
-      <p className="p-note">Фронтендер из Самары.</p>
+      <p className="p-note">
+        Фронтендер из <s>Самары</s> → Санкт-Петербурга.
+      </p>
       <p>
         Я есть в{' '}
         <Link href="https://twitter.com/baradusov" rel="me">
