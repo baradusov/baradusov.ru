@@ -7,8 +7,12 @@ const Link = (props) => {
     return uri.startsWith('http') || uri.startsWith('mailto');
   };
 
+  const relAttr = restProps.rel
+    ? `noopener noreferrer nofollow ${restProps.rel}`
+    : `noopener noreferrer nofollow`;
+
   return isExternalLink(href) ? (
-    <a {...props} target="_blank" rel="noopener noreferrer nofollow" />
+    <a {...props} target="_blank" rel={relAttr} />
   ) : (
     <NextLink href={href}>
       <a {...restProps} />
