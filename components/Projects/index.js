@@ -1,7 +1,7 @@
 import Project from '@components/Project';
 import styles from './index.module.css';
 
-const ProjectsList = (props) => {
+const Projects = (props) => {
   const { projects } = props;
 
   return (
@@ -21,4 +21,4 @@ const ProjectsList = (props) => {
   );
 };
 
-export default ProjectsList;
+export default Projects;

@@ -1,0 +1,38 @@
+.movies {
+  margin-bottom: 25px;
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.movieTitle {
+  font-size: 20px;
+  margin: 0;
+}
+
+.meta {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+.item {
+  margin-bottom: 15px;
+}
+
+@media (min-width: 800px) {
+  .movies {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .title {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .list {
+    grid-column-start: 2;
+    grid-column-end: -1;
+  }
+}

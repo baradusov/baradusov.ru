@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import MoviesList from '@components/MoviesList';
+import MoviesList from '@components/Movies';
 import { getMovies } from '@lib/tracking';
 
 export const getStaticProps = async () => {

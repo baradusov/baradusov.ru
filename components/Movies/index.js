@@ -1,15 +1,15 @@
 import styles from './index.module.css';
 
-const MoviesList = (props) => {
+const Movies = (props) => {
   const { movies, year } = props;
 
   if (movies.length === 0) return null;
 
   return (
-    <section>
-      {year && <h3>{year}</h3>}
+    <section className={styles.movies}>
+      {year && <h3 className={styles.title}>{year}</h3>}
 
-      <ul>
+      <ul className={styles.list}>
         {movies.map((film, index) => {
           const Delimeter = () => {
             if (film.originalTitle) {
@@ -20,8 +20,8 @@ const MoviesList = (props) => {
           };
 
           return (
-            <li key={index}>
-              <p className={styles.title}>{film.title}</p>
+            <li key={index} className={styles.item}>
+              <p className={styles.movieTitle}>{film.title}</p>
               <p className={styles.meta}>
                 {film.releaseYear} <Delimeter /> {film.originalTitle}
               </p>
@@ -33,4 +33,4 @@ const MoviesList = (props) => {
   );
 };
 
-export default MoviesList;
+export default Movies;

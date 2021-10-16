@@ -1,6 +1,7 @@
 .list {
   grid-template-columns: 1fr;
   column-gap: 2em;
+  row-gap: 1em;
 }
 
 @media (min-width: 800px) {

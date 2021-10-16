@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import BooksList from '@components/BooksList';
+import BooksList from '@components/Books';
 import { getBooks } from '@lib/tracking';
 
 export const getStaticProps = async () => {

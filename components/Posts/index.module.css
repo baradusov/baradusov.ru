@@ -1,0 +1,28 @@
+.posts {
+  margin-bottom: 25px;
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.item {
+  margin-bottom: 15px;
+}
+
+@media (min-width: 800px) {
+  .posts {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .title {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .list {
+    grid-column-start: 2;
+    grid-column-end: -1;
+  }
+}
