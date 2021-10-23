@@ -29,8 +29,8 @@ const About = () => {
         <Link href="https://t.me/baradusov">телеграм</Link> и почта{' '}
         <Link href="mailto:baradusovnh@gmail.com" className="u-email">
           baradusovnh@gmail.com
-        </Link>
-        .
+        </Link>{' '}
+        или <Link href="/anon">анонимное сообщение</Link>. .
       </p>
       <p>
         Веду список просмотренных <Link href="/movies">фильмов</Link> и
