@@ -31,7 +31,7 @@ const About = () => {
         <Link href="mailto:baradusovnh@gmail.com" className="u-email">
           baradusovnh@gmail.com
         </Link>{' '}
-        или <Link href="/anon">анонимное сообщение</Link>. .
+        или <Link href="/anon">анонимное сообщение</Link>.
       </p>
       <p>
         Веду список просмотренных <Link href="/movies">фильмов</Link> и
