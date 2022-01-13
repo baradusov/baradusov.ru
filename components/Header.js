@@ -8,13 +8,11 @@ const Header = () => {
   return (
     <header>
       {isIndex() ? (
-        <h1 className="logo">Нуриль Барадусов</h1>
+        <h1 className="logo">● Нуриль Барадусов</h1>
       ) : (
-        <p className="logo">
-          <Link className="logo" href="/">
-            Нуриль Барадусов
-          </Link>
-        </p>
+        <Link className="logo logo-link" href="/">
+          <span>← Нуриль Барадусов</span>
+        </Link>
       )}
     </header>
   );

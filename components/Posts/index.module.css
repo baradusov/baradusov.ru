@@ -1,13 +1,13 @@
-.posts {
-  margin-bottom: 25px;
-}
-
 .title {
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .item {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
+}
+
+.list {
+  margin-bottom: 0;
 }
 
 @media (min-width: 800px) {

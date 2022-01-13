@@ -4,9 +4,21 @@
   row-gap: 1em;
 }
 
+.list li {
+  margin-bottom: 16px
+}
+
+.list li:last-child {
+  margin-bottom: 0
+}
+
 @media (min-width: 800px) {
   .list {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+
+  .list li {
+    margin-bottom: 0;
   }
 }

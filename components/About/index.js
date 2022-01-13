@@ -1,8 +1,10 @@
 import Link from '@components/Link';
 
+import styles from './index.module.css';
+
 const About = () => {
   return (
-    <section className="h-card">
+    <section className={`${styles.section} h-card`}>
       <a className="p-name u-url hidden" href="https://baradusov.ru">
         Нуриль Барадусов
       </a>
