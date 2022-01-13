@@ -99,7 +99,7 @@ p {
   margin-bottom: 16px;
 }
 
-p:last-of-type {
+p:last-child {
   margin-bottom: 0;
 }
 

@@ -8,7 +8,7 @@ const TrackList = (props) => {
 
   return (
     <section>
-      <ol>
+      <ol className={styles.list}>
         {tracks.map((track, index) => {
           return (
             <li key={index}>
