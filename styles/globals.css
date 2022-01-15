@@ -186,6 +186,10 @@ blockquote {
 
 /* webmentions */
 
+.responses {
+  margin-top: 40px;
+}
+
 .responses ul {
   list-style: none;
   margin: 0;
@@ -204,6 +208,7 @@ blockquote {
 .likes img {
   width: 100%;
   max-width: 36px;
+  margin: 0;
 }
 
 .replies p {
