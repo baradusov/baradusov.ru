@@ -12,7 +12,9 @@ const Anon = () => {
 
     fetch('/api/anon', {
       method: 'POST',
-      body: message,
+      body: JSON.stringify({
+        message: message,
+      }),
     })
       .then((response) => {
         if (response.ok) {

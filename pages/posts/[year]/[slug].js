@@ -1,6 +1,8 @@
 import Head from 'next/head';
-import { getPaths, getPostBySlug } from '@lib/posts';
 import { MDXRemote } from 'next-mdx-remote';
+
+import MessageBox from '@components/MessageBox';
+import { getPaths, getPostBySlug } from '@lib/posts';
 
 const Home = (props) => {
   const { post, slug } = props;
@@ -26,17 +28,23 @@ const Home = (props) => {
 
       <main className="h-entry">
         <h1 className="p-name">{title}</h1>
+
         <div className="content e-content">
           <MDXRemote {...mdxSource} />
         </div>
+
         <time className="dt-published" dateTime={`${created}T00:00:00.000Z`}>
           <a href={`/posts/${slug}`} className="u-url">
             {localCreated}
           </a>
         </time>
+
         <a className="p-author h-card hidden" href="https://baradusov.ru">
           Нуриль Барадусов
         </a>
+
+        <MessageBox />
+
         <div id="webmentions" className="responses"></div>
       </main>
     </>
