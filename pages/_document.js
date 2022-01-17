@@ -34,6 +34,10 @@ class MyDocument extends Document {
             defer
             src="/js/webmentions.js"
           ></script>
+          <script
+            defer
+            src="/js/comment.js"
+          ></script>
         </Head>
         <body>
           <Main />
