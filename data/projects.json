@@ -24,6 +24,11 @@
       "name": "russianstreetwear.club",
       "url": "https://russianstreetwear.club",
       "description": "Каталог российских брендов уличной одежды"
+    },
+    {
+      "name": "Oblique Strategies",
+      "url": "https://t.me/ObliqueStrategiesOfBrianEnoBot",
+      "description": "Телеграм-бот, основанный на одноимённом наборе карточек Брайана Ино и Питера Шмидта"
     }
   ]
 }
