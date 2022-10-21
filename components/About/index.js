@@ -38,7 +38,7 @@ const About = () => {
       <p>
         Веду список просмотренных <Link href="/movies">фильмов</Link> и
         прочитанных <Link href="/books">книг</Link>, и пишу заметки{' '}
-        <a href="/userpic/index.html"> в телеграм-канал</a>.
+        <a href="https://t.me/nuril_notes"> в телеграм-канал</a>.
       </p>
       <p>
         А ещё можно <a href="/userpic/index.html">нарисовать мне аватар</a> для
