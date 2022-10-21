@@ -37,10 +37,11 @@ const About = () => {
       </p>
       <p>
         Веду список просмотренных <Link href="/movies">фильмов</Link> и
-        прочитанных <Link href="/books">книг</Link>.
+        прочитанных <Link href="/books">книг</Link>, и пишу заметки{' '}
+        <a href="/userpic/index.html"> в телеграм-канал</a>.
       </p>
       <p>
-        И даже можно <a href="/userpic/index.html">нарисовать мне аватар</a> для
+        А ещё можно <a href="/userpic/index.html">нарисовать мне аватар</a> для
         твиттера.
       </p>
     </section>
