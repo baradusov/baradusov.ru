@@ -30,14 +30,7 @@ class MyDocument extends Document {
             rel="pingback"
             href="https://webmention.io/baradusov.ru/xmlrpc"
           />
-          <script
-            defer
-            src="/js/webmentions.js"
-          ></script>
-          <script
-            defer
-            src="/js/comment.js"
-          ></script>
+          <script defer src="/js/webmentions.js"></script>
         </Head>
         <body>
           <Main />

@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { MDXRemote } from 'next-mdx-remote';
 
-import MessageBox from '@components/MessageBox';
 import { getPaths, getPostBySlug } from '@lib/posts';
 
 const Home = (props) => {
@@ -42,8 +41,6 @@ const Home = (props) => {
         <a className="p-author h-card hidden" href="https://baradusov.ru">
           Нуриль Барадусов
         </a>
-
-        <MessageBox />
 
         <div id="webmentions" className="responses"></div>
       </main>
