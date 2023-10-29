@@ -40,10 +40,6 @@ const About = () => {
         прочитанных <Link href="/books">книг</Link>, и пишу заметки{' '}
         <a href="https://t.me/nuril_notes"> в телеграм-канал</a>.
       </p>
-      <p>
-        А ещё можно <a href="/userpic/index.html">нарисовать мне аватар</a> для
-        твиттера.
-      </p>
     </section>
   );
 };
