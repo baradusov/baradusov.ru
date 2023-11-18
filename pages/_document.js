@@ -16,12 +16,6 @@ class MyDocument extends Document {
             title="baradusov.ru"
             href="/feed.xml"
           />
-          <script
-            async
-            defer
-            data-domain="baradusov.ru"
-            src="https://open.baradusov.ru/js/plausible.js"
-          ></script>
           <link
             rel="webmention"
             href="https://webmention.io/baradusov.ru/webmention"
