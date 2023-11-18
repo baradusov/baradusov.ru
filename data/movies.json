@@ -1,4 +1,244 @@
 {
+  "2023": [
+    {
+      "title": "Залечь на дно в Брюгге",
+      "originalTitle": "In Bruges",
+      "releaseYear": "2007"
+    },
+    {
+      "title": "Строго на запад",
+      "originalTitle": "Slow West",
+      "releaseYear": "2015"
+    },
+    {
+      "title": "Анастасия",
+      "originalTitle": "Anastasia",
+      "releaseYear": "1997"
+    },
+    {
+      "title": "Солнце моё",
+      "originalTitle": "Aftersun",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Кто убил BlackBerry",
+      "originalTitle": "BlackBerry",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "В поисках снежного барса",
+      "originalTitle": "La panthère des neiges",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Два, три, демон, приди!",
+      "originalTitle": "Talk to Me",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "CODA: Ребенок глухих родителей",
+      "originalTitle": "CODA",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Все о Лили Чоу-Чоу",
+      "originalTitle": "Riri Shushu no subete",
+      "releaseYear": "2001"
+    },
+    {
+      "title": "Вихрь",
+      "originalTitle": "Vortex",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Падал прошлогодний снег",
+      "releaseYear": "1983"
+    },
+    {
+      "title": "Потец",
+      "releaseYear": "1992"
+    },
+    {
+      "title": "Спенсер",
+      "originalTitle": "Spencer",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Аманда",
+      "originalTitle": "Amanda",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Барби",
+      "originalTitle": "Barbie",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "Гив ми либерти",
+      "originalTitle": "Give Me Liberty",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Гунда",
+      "originalTitle": "Gunda",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Когда ты закончишь спасать мир",
+      "originalTitle": "When You Finish Saving the World",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "Все страхи Бо",
+      "originalTitle": "Beau Is Afraid",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "Назови меня своим именем",
+      "originalTitle": "Call Me by Your Name",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Мечтатели",
+      "originalTitle": "The Dreamers",
+      "releaseYear": "2003"
+    },
+    {
+      "title": "Зависнуть в Палм-Спрингс",
+      "originalTitle": "Palm Springs",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Хвост виляет собакой",
+      "originalTitle": "Wag the Dog",
+      "releaseYear": "1997"
+    },
+    {
+      "title": "Поездка в Америку",
+      "originalTitle": "Coming to America",
+      "releaseYear": "1988"
+    },
+    {
+      "title": "Счастье",
+      "originalTitle": "Happiness",
+      "releaseYear": "1998"
+    },
+    {
+      "title": "Король говорит!",
+      "originalTitle": "The King's Speech",
+      "releaseYear": "2010"
+    },
+    {
+      "title": "Гаттака",
+      "originalTitle": "Gattaca",
+      "releaseYear": "1997"
+    },
+    {
+      "title": "Кэнди",
+      "originalTitle": "Candy",
+      "releaseYear": "2005"
+    },
+    {
+      "title": "Хроника",
+      "originalTitle": "Chronicle",
+      "releaseYear": "2012"
+    },
+    {
+      "title": "Новые парни турбо",
+      "originalTitle": "New Kids Turbo",
+      "releaseYear": "2010"
+    },
+    {
+      "title": "Пятый элемент",
+      "originalTitle": "The Fifth Element",
+      "releaseYear": "1997"
+    },
+    {
+      "title": "Тетрис",
+      "originalTitle": "Tetris",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Чунгкингский экспресс",
+      "originalTitle": "Chung Hing sam lam",
+      "releaseYear": "1994"
+    },
+    {
+      "title": "Время приключений",
+      "originalTitle": "Adventure Time with Finn & Jake",
+      "releaseYear": "2010-2018"
+    },
+    {
+      "title": "Дикие сердцем",
+      "originalTitle": "Wild at Heart",
+      "releaseYear": "1990"
+    },
+    {
+      "title": "Все мои друзья меня ненавидят",
+      "originalTitle": "All My Friends Hate Me",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Уэйн",
+      "originalTitle": "Wayne",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Пинг-понг",
+      "originalTitle": "Ping Pong the Animation",
+      "releaseYear": "2014"
+    },
+    {
+      "title": "Срочная доставка",
+      "originalTitle": "Premium Rush",
+      "releaseYear": "2012"
+    },
+    {
+      "title": "Билли Эллиот",
+      "originalTitle": "Billy Elliot",
+      "releaseYear": "2000"
+    },
+    {
+      "title": "Эон Флакс",
+      "originalTitle": "Æon Flux",
+      "releaseYear": "1991-1995"
+    },
+    {
+      "title": "Истинная грусть",
+      "originalTitle": "Perfect Blue",
+      "releaseYear": "1998"
+    },
+    {
+      "title": "Прерванная жизнь",
+      "originalTitle": "Girl, Interrupted",
+      "releaseYear": "1999"
+    },
+    {
+      "title": "Банши Инишерина",
+      "originalTitle": "The Banshees of Inisherin",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Достать ножи: Стеклянная луковица",
+      "originalTitle": "Glass Onion",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Мягкие и спокойные",
+      "originalTitle": "Soft & Quiet",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Призрак в доспехах (фильм)",
+      "originalTitle": "Ghost in the Shell",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Призрак в доспехах (аниме)",
+      "originalTitle": "Ghost in the Shell",
+      "releaseYear": "1995"
+    }
+  ],
   "2022": [
     {
       "title": "Лило и Стич",
