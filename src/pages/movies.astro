@@ -21,7 +21,7 @@ const years = Object.keys(moviesByYear).sort((a, b) => Number(b) - Number(a));
                 <h3>{year}</h3>
 
                 <ul>
-                  {movies.map((movie) => {
+                  {movies.map((movie: any) => {
                     return (
                       <li>
                         <p>{movie.title}</p>

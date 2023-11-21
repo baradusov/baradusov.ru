@@ -8,17 +8,23 @@ const { projects } = data;
 
 const allPosts = await getCollection(
   'posts',
+  // @ts-ignore
   ({ data }) => data.draft !== true
 );
 const postsByYears = allPosts
+  // @ts-ignore
   .sort((p1, p2) => new Date(p2.data.created) - new Date(p1.data.created))
   .reduce((acc, post) => {
+    //@ts-ignore
     const year = post.data.created.split('-')[0];
 
+    // @ts-ignore
     if (!acc[year]) {
+      // @ts-ignore
       acc[year] = [];
     }
 
+    // @ts-ignore
     acc[year].push(post);
 
     return acc;
@@ -62,7 +68,7 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
 
       <ul>
         {
-          projects.map((project) => (
+          projects.map((project: any) => (
             <li>
               <div>
                 <a href={project.url}>{project.name}</a>
@@ -79,6 +85,7 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
 
       {
         years.map((year) => {
+          // @ts-ignore
           const posts = postsByYears[year];
 
           return (
@@ -86,7 +93,7 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
               <h3>{year}</h3>
 
               <ul style={{ gridColumnStart: 2, gridColumnEnd: -1 }}>
-                {posts.map((post) => {
+                {posts.map((post: any) => {
                   const dateCreated = new Date(post.data.created);
                   const monthCreated = String(
                     dateCreated.getMonth() + 1

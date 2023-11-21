@@ -5,6 +5,7 @@ import Layout from '../../layouts/Layout.astro';
 export const getStaticPaths = async () => {
   const posts = await getCollection('posts');
   return posts.map((post) => ({
+    // @ts-ignore
     params: { slug: post.slug },
     props: post,
   }));
@@ -13,8 +14,6 @@ export const getStaticPaths = async () => {
 const post = Astro.props;
 
 const { Content } = await post.render();
-
-console.log(post);
 
 const localCreated = new Date(post.data.created).toLocaleDateString('ru-RU');
 ---

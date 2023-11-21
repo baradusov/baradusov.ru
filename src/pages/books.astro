@@ -22,7 +22,7 @@ const years = Object.keys(booksByYear).sort((a, b) => Number(b) - Number(a));
                 <h3>{year}</h3>
 
                 <ul>
-                  {books.map((book) => {
+                  {books.map((book: any) => {
                     return (
                       <li>
                         <p>{book.title}</p>
