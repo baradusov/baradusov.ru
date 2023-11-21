@@ -1,0 +1,45 @@
+---
+import { getEntry } from 'astro:content';
+
+import Layout from '../layouts/Layout.astro';
+
+const { data: moviesByYear } = await getEntry('data', 'movies');
+const years = Object.keys(moviesByYear).sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout title="Фильмы | Нуриль Барадусов" description="Просмотренные фильмы">
+  <main>
+    <h1>Просмотренные фильмы</h1>
+    <div>
+      {
+        years.map((year) => {
+          const movies = moviesByYear[year];
+
+          return (
+            <>
+              <section>
+                <h3>{year}</h3>
+
+                <ul>
+                  {movies.map((movie: any) => {
+                    return (
+                      <li>
+                        <p>{movie.title}</p>
+                        <p>
+                          {movie.releaseYear} {movie.originalTitle ? '·' : null}{' '}
+                          {movie.originalTitle}
+                        </p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            </>
+          );
+        })
+      }
+    </div>
+  </main>
+</Layout>
+
+<style></style>

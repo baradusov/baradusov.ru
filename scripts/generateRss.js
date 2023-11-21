@@ -14,7 +14,7 @@ const renderToString = require('next-mdx-remote-2-1-4/render-to-string');
 const absolutify = (input) => {
   const $ = cheerio.load(input);
 
-  $('a, img').each((i, el) => {
+  $('a, img').each((_i, el) => {
     if (el.name === 'a') {
       const href = $(el).attr('href');
       const absoluteHref = new URL(href, 'https://baradusov.ru');
@@ -46,19 +46,21 @@ const generateRss = async () => {
   });
 
   const dirsByYears = await fs.readdir(
-    path.join(__dirname, '..', 'data', 'posts')
+    path.join(import.meta.dir, 'src', 'content', 'posts')
   );
   const dirsByYearsSorted = dirsByYears.sort((a, b) => Number(b) - Number(a));
 
   for (let year of dirsByYearsSorted) {
+    if (year === 'config.ts') continue;
+
     const posts = await fs.readdir(
-      path.join(__dirname, '..', 'data', 'posts', year)
+      path.join(import.meta.dir, 'src', 'content', 'posts', year)
     );
 
     await Promise.all(
       posts.map(async (name) => {
         const source = await fs.readFile(
-          path.join(__dirname, '..', 'data', 'posts', year, name)
+          path.join(import.meta.dir, 'src', 'content', 'posts', year, name)
         );
         const { content, data } = matter(source);
 
@@ -81,7 +83,7 @@ const generateRss = async () => {
   }
 
   await fs.writeFile(
-    path.join(__dirname, '..', 'public', 'feed.xml'),
+    path.join(import.meta.dir, 'public', 'feed.xml'),
     feed.xml({ indent: true })
   );
 

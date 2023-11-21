@@ -1,24 +1,23 @@
 {
   "name": "baradusov.ru",
-  "version": "0.1.0",
-  "private": true,
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "bunx --bun astro dev",
+    "start": "bunx --bun astro dev",
+    "prebuild": "bun ./scripts/generateRss.js",
+    "build": "astro check && astro build",
+    "preview": "bunx --bun astro preview",
+    "astro": "bunx --bun astro"
   },
   "dependencies": {
-    "@mdx-js/loader": "^1.6.22",
-    "@next/mdx": "^12.0.8",
-    "gray-matter": "^4.0.3",
-    "next": "^12.0.8",
-    "next-mdx-remote": "^3.0.8",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "telegraf": "^4.4.2",
-    "twit": "^2.2.11"
+    "@astrojs/check": "^0.3.1",
+    "@astrojs/mdx": "^1.1.5",
+    "astro": "^3.5.5",
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
+    "bun-types": "^1.0.13",
     "cheerio": "^1.0.0-rc.10",
     "next-mdx-remote-2-1-4": "npm:next-mdx-remote@^2.1.4",
     "rss": "^1.2.2"

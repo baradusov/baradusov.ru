@@ -1,0 +1,43 @@
+---
+import { getEntry } from 'astro:content';
+
+import Layout from '../layouts/Layout.astro';
+
+const { data: booksByYear } = await getEntry('data', 'books');
+const years = Object.keys(booksByYear).sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout title="Книги | Нуриль Барадусов" description="Прочитанные книги">
+  <main>
+    <h1>Прочитанные книги</h1>
+
+    <div>
+      {
+        years.map((year) => {
+          const books = booksByYear[year];
+
+          return (
+            <>
+              <section>
+                <h3>{year}</h3>
+
+                <ul>
+                  {books.map((book: any) => {
+                    return (
+                      <li>
+                        <p>{book.title}</p>
+                        <p>{book.author}</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            </>
+          );
+        })
+      }
+    </div>
+  </main>
+</Layout>
+
+<style></style>
