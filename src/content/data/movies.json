@@ -1,0 +1,768 @@
+{
+  "2023": [
+    {
+      "title": "Залечь на дно в Брюгге",
+      "originalTitle": "In Bruges",
+      "releaseYear": "2007"
+    },
+    {
+      "title": "Строго на запад",
+      "originalTitle": "Slow West",
+      "releaseYear": "2015"
+    },
+    {
+      "title": "Анастасия",
+      "originalTitle": "Anastasia",
+      "releaseYear": "1997"
+    },
+    {
+      "title": "Солнце моё",
+      "originalTitle": "Aftersun",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Кто убил BlackBerry",
+      "originalTitle": "BlackBerry",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "В поисках снежного барса",
+      "originalTitle": "La panthère des neiges",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Два, три, демон, приди!",
+      "originalTitle": "Talk to Me",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "CODA: Ребенок глухих родителей",
+      "originalTitle": "CODA",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Все о Лили Чоу-Чоу",
+      "originalTitle": "Riri Shushu no subete",
+      "releaseYear": "2001"
+    },
+    {
+      "title": "Вихрь",
+      "originalTitle": "Vortex",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Падал прошлогодний снег",
+      "releaseYear": "1983"
+    },
+    {
+      "title": "Потец",
+      "releaseYear": "1992"
+    },
+    {
+      "title": "Спенсер",
+      "originalTitle": "Spencer",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Аманда",
+      "originalTitle": "Amanda",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Барби",
+      "originalTitle": "Barbie",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "Гив ми либерти",
+      "originalTitle": "Give Me Liberty",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Гунда",
+      "originalTitle": "Gunda",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Когда ты закончишь спасать мир",
+      "originalTitle": "When You Finish Saving the World",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "Все страхи Бо",
+      "originalTitle": "Beau Is Afraid",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "Назови меня своим именем",
+      "originalTitle": "Call Me by Your Name",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Мечтатели",
+      "originalTitle": "The Dreamers",
+      "releaseYear": "2003"
+    },
+    {
+      "title": "Зависнуть в Палм-Спрингс",
+      "originalTitle": "Palm Springs",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Хвост виляет собакой",
+      "originalTitle": "Wag the Dog",
+      "releaseYear": "1997"
+    },
+    {
+      "title": "Поездка в Америку",
+      "originalTitle": "Coming to America",
+      "releaseYear": "1988"
+    },
+    {
+      "title": "Счастье",
+      "originalTitle": "Happiness",
+      "releaseYear": "1998"
+    },
+    {
+      "title": "Король говорит!",
+      "originalTitle": "The King's Speech",
+      "releaseYear": "2010"
+    },
+    {
+      "title": "Гаттака",
+      "originalTitle": "Gattaca",
+      "releaseYear": "1997"
+    },
+    {
+      "title": "Кэнди",
+      "originalTitle": "Candy",
+      "releaseYear": "2005"
+    },
+    {
+      "title": "Хроника",
+      "originalTitle": "Chronicle",
+      "releaseYear": "2012"
+    },
+    {
+      "title": "Новые парни турбо",
+      "originalTitle": "New Kids Turbo",
+      "releaseYear": "2010"
+    },
+    {
+      "title": "Пятый элемент",
+      "originalTitle": "The Fifth Element",
+      "releaseYear": "1997"
+    },
+    {
+      "title": "Тетрис",
+      "originalTitle": "Tetris",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Чунгкингский экспресс",
+      "originalTitle": "Chung Hing sam lam",
+      "releaseYear": "1994"
+    },
+    {
+      "title": "Время приключений",
+      "originalTitle": "Adventure Time with Finn & Jake",
+      "releaseYear": "2010-2018"
+    },
+    {
+      "title": "Дикие сердцем",
+      "originalTitle": "Wild at Heart",
+      "releaseYear": "1990"
+    },
+    {
+      "title": "Все мои друзья меня ненавидят",
+      "originalTitle": "All My Friends Hate Me",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Уэйн",
+      "originalTitle": "Wayne",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Пинг-понг",
+      "originalTitle": "Ping Pong the Animation",
+      "releaseYear": "2014"
+    },
+    {
+      "title": "Срочная доставка",
+      "originalTitle": "Premium Rush",
+      "releaseYear": "2012"
+    },
+    {
+      "title": "Билли Эллиот",
+      "originalTitle": "Billy Elliot",
+      "releaseYear": "2000"
+    },
+    {
+      "title": "Эон Флакс",
+      "originalTitle": "Æon Flux",
+      "releaseYear": "1991-1995"
+    },
+    {
+      "title": "Истинная грусть",
+      "originalTitle": "Perfect Blue",
+      "releaseYear": "1998"
+    },
+    {
+      "title": "Прерванная жизнь",
+      "originalTitle": "Girl, Interrupted",
+      "releaseYear": "1999"
+    },
+    {
+      "title": "Банши Инишерина",
+      "originalTitle": "The Banshees of Inisherin",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Достать ножи: Стеклянная луковица",
+      "originalTitle": "Glass Onion",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Мягкие и спокойные",
+      "originalTitle": "Soft & Quiet",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Призрак в доспехах (фильм)",
+      "originalTitle": "Ghost in the Shell",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Призрак в доспехах (аниме)",
+      "originalTitle": "Ghost in the Shell",
+      "releaseYear": "1995"
+    }
+  ],
+  "2022": [
+    {
+      "title": "Лило и Стич",
+      "originalTitle": "Lilo & Stitch",
+      "releaseYear": "2002"
+    },
+    {
+      "title": "Превосходство",
+      "originalTitle": "Transcendence",
+      "releaseYear": "2014"
+    },
+    {
+      "title": "Всё везде и сразу",
+      "originalTitle": "Everything Everywhere All at Once",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Форс-мажор",
+      "originalTitle": "Turist",
+      "releaseYear": "2014"
+    },
+    {
+      "title": "Приключения Паддингтона",
+      "originalTitle": "Paddington",
+      "releaseYear": "2014"
+    },
+    {
+      "title": "Матильда",
+      "originalTitle": "Matilda",
+      "releaseYear": "1996"
+    },
+    {
+      "title": "Курьер",
+      "releaseYear": "1986"
+    },
+    {
+      "title": "А скоро колледж?",
+      "originalTitle": "Daria in «Is It College Yet?»",
+      "releaseYear": "2002"
+    },
+    {
+      "title": "А скоро осень?",
+      "originalTitle": "Daria in «Is It Fall Yet?»",
+      "releaseYear": "2000"
+    },
+    {
+      "title": "Дарья",
+      "originalTitle": "Daria",
+      "releaseYear": "1997-2002"
+    },
+    {
+      "title": "Дарья",
+      "originalTitle": "Daria",
+      "releaseYear": "1997-2002"
+    },
+    {
+      "title": "Интердевочка",
+      "releaseYear": "1989"
+    },
+    {
+      "title": "Нормальные люди",
+      "originalTitle": "Normal People",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Три тысячи лет желаний",
+      "originalTitle": "Three Thousand Years of Longing",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Офис (1-9 сезон)",
+      "originalTitle": "The Office",
+      "releaseYear": "2005-2013"
+    },
+    {
+      "title": "Атака титанов (1-4 сезон)",
+      "originalTitle": "進撃の巨人",
+      "releaseYear": "2013~"
+    },
+    {
+      "title": "Тихий омут",
+      "originalTitle": "Stillwater",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Мост в Терабитию",
+      "originalTitle": "Bridge to Terabithia",
+      "releaseYear": "2007"
+    },
+    {
+      "title": "Аферист из Tinder",
+      "originalTitle": "The Tinder Swindler",
+      "releaseYear": "2022"
+    },
+    {
+      "title": "Семь самураев",
+      "originalTitle": "七人の侍",
+      "releaseYear": "1954"
+    },
+    {
+      "title": "Возвращение кота",
+      "originalTitle": "猫の恩返し",
+      "releaseYear": "2002"
+    },
+    {
+      "title": "Линкольн для адвоката",
+      "originalTitle": "The Lincoln Lawyer",
+      "releaseYear": "2011"
+    },
+    {
+      "title": "Купе номер шесть",
+      "originalTitle": "Hytti nro 6",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Незнайка на Луне",
+      "releaseYear": "1997-1999"
+    },
+    {
+      "title": "Безумное кино для взрослых",
+      "originalTitle": "Babardeală cu bucluc sau porno balamuc",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Идиократия",
+      "originalTitle": "Idiocracy",
+      "releaseYear": "2006"
+    },
+    {
+      "title": "Волк с Уолл-стрит",
+      "originalTitle": "The Wolf of Wall Street",
+      "releaseYear": "2013"
+    },
+    {
+      "title": "Французский вестник",
+      "originalTitle": "The French Dispatch of the Liberty, Kansas Evening Sun",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Ферма Кларксона (1 сезон)",
+      "originalTitle": "Clarkson's Farm",
+      "releaseYear": "2021"
+    }
+  ],
+  "2021": [
+    {
+      "title": "История призрака",
+      "originalTitle": "A Ghost Story",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Я — Куба",
+      "originalTitle": "Soy Cuba",
+      "releaseYear": "1964"
+    },
+    {
+      "title": "Разрабы (1 сезоны)",
+      "originalTitle": "Devs",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Не смотрите наверх",
+      "originalTitle": "Don't Look Up",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Агнец",
+      "originalTitle": "Lamb",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Игра в кальмара (1 сезон)",
+      "originalTitle": "Squid Game",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Виновный",
+      "originalTitle": "Den skyldige",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Призрак в доспехах",
+      "originalTitle": "Ghost in the Shell",
+      "releaseYear": "1995"
+    },
+    {
+      "title": "Легенда о Зелёном рыцаре",
+      "originalTitle": "The Green Knight ",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Дуров",
+      "originalTitle": "Дуров",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Дюна",
+      "originalTitle": "Dune",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Пленницы",
+      "originalTitle": "Prisoners",
+      "releaseYear": "2013"
+    },
+    {
+      "title": "Враг",
+      "originalTitle": "Enemy",
+      "releaseYear": "2013"
+    },
+    {
+      "title": "Ближе некуда (1 сезон)",
+      "originalTitle": "Close Enough",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Виновный",
+      "originalTitle": "Den skyldige",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Главный герой",
+      "originalTitle": "Free Guy",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Гуд бай, Ленин!",
+      "originalTitle": "Good Bye Lenin!",
+      "releaseYear": "2003"
+    },
+    {
+      "title": "Игра в кальмара (1 сезон)",
+      "originalTitle": "Ojingeo geim",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Довод",
+      "originalTitle": "Tenet",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Звук металла",
+      "originalTitle": "Sound of Metal",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Куда ты пропала, Бернадетт?",
+      "originalTitle": "Where'd You Go, Bernadette",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Неглубокая могила",
+      "originalTitle": "Shallow Grave",
+      "releaseYear": "1994"
+    },
+    {
+      "title": "Никто",
+      "originalTitle": "Nobody",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Середина 90-х",
+      "originalTitle": "Mid90s",
+      "releaseYear": "2018"
+    },
+    {
+      "title": "Лука",
+      "originalTitle": "Luca",
+      "releaseYear": "2021"
+    },
+    {
+      "title": "Прислуга",
+      "originalTitle": "The Help",
+      "releaseYear": "2011"
+    },
+    {
+      "title": "Скотт Пилигрим против всех",
+      "originalTitle": "Scott Pilgrim vs. the World",
+      "releaseYear": "2010"
+    },
+    {
+      "title": "Девушка, подающая надежды",
+      "originalTitle": "Promising Young Woman",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Убить Билла. Фильм 2",
+      "originalTitle": "Kill Bill: Vol. 2",
+      "releaseYear": "2004"
+    },
+    {
+      "title": "Убить Билла. Фильм 1",
+      "originalTitle": "Kill Bill: Vol. 1",
+      "releaseYear": "2003"
+    },
+    {
+      "title": "Порочная связь",
+      "originalTitle": "The Ties",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Парень из пузыря",
+      "originalTitle": "Bubble Boy",
+      "releaseYear": "2001"
+    },
+    { "title": "Хакеры", "originalTitle": "Hackers", "releaseYear": "1995" },
+    {
+      "title": "Земля кочевников",
+      "originalTitle": "Nomadland",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Разрушение",
+      "originalTitle": "Demolition",
+      "releaseYear": "2015"
+    },
+    { "title": "Душа", "originalTitle": "Soul", "releaseYear": "2020" },
+    {
+      "title": "Выживут только любовники",
+      "originalTitle": "Only Lovers Left Alive",
+      "releaseYear": "2013"
+    },
+    {
+      "title": "Охотники за головами",
+      "originalTitle": "Headhunters",
+      "releaseYear": "2011"
+    },
+    {
+      "title": "Самый пьяный округ в мире",
+      "originalTitle": "Lawless",
+      "releaseYear": "2012"
+    },
+    {
+      "title": "Билли Айлиш: Слегка размытый мир",
+      "originalTitle": "Billie Eilish: The World's a Little Blurry",
+      "releaseYear": "2021"
+    },
+    { "title": "ДМБ", "releaseYear": "2000" },
+    { "title": "Патерсон", "originalTitle": "Paterson", "releaseYear": "2016" },
+    { "title": "Глубже!", "releaseYear": "2020" },
+    {
+      "title": "Зависнуть в Палм-Спрингс",
+      "originalTitle": "Palm Springs",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "День сурка",
+      "originalTitle": "Groundhog Day",
+      "releaseYear": "1993"
+    },
+    { "title": "Тюльпан", "releaseYear": "2008" },
+    {
+      "title": "Пёс-призрак: путь самурая",
+      "originalTitle": "Ghost Dog: The Way of the Samurai",
+      "releaseYear": "1999"
+    },
+    {
+      "title": "Матрица: Революция",
+      "originalTitle": "The Matrix Revolutions",
+      "releaseYear": "2003"
+    },
+    {
+      "title": "Матрица: Перезагрузка",
+      "originalTitle": "The Matrix Reloaded",
+      "releaseYear": "2003"
+    },
+    {
+      "title": "Матрица",
+      "originalTitle": "The Matrix",
+      "releaseYear": "1999"
+    },
+    {
+      "title": "Американский пирог 2",
+      "originalTitle": "American Pie 2",
+      "releaseYear": "2001"
+    },
+    {
+      "title": "Американский пирог",
+      "originalTitle": "American Pie",
+      "releaseYear": "1999"
+    },
+    {
+      "title": "Очень страшное кино",
+      "originalTitle": "Scary Movie",
+      "releaseYear": "2000"
+    },
+    {
+      "title": "Не грози Южному централу, попивая сок у себя в квартале",
+      "originalTitle": "Don't Be a Menace to South Central While Drinking Your Juice in the Hood",
+      "releaseYear": "1996"
+    }
+  ],
+  "2020": [
+    {
+      "title": "Три одинаковых незнакомца",
+      "originalTitle": "Three Identical Strangers",
+      "releaseYear": "2018"
+    },
+    {
+      "title": "Суд над чикагской семёркой",
+      "originalTitle": "The Trial of the Chicago 7",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Побег из Претории",
+      "originalTitle": "Escape From Pretoria",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Пушки Акимбо",
+      "originalTitle": "Guns Akimbo",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Дэйв сделал лабиринт",
+      "originalTitle": "Dave Made a Maze",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Хрустальное небо вчерашнего дня",
+      "originalTitle": "Crystal Sky of Yesterday",
+      "releaseYear": "2018"
+    },
+    {
+      "title": "Взрывная блондинка",
+      "originalTitle": "Atomic Blonde",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Я иду искать",
+      "originalTitle": "Ready or Not",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Американские животные",
+      "originalTitle": "American Animals",
+      "releaseYear": "2018"
+    },
+    {
+      "title": "Достать ножи",
+      "originalTitle": "Knives Out",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Приходит дракон",
+      "originalTitle": "A Dragon Arrives! ",
+      "releaseYear": "2016"
+    },
+    { "title": "Завтра была война", "releaseYear": "1987" },
+    { "title": "Иди и смотри", "releaseYear": "1985" },
+    {
+      "title": "Выпускник",
+      "originalTitle": "The Graduate",
+      "releaseYear": "1967"
+    },
+    {
+      "title": "Дитя человеческое",
+      "originalTitle": "Children of Men",
+      "releaseYear": "2006"
+    },
+    {
+      "title": "Бегущий по лезвию",
+      "originalTitle": "Blade Runner",
+      "releaseYear": "1982"
+    },
+    {
+      "title": "Бегущий по лезвию 2049",
+      "originalTitle": "Blade Runner 2049",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Платформа",
+      "originalTitle": "The Platform",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Искусство самообороны",
+      "originalTitle": "The Art of Self-Defense",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Клуб «Завтрак»",
+      "originalTitle": "The Breakfast Club",
+      "releaseYear": "1985"
+    },
+    {
+      "title": "Акварель",
+      "originalTitle": "Aquarela",
+      "releaseYear": "2018"
+    },
+    { "title": "Знаки", "originalTitle": "Signs", "releaseYear": "2002" },
+    {
+      "title": "Человек кусает собаку",
+      "originalTitle": "Man Bites Dog",
+      "releaseYear": "1992"
+    },
+    {
+      "title": "Маяк",
+      "originalTitle": "The Lighthouse ",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Окно напротив",
+      "originalTitle": "The Neighbor's Window",
+      "releaseYear": "2019"
+    },
+    { "title": "Холоп", "releaseYear": "2019" },
+    { "title": "Рома", "originalTitle": "Roma", "releaseYear": "2018" },
+    { "title": "Клаус", "originalTitle": "Klaus", "releaseYear": "2019" },
+    { "title": "1917", "originalTitle": "1917", "releaseYear": "2019" },
+    {
+      "title": "Паразиты",
+      "originalTitle": "Parasite",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Полицейский с Рублёвки. Новогодний беспредел 2",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Робин Гуд",
+      "originalTitle": "Robin Hood",
+      "releaseYear": "1973"
+    },
+    { "title": "Джокер", "originalTitle": "Joker", "releaseYear": "2019" }
+  ]
+}

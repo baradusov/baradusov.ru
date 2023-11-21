@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export const getStaticPaths = async () => {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+};
+
+const post = Astro.props;
+
+const { Content } = await post.render();
+
+console.log(post);
+
+const localCreated = new Date(post.data.created).toLocaleDateString('ru-RU');
+---
+
+<Layout title={`Нуриль Барадусов | ${post.data.title}`} description="">
+  <main>
+    <h1>{post.data.title}</h1>
+
+    <div class="content">
+      <Content />
+    </div>
+
+    <time date-time={`${post.data.created}T00:00:00.000Z`}>
+      <a href={`/posts/${post.slug}`}>
+        {localCreated}
+      </a>
+    </time>
+  </main>
+</Layout>

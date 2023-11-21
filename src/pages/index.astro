@@ -1,0 +1,121 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+
+import Layout from '../layouts/Layout.astro';
+
+const { data } = await getEntry('data', 'projects');
+const { projects } = data;
+
+const allPosts = await getCollection(
+  'posts',
+  ({ data }) => data.draft !== true
+);
+const postsByYears = allPosts
+  .sort((p1, p2) => new Date(p2.data.created) - new Date(p1.data.created))
+  .reduce((acc, post) => {
+    const year = post.data.created.split('-')[0];
+
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+
+    acc[year].push(post);
+
+    return acc;
+  }, {});
+
+const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout title="Нуриль Барадусов" description="Фротендер из Санкт-Петербурга">
+  <main>
+    <section>
+      <!-- <img src={portrait.src} alt="я сижу на корточках среди куриц" /> -->
+      <p>
+        Фронтендер из <s>Самары</s> → Санкт-Петербурга.
+      </p>
+      <p>
+        Я есть в{' '}
+        <a href="https://twitter.com/baradusov">твиттере</a>
+         ,{' '}
+        <a href="https://instagram.com/baradusov/"> инстаграме</a>{' '}
+         и{' '}
+        <a href="https://github.com/baradusov">гитхабе</a>
+         .
+      </p>
+      <p>
+        Связь — 
+        <a href="https://t.me/baradusov">телеграм</a> и почта{' '}
+        <a href="mailto:baradusovnh@gmail.com"> baradusovnh@gmail.com</a>{' '}
+         или <a href="/anon">анонимное сообщение</a>.
+      </p>
+      <p>
+        Веду список просмотренных <a href="/movies">фильмов</a> и прочитанных <a
+          href="/books">книг</a
+        >, и пишу заметки{' '}
+        <a href="https://t.me/nuril_notes"> в телеграм-канал</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Делаю</h2>
+
+      <ul>
+        {
+          projects.map((project) => (
+            <li>
+              <div>
+                <a href={project.url}>{project.name}</a>
+                <p>{project.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <div class="feed">
+      <h2>Пишу</h2>
+
+      {
+        years.map((year) => {
+          const posts = postsByYears[year];
+
+          return (
+            <section>
+              <h3>{year}</h3>
+
+              <ul style={{ gridColumnStart: 2, gridColumnEnd: -1 }}>
+                {posts.map((post) => {
+                  const dateCreated = new Date(post.data.created);
+                  const monthCreated = String(
+                    dateCreated.getMonth() + 1
+                  ).padStart(2, '0');
+                  const dayCreated = String(dateCreated.getDate()).padStart(
+                    2,
+                    '0'
+                  );
+
+                  return (
+                    <li>
+                      <div style="display:flex;justify-content:space-between;">
+                        <a href={`/posts/${post.slug}`}>
+                          <h3>{post.data.title}</h3>
+                        </a>
+                        <time date-time={`${post.data.created}T00:00:00.000Z`}>
+                          {dayCreated}.{monthCreated}
+                        </time>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          );
+        })
+      }
+    </div>
+  </main>
+</Layout>
+
+<style></style>
