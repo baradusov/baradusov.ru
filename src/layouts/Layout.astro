@@ -25,9 +25,7 @@ const isIndex = Astro.url.pathname === '/';
   </head>
   <body>
     <header class:list={{ ['index-header']: isIndex }}>
-      <a href="/" style="
-      mix-blend-mode: luminosity;
-  ">
+      <a href="/" style="mix-blend-mode: luminosity;">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="772.43"
@@ -63,20 +61,28 @@ const isIndex = Astro.url.pathname === '/';
             <img
               src="/01.gif"
               style="
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;"
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                margin: auto;"
             />
             <img
               src="/portrait.png"
               style="
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      margin: auto;"
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                margin: auto;"
+            />
+            <img
+              src="/chicken.png"
+              style="
+                position: absolute;
+                bottom: 0;
+                left: 20px;
+                max-width: 80px;"
             />
             <img src="/6ku.png" class="sixku" />
           </>
