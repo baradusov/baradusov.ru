@@ -1,21 +1,6 @@
 {
   "projects": [
     {
-      "name": "Webpage to PDF bot",
-      "url": "https://t.me/html_to_pdf_bot",
-      "description": "Телеграм-бот, который помогает сохранять статьи как pdf-файл. Кидаешь ссылку — получаешь читабельную пдфку"
-    },
-    {
-      "name": "GTFPL",
-      "url": "https://t.me/GetTheFuckingPublicLinkBot",
-      "description": "Телеграм-бот для получения публичной ссылки на файл"
-    },
-    {
-      "name": "Oblique Strategies",
-      "url": "https://t.me/ObliqueStrategiesOfBrianEnoBot",
-      "description": "Телеграм-бот, основанный на одноимённом наборе карточек Брайана Ино и Питера Шмидта"
-    },
-    {
       "name": "тесные киски",
       "url": "https://t.me/tightpussies",
       "description": "Телеграм-канал про кошек, оказавшихся в тесных местах"
@@ -26,9 +11,24 @@
       "description": "Каталог российских брендов уличной одежды"
     },
     {
+      "name": "Oblique Strategies",
+      "url": "https://t.me/ObliqueStrategiesOfBrianEnoBot",
+      "description": "Телеграм-бот, основанный на одноимённом наборе карточек Брайана Ино и Питера Шмидта"
+    },
+    {
       "name": "russiancycling.club",
       "url": "https://russiancycling.club",
       "description": "Каталог российских производителей велосипедов, одежды и аксессуаров, а также локальные велосообщества"
+    },
+    {
+      "name": "Webpage to PDF bot",
+      "url": "https://t.me/html_to_pdf_bot",
+      "description": "Телеграм-бот, который помогает сохранять статьи как pdf-файл. Кидаешь ссылку — получаешь читабельную пдфку"
+    },
+    {
+      "name": "GTFPL",
+      "url": "https://t.me/GetTheFuckingPublicLinkBot",
+      "description": "Телеграм-бот для получения публичной ссылки на файл"
     }
   ]
 }
