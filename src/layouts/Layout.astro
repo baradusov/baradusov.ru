@@ -276,15 +276,40 @@ const isIndex = Astro.url.pathname === '/';
     }
 
     /* post page */
+    :root {
+      --gap: 14px;
+    }
 
     .content {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: var(--gap);
       margin-bottom: 16px;
     }
+
     .content pre {
       padding: 14px;
+    }
+
+    .content h2 {
+      margin-top: calc(1.5 * var(--gap));
+      margin-bottom: 0;
+    }
+
+    .content h3,
+    .content h4 {
+      margin-top: calc(1.2 * var(--gap));
+      margin-bottom: 0;
+    }
+
+    .content figcaption {
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    .content ul {
+      padding-left: 40px;
+      list-style: disc;
     }
   </style>
 </html>
