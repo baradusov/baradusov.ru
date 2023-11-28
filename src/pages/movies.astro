@@ -5,11 +5,13 @@ import Layout from '../layouts/Layout.astro';
 
 const { data: moviesByYear } = await getEntry('data', 'movies');
 const years = Object.keys(moviesByYear).sort((a, b) => Number(b) - Number(a));
+const counter = years.reduce((acc, year) => moviesByYear[year].length + acc, 0);
 ---
 
 <Layout title="Фильмы | Нуриль Барадусов" description="Просмотренные фильмы">
   <main>
-    <h1>Просмотренные фильмы</h1>
+    <h1>Просмотренные фильмы ({counter})</h1>
+
     <div>
       {
         years.map((year) => {
@@ -18,13 +20,13 @@ const years = Object.keys(moviesByYear).sort((a, b) => Number(b) - Number(a));
           return (
             <>
               <section>
-                <h3>{year}</h3>
+                <h2>{year}</h2>
 
-                <ul>
+                <ul class="list">
                   {movies.map((movie: any) => {
                     return (
-                      <li>
-                        <p>{movie.title}</p>
+                      <li class="list-item">
+                        <p class="title">{movie.title}</p>
                         <p>
                           {movie.releaseYear} {movie.originalTitle ? '·' : null}{' '}
                           {movie.originalTitle}
@@ -42,4 +44,19 @@ const years = Object.keys(moviesByYear).sort((a, b) => Number(b) - Number(a));
   </main>
 </Layout>
 
-<style></style>
+<style>
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .list-item {
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+</style>

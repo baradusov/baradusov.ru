@@ -5,11 +5,12 @@ import Layout from '../layouts/Layout.astro';
 
 const { data: booksByYear } = await getEntry('data', 'books');
 const years = Object.keys(booksByYear).sort((a, b) => Number(b) - Number(a));
+const counter = years.reduce((acc, year) => booksByYear[year].length + acc, 0);
 ---
 
 <Layout title="Книги | Нуриль Барадусов" description="Прочитанные книги">
   <main>
-    <h1>Прочитанные книги</h1>
+    <h1>Прочитанные книги ({counter})</h1>
 
     <div>
       {
@@ -19,13 +20,13 @@ const years = Object.keys(booksByYear).sort((a, b) => Number(b) - Number(a));
           return (
             <>
               <section>
-                <h3>{year}</h3>
+                <h2>{year}</h2>
 
-                <ul>
+                <ul class="list">
                   {books.map((book: any) => {
                     return (
-                      <li>
-                        <p>{book.title}</p>
+                      <li class="list-item">
+                        <p class="title">{book.title}</p>
                         <p>{book.author}</p>
                       </li>
                     );
@@ -40,4 +41,19 @@ const years = Object.keys(booksByYear).sort((a, b) => Number(b) - Number(a));
   </main>
 </Layout>
 
-<style></style>
+<style>
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .list-item {
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+</style>
