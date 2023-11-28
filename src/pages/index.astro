@@ -16,7 +16,7 @@ const postsByYears = allPosts
   .sort((p1, p2) => new Date(p2.data.created) - new Date(p1.data.created))
   .reduce((acc, post) => {
     //@ts-ignore
-    const year = post.data.created.split('-')[0];
+    const year = post.data.created.getFullYear();
 
     // @ts-ignore
     if (!acc[year]) {

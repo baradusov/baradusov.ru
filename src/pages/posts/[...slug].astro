@@ -7,11 +7,11 @@ export const getStaticPaths = async () => {
   return posts.map((post) => ({
     // @ts-ignore
     params: { slug: post.slug },
-    props: post,
+    props: { post },
   }));
 };
 
-const post = Astro.props;
+const { post } = Astro.props;
 
 const { Content } = await post.render();
 
