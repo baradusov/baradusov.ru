@@ -3,3 +3,4 @@ Disallow: /img/portrait.jpg
 Disallow: /img/portrait.png
 Disallow: /cv-baradusov.pdf
 Disallow: /randomnst
+Disallow: /img/
