@@ -7,6 +7,7 @@ interface Props {
 const { title, description } = Astro.props;
 
 const isIndex = Astro.url.pathname === '/';
+const canonical = `https://baradusov.ru${Astro.url.pathname}`;
 ---
 
 <!doctype html>
@@ -20,11 +21,11 @@ const isIndex = Astro.url.pathname === '/';
     <meta name="description" content={description} />
 
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
 
-    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:url" content={canonical} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
 
