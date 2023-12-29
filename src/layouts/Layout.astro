@@ -13,9 +13,21 @@ const isIndex = Astro.url.pathname === '/';
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
     <link
       rel="alternate"
       type="application/rss+xml"
