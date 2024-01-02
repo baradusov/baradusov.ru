@@ -1,9 +1,12 @@
 ---
-import { getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
 import Layout from '../layouts/Layout.astro';
 
-const { data: booksByYear } = await getEntry('data', 'books');
+// деструктуризация, потому что коллекция подрузамевает много элементов, а у меня только один (books.json)
+const [books] = await getCollection('books');
+const { data: booksByYear } = books;
+
 const years = Object.keys(booksByYear).sort((a, b) => Number(b) - Number(a));
 const counter = years.reduce((acc, year) => booksByYear[year].length + acc, 0);
 ---
@@ -18,22 +21,20 @@ const counter = years.reduce((acc, year) => booksByYear[year].length + acc, 0);
           const books = booksByYear[year];
 
           return (
-            <>
-              <section>
-                <h2>{year}</h2>
+            <section>
+              <h2>{year}</h2>
 
-                <ul class="list">
-                  {books.map((book: any) => {
-                    return (
-                      <li class="list-item">
-                        <p class="title">{book.title}</p>
-                        <p>{book.author}</p>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
-            </>
+              <ul class="list">
+                {books.map((book) => {
+                  return (
+                    <li class="list-item">
+                      <p class="title">{book.title}</p>
+                      <p>{book.author}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
           );
         })
       }

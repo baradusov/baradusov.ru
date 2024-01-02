@@ -1,34 +1,37 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
 import Layout from '../layouts/Layout.astro';
 
-const { data } = await getEntry('data', 'projects');
-const { projects } = data;
+// деструктуризация, потому что коллекция подрузамевает много элементов, а у меня только один (projects.json)
+const [collection] = await getCollection('projects');
+const { data: projects } = collection;
 
 const allPosts = await getCollection(
   'posts',
-  // @ts-ignore
   ({ data }) => data.draft !== true
 );
+
 const postsByYears = allPosts
-  // @ts-ignore
-  .sort((p1, p2) => new Date(p2.data.created) - new Date(p1.data.created))
-  .reduce((acc, post) => {
-    //@ts-ignore
-    const year = post.data.created.getFullYear();
+  .sort(
+    (p1, p2) =>
+      new Date(p2.data.created).valueOf() - new Date(p1.data.created).valueOf()
+  )
+  .reduce(
+    (acc, post) => {
+      const year = post.data.created.getFullYear();
 
-    // @ts-ignore
-    if (!acc[year]) {
-      // @ts-ignore
-      acc[year] = [];
-    }
+      if (!acc[year]) {
+        acc[year] = [];
+      }
 
-    // @ts-ignore
-    acc[year].push(post);
+      acc[year].push(post);
 
-    return acc;
-  }, {});
+      return acc;
+    },
+    {} as Record<string, CollectionEntry<'posts'>[]>
+  );
 
 const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
 ---
@@ -62,7 +65,7 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
 
       <ul>
         {
-          projects.map((project: any) => (
+          projects.map((project) => (
             <li>
               <div>
                 <a href={project.url}>{project.name}</a>
@@ -79,7 +82,6 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
 
       {
         years.map((year) => {
-          // @ts-ignore
           const posts = postsByYears[year];
 
           return (
@@ -87,7 +89,7 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
               <h3>{year}</h3>
 
               <ul style={{ gridColumnStart: 2, gridColumnEnd: -1 }}>
-                {posts.map((post: any) => {
+                {posts.map((post) => {
                   const dateCreated = new Date(post.data.created);
                   const monthCreated = String(
                     dateCreated.getMonth() + 1

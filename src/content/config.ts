@@ -12,12 +12,41 @@ const posts = defineCollection({
 
 const projects = defineCollection({
   type: 'data',
-  schema: z.object({
-    name: z.string(),
-    url: z.string(),
-    description: z.string(),
-    dead: z.boolean().optional(),
-  }),
+  schema: z.array(
+    z.object({
+      name: z.string(),
+      url: z.string().url(),
+      description: z.string(),
+      dead: z.boolean().optional(),
+    })
+  ),
 });
 
-export const collections = { posts, projects };
+const movies = defineCollection({
+  type: 'data',
+  schema: z.record(
+    z.string(),
+    z.array(
+      z.object({
+        title: z.string(),
+        originalTitle: z.string().optional(),
+        releaseYear: z.string(),
+      })
+    )
+  ),
+});
+
+const books = defineCollection({
+  type: 'data',
+  schema: z.record(
+    z.string(),
+    z.array(
+      z.object({
+        title: z.string(),
+        author: z.string(),
+      })
+    )
+  ),
+});
+
+export const collections = { posts, movies, books, projects };
