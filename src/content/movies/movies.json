@@ -1,4 +1,46 @@
 {
+  "2024": [
+    {
+      "title": "Идеальные дни",
+      "originalTitle": "Perfect Days",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "Гонщик",
+      "originalTitle": "The Racer",
+      "releaseYear": "2020"
+    },
+    {
+      "title": "Убийство священного оленя",
+      "originalTitle": "The Killing of a Sacred Deer",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "На колёсах",
+      "originalTitle": "Tour de Pharmacy",
+      "releaseYear": "2017"
+    },
+    {
+      "title": "Взрослые",
+      "originalTitle": "The Adults",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "Разрушение",
+      "originalTitle": "Demolition",
+      "releaseYear": "2015"
+    },
+    {
+      "title": "Солтберн",
+      "originalTitle": "Saltburn",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "Граф",
+      "originalTitle": "El Conde",
+      "releaseYear": "2023"
+    }
+  ],
   "2023": [
     {
       "title": "Залечь на дно в Брюгге",
@@ -544,7 +586,11 @@
       "originalTitle": "Bubble Boy",
       "releaseYear": "2001"
     },
-    { "title": "Хакеры", "originalTitle": "Hackers", "releaseYear": "1995" },
+    {
+      "title": "Хакеры",
+      "originalTitle": "Hackers",
+      "releaseYear": "1995"
+    },
     {
       "title": "Земля кочевников",
       "originalTitle": "Nomadland",
@@ -555,7 +601,11 @@
       "originalTitle": "Demolition",
       "releaseYear": "2015"
     },
-    { "title": "Душа", "originalTitle": "Soul", "releaseYear": "2020" },
+    {
+      "title": "Душа",
+      "originalTitle": "Soul",
+      "releaseYear": "2020"
+    },
     {
       "title": "Выживут только любовники",
       "originalTitle": "Only Lovers Left Alive",
@@ -576,9 +626,19 @@
       "originalTitle": "Billie Eilish: The World's a Little Blurry",
       "releaseYear": "2021"
     },
-    { "title": "ДМБ", "releaseYear": "2000" },
-    { "title": "Патерсон", "originalTitle": "Paterson", "releaseYear": "2016" },
-    { "title": "Глубже!", "releaseYear": "2020" },
+    {
+      "title": "ДМБ",
+      "releaseYear": "2000"
+    },
+    {
+      "title": "Патерсон",
+      "originalTitle": "Paterson",
+      "releaseYear": "2016"
+    },
+    {
+      "title": "Глубже!",
+      "releaseYear": "2020"
+    },
     {
       "title": "Зависнуть в Палм-Спрингс",
       "originalTitle": "Palm Springs",
@@ -589,7 +649,10 @@
       "originalTitle": "Groundhog Day",
       "releaseYear": "1993"
     },
-    { "title": "Тюльпан", "releaseYear": "2008" },
+    {
+      "title": "Тюльпан",
+      "releaseYear": "2008"
+    },
     {
       "title": "Пёс-призрак: путь самурая",
       "originalTitle": "Ghost Dog: The Way of the Samurai",
@@ -687,8 +750,14 @@
       "originalTitle": "A Dragon Arrives! ",
       "releaseYear": "2016"
     },
-    { "title": "Завтра была война", "releaseYear": "1987" },
-    { "title": "Иди и смотри", "releaseYear": "1985" },
+    {
+      "title": "Завтра была война",
+      "releaseYear": "1987"
+    },
+    {
+      "title": "Иди и смотри",
+      "releaseYear": "1985"
+    },
     {
       "title": "Выпускник",
       "originalTitle": "The Graduate",
@@ -729,7 +798,11 @@
       "originalTitle": "Aquarela",
       "releaseYear": "2018"
     },
-    { "title": "Знаки", "originalTitle": "Signs", "releaseYear": "2002" },
+    {
+      "title": "Знаки",
+      "originalTitle": "Signs",
+      "releaseYear": "2002"
+    },
     {
       "title": "Человек кусает собаку",
       "originalTitle": "Man Bites Dog",
@@ -745,10 +818,25 @@
       "originalTitle": "The Neighbor's Window",
       "releaseYear": "2019"
     },
-    { "title": "Холоп", "releaseYear": "2019" },
-    { "title": "Рома", "originalTitle": "Roma", "releaseYear": "2018" },
-    { "title": "Клаус", "originalTitle": "Klaus", "releaseYear": "2019" },
-    { "title": "1917", "originalTitle": "1917", "releaseYear": "2019" },
+    {
+      "title": "Холоп",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "Рома",
+      "originalTitle": "Roma",
+      "releaseYear": "2018"
+    },
+    {
+      "title": "Клаус",
+      "originalTitle": "Klaus",
+      "releaseYear": "2019"
+    },
+    {
+      "title": "1917",
+      "originalTitle": "1917",
+      "releaseYear": "2019"
+    },
     {
       "title": "Паразиты",
       "originalTitle": "Parasite",
@@ -763,6 +851,10 @@
       "originalTitle": "Robin Hood",
       "releaseYear": "1973"
     },
-    { "title": "Джокер", "originalTitle": "Joker", "releaseYear": "2019" }
+    {
+      "title": "Джокер",
+      "originalTitle": "Joker",
+      "releaseYear": "2019"
+    }
   ]
 }
