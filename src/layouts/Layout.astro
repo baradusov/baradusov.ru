@@ -332,4 +332,14 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
       list-style: disc;
     }
   </style>
+
+  <script is:inline>
+    if (window.navigator && navigator.serviceWorker) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script>
 </html>
