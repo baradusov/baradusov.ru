@@ -7,7 +7,7 @@
   {
     "name": "russianstreetwear.club",
     "url": "https://russianstreetwear.club",
-    "description": "Каталог российских брендов уличной одежды"
+    "description": "Каталог российских брендов одежды"
   },
   {
     "name": "Oblique Strategies",
@@ -15,9 +15,9 @@
     "description": "Телеграм-бот, основанный на одноимённом наборе карточек Брайана Ино и Питера Шмидта"
   },
   {
-    "name": "russiancycling.club",
-    "url": "https://russiancycling.club",
-    "description": "Каталог российских производителей велосипедов, одежды и аксессуаров, а также локальные велосообщества"
+    "name": "local cycling club",
+    "url": "https://russiancyclingclub.notion.site/9194bd45ae91420a97b24aac471d62f0?v=4941fe8e6dac4b2abfc0ad5e9c042706",
+    "description": "Каталог локальных производителей велосипедов, одежды и аксессуаров, а также локальные велосообщества"
   },
   {
     "name": "Webpage to PDF bot",
@@ -26,7 +26,7 @@
   },
   {
     "name": "GTFPL",
-    "url": "https://t.me/GetTheFuckingPublicLinkBot",
+    "url": "https://github.com/baradusov/get-the-fucking-public-link-bot",
     "description": "Телеграм-бот для получения публичной ссылки на файл"
   }
 ]
