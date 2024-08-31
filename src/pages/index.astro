@@ -82,7 +82,7 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
 
           return (
             <section>
-              <h3>{year}</h3>
+              <h3 class="year">{year}</h3>
 
               <ul style={{ gridColumnStart: 2, gridColumnEnd: -1 }}>
                 {posts.map((post) => {
@@ -117,4 +117,12 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
   </main>
 </Layout>
 
-<style></style>
+<style>
+  @media (min-width: 601px) {
+    .year {
+      position: sticky;
+      top: 0;
+      align-self: self-start;
+    }
+  }
+</style>
