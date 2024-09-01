@@ -10,14 +10,14 @@
     "description": "Каталог российских брендов одежды"
   },
   {
-    "name": "Oblique Strategies",
-    "url": "https://t.me/ObliqueStrategiesOfBrianEnoBot",
-    "description": "Телеграм-бот, основанный на одноимённом наборе карточек Брайана Ино и Питера Шмидта"
-  },
-  {
     "name": "local cycling club",
     "url": "https://russiancyclingclub.notion.site/9194bd45ae91420a97b24aac471d62f0?v=4941fe8e6dac4b2abfc0ad5e9c042706",
     "description": "Каталог локальных производителей велосипедов, одежды и аксессуаров, а также локальные велосообщества"
+  },
+  {
+    "name": "Oblique Strategies",
+    "url": "https://t.me/ObliqueStrategiesOfBrianEnoBot",
+    "description": "Телеграм-бот, основанный на одноимённом наборе карточек Брайана Ино и Питера Шмидта"
   },
   {
     "name": "Webpage to PDF bot",
