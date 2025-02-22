@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 
 const unsortedMovies = await getCollection('movies');
 
-const movies = unsortedMovies.sort((a, b) => Number(b.id) - Number(a));
+const movies = unsortedMovies.sort((a, b) => Number(b.id) - Number(a.id));
 const counter = movies.reduce((acc, year) => year.data.length + acc, 0);
 ---
 
