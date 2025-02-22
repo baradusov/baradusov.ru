@@ -3,12 +3,10 @@ import { getCollection } from 'astro:content';
 
 import Layout from '../layouts/Layout.astro';
 
-// деструктуризация, потому что коллекция подрузамевает много элементов, а у меня только один (movies.json)
-const [movies] = await getCollection('movies');
-const { data: moviesByYear } = movies;
+const unsortedMovies = await getCollection('movies');
 
-const years = Object.keys(moviesByYear).sort((a, b) => Number(b) - Number(a));
-const counter = years.reduce((acc, year) => moviesByYear[year].length + acc, 0);
+const movies = unsortedMovies.sort((a, b) => Number(b.id) - Number(a));
+const counter = movies.reduce((acc, year) => year.data.length + acc, 0);
 ---
 
 <Layout title="Фильмы | Нуриль Барадусов" description="Просмотренные фильмы">
@@ -17,29 +15,25 @@ const counter = years.reduce((acc, year) => moviesByYear[year].length + acc, 0);
 
     <div>
       {
-        years.map((year) => {
-          const movies = moviesByYear[year];
+        movies.map((moviesByYear) => (
+          <section>
+            <h2>{moviesByYear.id}</h2>
 
-          return (
-            <section>
-              <h2>{year}</h2>
-
-              <ul class="list">
-                {movies.map((movie) => {
-                  return (
-                    <li class="list-item">
-                      <p class="title">{movie.title}</p>
-                      <p>
-                        {movie.releaseYear} {movie.originalTitle ? '·' : null}{' '}
-                        {movie.originalTitle}
-                      </p>
-                    </li>
-                  );
-                })}
-              </ul>
-            </section>
-          );
-        })
+            <ul class="list">
+              {moviesByYear.data.map((movie) => {
+                return (
+                  <li class="list-item">
+                    <p class="title">{movie.title}</p>
+                    <p>
+                      {movie.releaseYear} {movie.originalTitle ? '·' : null}{' '}
+                      {movie.originalTitle}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        ))
       }
     </div>
   </main>

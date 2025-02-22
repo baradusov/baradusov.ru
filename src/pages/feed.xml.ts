@@ -17,11 +17,11 @@ export const GET: APIRoute = async (context) => {
     trailingSlash: false,
     items: blog.map((post) => ({
       title: post.data.title,
-      description: sanitize(parser.render(post.body), {
+      description: sanitize(parser.render(post.body ?? ''), {
         allowedTags: sanitize.defaults.allowedTags.concat(['img']),
       }),
       pubDate: post.data.created,
-      link: `/posts/${post.slug}/`,
+      link: `/posts/${post.id}/`,
     })),
   });
 };

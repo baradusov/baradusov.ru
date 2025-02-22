@@ -4,10 +4,7 @@ import { getCollection } from 'astro:content';
 
 import Layout from '../layouts/Layout.astro';
 
-// деструктуризация, потому что коллекция подрузамевает много элементов, а у меня только один (projects.json)
-const [collection] = await getCollection('projects');
-const { data: projects } = collection;
-
+const projects = await getCollection('projects');
 const allPosts = await getCollection(
   'posts',
   ({ data }) => data.draft !== true
@@ -20,7 +17,7 @@ const postsByYears = allPosts
   )
   .reduce(
     (acc, post) => {
-      const year = post.data.created.getFullYear();
+      const year = new Date(post.data.created).getFullYear();
 
       if (!acc[year]) {
         acc[year] = [];
@@ -67,8 +64,8 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
           projects.map((project) => (
             <li>
               <div>
-                <a href={project.url}>{project.name}</a>
-                <p>{project.description}</p>
+                <a href={project.data.url}>{project.data.name}</a>
+                <p>{project.data.description}</p>
               </div>
             </li>
           ))
@@ -101,7 +98,7 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
                   return (
                     <li>
                       <div style="display:flex;justify-content:space-between;">
-                        <a href={`/posts/${post.slug}`}>
+                        <a href={`/posts/${post.id}`}>
                           <h3>{post.data.title}</h3>
                         </a>
                         <time date-time={`${post.data.created}T00:00:00.000Z`}>

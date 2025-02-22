@@ -1,21 +1,22 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+
 import Layout from '../../layouts/Layout.astro';
 
 export const getStaticPaths = async () => {
   const posts = await getCollection('posts');
 
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 };
 
 const { post } = Astro.props;
 
-const { Content } = await post.render();
+const { Content } = await render(post);
 
-const description = post.body.slice(0, 100) + '...';
+const description = post.body ? post.body.slice(0, 100) + '...' : '';
 const localCreated = new Date(post.data.created).toLocaleDateString('ru-RU');
 ---
 
@@ -31,7 +32,7 @@ const localCreated = new Date(post.data.created).toLocaleDateString('ru-RU');
     </div>
 
     <time date-time={`${post.data.created}T00:00:00.000Z`}>
-      <a href={`/posts/${post.slug}`}>
+      <a href={`/posts/${post.id}`}>
         {localCreated}
       </a>
     </time>

@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -38,7 +38,7 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
       href="/feed.xml"
     />
 
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <header class:list={{ ['index-header']: isIndex }}>

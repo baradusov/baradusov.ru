@@ -1,30 +1,36 @@
 [
   {
+    "id": "tightpussies",
     "name": "тесные киски",
     "url": "https://t.me/tightpussies",
     "description": "Телеграм-канал про кошек, оказавшихся в тесных местах"
   },
   {
+    "id": "russianstreetwear",
     "name": "russianstreetwear.club",
     "url": "https://russianstreetwear.club",
     "description": "Каталог российских брендов одежды"
   },
   {
+    "id": "russiancyclingclub",
     "name": "local cycling club",
     "url": "https://russiancyclingclub.notion.site/9194bd45ae91420a97b24aac471d62f0?v=4941fe8e6dac4b2abfc0ad5e9c042706",
     "description": "Каталог локальных производителей велосипедов, одежды и аксессуаров, а также локальные велосообщества"
   },
   {
+    "id": "oblique-strategies",
     "name": "Oblique Strategies",
     "url": "https://t.me/ObliqueStrategiesOfBrianEnoBot",
     "description": "Телеграм-бот, основанный на одноимённом наборе карточек Брайана Ино и Питера Шмидта"
   },
   {
+    "id": "pdf-bot",
     "name": "Webpage to PDF bot",
     "url": "https://t.me/html_to_pdf_bot",
     "description": "Телеграм-бот, который помогает сохранять статьи как pdf-файл. Кидаешь ссылку — получаешь читабельную пдфку"
   },
   {
+    "id": "gtpfl",
     "name": "GTFPL",
     "url": "https://github.com/baradusov/get-the-fucking-public-link-bot",
     "description": "Телеграм-бот для получения публичной ссылки на файл"
