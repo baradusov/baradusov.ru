@@ -16,13 +16,14 @@ const { post } = Astro.props;
 
 const { Content } = await render(post);
 
-const description = post.body ? post.body.slice(0, 100) + '...' : '';
+const description = post.data.description ?? post.body;
+const metaDescription = description ? description.slice(0, 100) + '...' : '';
 const localCreated = new Date(post.data.created).toLocaleDateString('ru-RU');
 ---
 
 <Layout
   title={`Нуриль Барадусов | ${post.data.title}`}
-  description={description}
+  description={metaDescription}
 >
   <main>
     <h1>{post.data.title}</h1>
