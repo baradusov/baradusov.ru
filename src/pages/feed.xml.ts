@@ -12,7 +12,7 @@ export const GET: APIRoute = async (context) => {
 
   return rss({
     title: 'Нуриль Барадусов',
-    description: 'Фронтендер из Санкт-Петербурга',
+    description: 'Здесь я собираю всё, чем занимаюсь и пишу дневник.',
     site: context.site ?? '',
     trailingSlash: false,
     items: blog.map((post) => ({
