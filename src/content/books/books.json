@@ -1,224 +1,317 @@
 {
+  "Читаю": [
+    {
+      "title": "Критическая теория интернета",
+      "author": "Герт Ловинк",
+      "coverUrl": "/books/9785911037741.jpeg"
+    },
+    {
+      "title": "Co-Intelligence: Living and Working with AI",
+      "author": "Ethan Mollick",
+      "coverUrl": "https://m.media-amazon.com/images/I/91eTFT8tk2L._SL1500_.jpg"
+    }
+  ],
   "2025": [
     {
-      "title": "Self Study: Заметки о шизоидном состоянии",
-      "author": "Дэвид Кишик"
+      "title": "Заметки о шизоидном состоянии",
+      "author": "Дэвид Кишик",
+      "coverUrl": "https://m.media-amazon.com/images/I/61eAHtpGGWL._SL1500_.jpg"
     },
     {
       "title": "Тайная опора. Привязанность в жизни ребенка",
-      "author": "Людмила Петрановская"
+      "author": "Людмила Петрановская",
+      "coverUrl": "https://m.media-amazon.com/images/I/81PO3xh6udL._SL1500_.jpg"
     }
   ],
   "2024": [
     {
       "title": "Уход в Лес",
-      "author": "Эрнст Юнгер"
+      "author": "Эрнст Юнгер",
+      "coverUrl": "https://m.media-amazon.com/images/I/71W9X6i4xNL._SL1500_.jpg"
     },
     {
       "title": "Бредовая работа. Трактат о распространении бессмысленного труда",
-      "author": "Дэвид Гребер"
+      "author": "Дэвид Гребер",
+      "coverUrl":"https://m.media-amazon.com/images/I/71hef055LPL._SL1500_.jpg"
     },
     {
       "title": "В плену у платформы. Как нам вернуть себе интернет",
-      "author": "Герт Ловинк"
+      "author": "Герт Ловинк",
+      "coverUrl":"https://m.media-amazon.com/images/I/61BtcKIk6xL._SL1500_.jpg"
     },
     {
       "title": "Новые соединения. Цифровые космополиты в коммуникативную эпоху",
-      "author": "Этан Цукерман"
+      "author": "Этан Цукерман",
+      "coverUrl":"https://m.media-amazon.com/images/I/51AzNi3D20L.jpg"
     },
     {
       "title": "Robust Client-Side JavaScript",
-      "author": "Mathias Schäfer"
+      "author": "Mathias Schäfer",
+      "coverUrl":"/books/robust-js.jpeg"
     },
     {
       "title": "Practical Module Federation",
-      "author": "Jack Herrington & Zack Jackson"
+      "author": "Jack Herrington & Zack Jackson",
+      "coverUrl":"/books/module-federation.jpeg"
     },
     {
       "title": "Психогеография",
-      "author": "Ги Дебор"
+      "author": "Ги Дебор",
+      "coverUrl":"https://m.media-amazon.com/images/I/517JiJtpRzL._SL1500_.jpg"
     },
     {
       "title": "На маяк",
-      "author": "Вирджиния Вулф"
+      "author": "Вирджиния Вулф",
+      "coverUrl":"https://m.media-amazon.com/images/I/91rt58wwa3L._SL1500_.jpg"
     },
     {
       "title": "О скоротечности жизни",
-      "author": "Луций Сенека"
+      "author": "Луций Сенека",
+      "coverUrl":"/books/9785171478544.jpeg"
     },
     {
       "title": "Сто лет одиночества",
-      "author": "Габриэль Гарсиа Маркес"
+      "author": "Габриэль Гарсиа Маркес",
+      "coverUrl":"https://m.media-amazon.com/images/I/811ZSNckvTL._SL1500_.jpg"
     }
   ],
   "2023": [
     {
       "title": "Тёмный лес",
-      "author": "Лю Цисинь"
+      "author": "Лю Цисинь",
+      "coverUrl":"https://m.media-amazon.com/images/I/81S1eiUdExL._SL1500_.jpg"
     },
     {
       "title": "Разработка пользовательских интерфейсов",
-      "author": "Дженифер Тидвелл"
+      "author": "Дженифер Тидвелл",
+      "coverUrl":"https://m.media-amazon.com/images/I/81prM0YpS+L._SL1500_.jpg"
     },
     {
       "title": "Мифический человеко-месяц, или Как создаются программные системы",
-      "author": "Фредерик Брукс"
+      "author": "Фредерик Брукс",
+      "coverUrl":"https://m.media-amazon.com/images/I/81-H-YezvDL._SL1500_.jpg"
     }
   ],
   "2022": [
     {
       "title": "Задача трёх тел",
-      "author": "Лю Цисинь"
+      "author": "Лю Цисинь",
+      "coverUrl":"https://m.media-amazon.com/images/I/71ZO1TkGeiL._SL1500_.jpg"
     }
   ],
   "2021": [
     {
-      "title": "Чистый код. Создание, анализ и рефакторинг",
-      "author": "Роберт Сесил Мартин"
-    },
-    {
       "title": "Не сходите с ума на работе",
-      "author": "Джейсон Фрайд и Дэвид Хайнемайер Хенссон"
+      "author": "Джейсон Фрайд и Дэвид Хайнемайер Хенссон",
+      "coverUrl":"https://m.media-amazon.com/images/I/81QKf7U5qVL._SL1500_.jpg"
     },
     {
       "title": "Левая рука Тьмы",
-      "author": "Урсула Ле Гуин"
+      "author": "Урсула Ле Гуин",
+      "coverUrl":"/books/9785699383443.jpeg"
     },
     {
       "title": "Кровь, пот и пиксели. Обратная сторона индустрии видеоигр",
-      "author": "Джейсон Шрейер"
+      "author": "Джейсон Шрейер",
+      "coverUrl":"https://m.media-amazon.com/images/I/81UXlbb4rcL._SL1500_.jpg"
     },
     {
       "title": "Потрясающие приключения Кавалера и Клея",
-      "author": "Майкл Шейбон"
+      "author": "Майкл Шейбон",
+      "coverUrl":"/books/9785389181700.jpeg"
     }
   ],
   "2020": [
     {
       "title": "Getting Real: The Smarter, Faster, Easier Way",
-      "author": "Джейсон Фрайд, Дэвид Хайнемайер Хенссон"
+      "author": "Джейсон Фрайд, Дэвид Хайнемайер Хенссон",
+      "coverUrl":"https://m.media-amazon.com/images/I/51qz5oo9m2L._SL1360_.jpg"
     },
     {
       "title": "Rework",
-      "author": "Джейсон Фрайд, Дэвид Хайнемайер Хенссон"
+      "author": "Джейсон Фрайд, Дэвид Хайнемайер Хенссон",
+      "coverUrl":"https://m.media-amazon.com/images/I/41FilMgZVIL.jpg"
     },
     {
       "title": "Shape Up: Stop Running in Circles and Ship Work that Matters",
-      "author": "Райан Сингер"
+      "author": "Райан Сингер",
+      "coverUrl":"books/shape-up.jpeg"
     }
   ],
   "2019": [
     {
       "title": "Как рыба в воде. Эффективные техники плавания, доступные каждому",
-      "author": "Терри Лафлин"
+      "author": "Терри Лафлин",
+      "coverUrl":"/books/9785916572773.jpeg"
     },
     {
       "title": "Один день Ивана Денисовича. Матренин двор",
-      "author": "Александр Солженицын"
+      "author": "Александр Солженицын",
+      "coverUrl":"/books/9785170885114.jpeg"
     },
     {
       "title": "Изучение английского языка",
-      "author": "Рахим Давлеткалиев"
+      "author": "Рахим Давлеткалиев",
+      "coverUrl":"/books/book-placeholder.svg"
     },
     {
       "title": "Цель: процесс непрерывного совершенствования",
-      "author": "Элияху Голдратт"
+      "author": "Элияху Голдратт",
+      "coverUrl":"https://m.media-amazon.com/images/I/71gTbkgX5zL._SL1500_.jpg"
     },
     {
       "title": "В поисках кадра. Идея, цвет и композиция в фотографии",
-      "author": "Брайан Петерсон"
+      "author": "Брайан Петерсон",
+      "coverUrl":"/books/v-poiskah-kadra.jpeg"
     },
     {
       "title": "You Don't Know JS Yet: Get Started",
-      "author": "Кайл Симпсон"
+      "author": "Кайл Симпсон",
+      "coverUrl":"https://m.media-amazon.com/images/I/61sAMmSyhZL._SL1360_.jpg"
     },
     {
       "title": "Как победить стресс и депрессию",
-      "author": "Маккей, Дэвис, Фэннинг"
+      "author": "Маккей, Дэвис, Фэннинг",
+      "coverUrl":"/books/kak-pobedit-stress-depressiyu.jpeg"
     },
     {
       "title": "Чистый код. Создание, анализ и рефакторинг",
-      "author": "Роберт Мартин"
+      "author": "Роберт Сесил Мартин",
+      "coverUrl":"https://m.media-amazon.com/images/I/81F7oSuOebL._SL1500_.jpg"
     },
     {
       "title": "Программист-прагматик",
-      "author": "Томас, Хант"
+      "author": "Томас, Хант",
+      "coverUrl":"/books/programmistpragmatik.jpeg"
     },
     {
       "title": "Modern Web Development on the Jamstack",
-      "author": "Маттиас Биилманн, Фил Хоуксворт"
+      "author": "Маттиас Биилманн, Фил Хоуксворт",
+      "coverUrl":"/books/jamstack.jpeg"
     },
     {
       "title": "Your First Year in Code",
-      "author": "Айзак Лайман"
+      "author": "Айзак Лайман",
+      "coverUrl":"https://m.media-amazon.com/images/I/61vfKNtaelL._SL1360_.jpg"
     },
     {
       "title": "Все на улицу!",
-      "author": "Дмитрий Кучев"
+      "author": "Дмитрий Кучев",
+      "coverUrl":"/books/ebs.png"
     },
     {
       "title": "Путь к изучению React",
-      "author": "Робин Вирух"
+      "author": "Робин Вирух",
+      "coverUrl":"/books/road-to-react.png"
     },
     {
-      "title": "Выразительный Javascript. 2-е издание",
-      "author": "Марейн Хавербек"
+      "title": "Выразительный Javascript",
+      "author": "Марейн Хавербек",
+      "coverUrl":"https://m.media-amazon.com/images/I/81Zdi2Q2NCL._SL1500_.jpg"
     }
   ],
   "2018": [
     {
       "title": "Гиперболоид инженера Гарина",
-      "author": "Алексей Толстой"
+      "author": "Алексей Толстой",
+      "coverUrl":"https://m.media-amazon.com/images/I/91MkJ0KmXeL._SL1500_.jpg"
     },
     {
       "title": "Отзывчивый веб-дизайн",
-      "author": "Итан Маркотт"
+      "author": "Итан Маркотт",
+      "coverUrl":"/books/otzyvchivyj-vebdizajn.jpeg"
     },
     {
       "title": "Дизайн – это работа",
-      "author": "Майк Монтейро"
+      "author": "Майк Монтейро",
+      "coverUrl":"/books/design-is-job.jpg"
     },
     {
       "title": "Эмоциональный веб-дизайн",
-      "author": "Аарон Уолтер"
+      "author": "Аарон Уолтер",
+      "coverUrl":"/books/emotsionalnyj-vebdizajn.jpeg"
     },
     {
       "title": "Пуленепробиваемый веб-дизайн",
-      "author": "Дэн Седерхольм"
+      "author": "Дэн Седерхольм",
+      "coverUrl":"/books/puleneprobivaemyj-vebdizajn.jpeg"
     },
     {
       "title": "Дизайн привычных вещей",
-      "author": "Дональд Норман"
+      "author": "Дональд Норман",
+      "coverUrl":"https://m.media-amazon.com/images/I/71fMh9aByGL._SL1500_.jpg"
     },
     {
       "title": "Не заставляйте меня думать",
-      "author": "Стив Круг"
+      "author": "Стив Круг",
+      "coverUrl":"/books/ne-zastavlyajte-meny-dumat.jpeg"
     }
   ],
   "До 2018": [
     {
       "title": "Моноклон",
-      "author": "Владимир Сорокин"
+      "author": "Владимир Сорокин",
+      "coverUrl":"https://m.media-amazon.com/images/I/71Jk7Iv9dwL._SL1500_.jpg"
     },
     {
       "title": "1984",
-      "author": "Джордж Оруэлл"
+      "author": "Джордж Оруэлл",
+      "coverUrl":"https://m.media-amazon.com/images/I/61A1EVkWGhL._SL1500_.jpg"
     },
     {
       "title": "Война старика",
-      "author": "Орсон Скотт Кард"
+      "author": "Джон Скальци",
+      "coverUrl":"/books/vojna-starika.jpeg"
+    },
+    {
+      "title": "Люди в красном",
+      "author": "Джон Скальци",
+      "coverUrl":"/books/lyudi-v-krasnom.jpeg"
     },
     {
       "title": "Игра Эндера",
-      "author": "Орсон Скотт Кард"
+      "author": "Орсон Скотт Кард",
+      "coverUrl":"https://m.media-amazon.com/images/I/81Q9r+lw8iL._SL1500_.jpg"
     },
     {
       "title": "Нейромант",
-      "author": "Уильям Гибсон"
+      "author": "Уильям Гибсон",
+      "coverUrl":"/books/5792103097.jpeg"
     },
     {
       "title": "Криптономикон",
-      "author": "Нил Стивенсон"
+      "author": "Нил Стивенсон",
+      "coverUrl":"books/5966001855.jpeg"
+    },
+    {
+      "title": "Мы",
+      "author": "Евгений Замятин",
+      "coverUrl":"https://m.media-amazon.com/images/I/71qfOfE1nPL._SL1360_.jpg"
+    },
+    {
+      "title": "О дивный новый мир",
+      "author": "Олдос Хаксли",
+      "coverUrl":"books/9785171554514.jpeg"
+    },
+    {
+      "title": "Туманность Андромеды",
+      "author": "Иван Ефремов",
+      "coverUrl":"https://m.media-amazon.com/images/I/915qCcN28rL._SL1500_.jpg"
+    },
+    {
+      "title": "Свидание с Рамой",
+      "author": "Артур Кларк",
+      "coverUrl":"books/9785171098711.jpeg"
+    },
+    {
+      "title": "Ложная слепота",
+      "author": "Питер Уоттс",
+      "coverUrl":"books/9785171347796.jpeg"
+    },
+    {
+      "title": "Марсианские хроники",
+      "author": "Рэй Брэдбери",
+      "coverUrl":"https://m.media-amazon.com/images/I/81Hnxl8LBbL._SL1500_.jpg"
     }
   ]
 }

@@ -5,26 +5,41 @@ import Layout from '../layouts/Layout.astro';
 
 const unsortedBooks = await getCollection('books');
 
-const books = unsortedBooks.sort((a, b) => Number(b.id) - Number(a.id));
+const books = unsortedBooks.sort((a, b) => {
+  if (a.id === 'Читаю') {
+    return -1;
+  }
+
+  return Number(b.id) - Number(a.id)
+});
+
 const counter = books.reduce((acc, year) => year.data.length + acc, 0);
 ---
 
-<Layout title="Книги | Нуриль Барадусов" description="Прочитанные книги">
+<Layout title="Книги | Нуриль Барадусов" description="Книжная полка">
   <main>
-    <h1>Прочитанные книги ({counter})</h1>
+    <h1 class="title">Книжная полка ({counter})</h1>
 
-    <div>
+    <div class="bookshelf">
       {
         books.map((booksByYear) => (
-          <section>
+          <section class="year-section">
             <h2>{booksByYear.id}</h2>
 
-            <ul class="list">
+            <ul class="grid">
               {booksByYear.data.map((book) => {
                 return (
-                  <li class="list-item">
-                    <p class="title">{book.title}</p>
-                    <p>{book.author}</p>
+                  <li class="book-card">
+                    <div class="cover-wrapper">
+                      <img
+                        src={book.coverUrl}
+                        alt={`Обложка книги "${book.title}"`}
+                        loading="lazy"
+                        onerror="this.onerror=null; this.src='/books/book-placeholder.svg';"
+                      />
+                    </div>
+                    <p class="book-title">{book.title}</p>
+                    <p class="book-author">{book.author}</p>
                   </li>
                 );
               })}
@@ -37,18 +52,77 @@ const counter = books.reduce((acc, year) => year.data.length + acc, 0);
 </Layout>
 
 <style>
-  .list {
+  .title {
+    margin-bottom: 48px;
+  }
+
+  .bookshelf {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 24px;
   }
 
-  .list-item {
-    margin-bottom: 0;
+  .year-section {
+      margin-bottom: 0;
   }
 
-  .title {
-    font-size: 20px;
-    font-weight: 700;
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .book-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cover-wrapper {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background: #e8e8e8;
+    border-radius: 4px;
+    margin-bottom: 4px;
+  }
+
+  .cover-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .book-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .book-author {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+  }
+
+  @media (max-width: 700px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .book-title {
+      font-size: 13px;
+    }
+
+    .book-author {
+      font-size: 12px;
+    }
   }
 </style>

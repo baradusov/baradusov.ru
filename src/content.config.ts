@@ -38,6 +38,7 @@ const books = defineCollection({
     z.object({
       title: z.string(),
       author: z.string(),
+      coverUrl: z.string().optional(),
     })
   ),
 });
