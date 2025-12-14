@@ -322,6 +322,31 @@
       "title": "Марсианские хроники",
       "author": "Рэй Брэдбери",
       "coverUrl":"https://m.media-amazon.com/images/I/81Hnxl8LBbL._SL1500_.jpg"
+    },
+    {
+      "title": "Человек, который принял жену за шляпу",
+      "author": "Оливер Сакс",
+      "coverUrl":"/books/9789669934857.jpeg"
+    },
+    {
+      "title": "Похитители завтрашнего дня",
+      "author": "Сакё Комацу",
+      "coverUrl":"/books/pohititeli-zavtra.jpg"
+    },
+    {
+      "title": "451' по Фаренгейту",
+      "author": "Рэй Брэдбери",
+      "coverUrl":"/books/9786177764150.jpg"
+    },
+    {
+      "title": "Вино из одуванчиков",
+      "author": "Рэй Брэдбери",
+      "coverUrl":"/books/9785699946938.jpg"
+    },
+    {
+      "title": "Над пропастью во ржи",
+      "author": "Джером Д. Сэлинджер",
+      "coverUrl":"/books/9785699305346.jpeg"
     }
   ]
 }
