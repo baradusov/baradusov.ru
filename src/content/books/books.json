@@ -145,7 +145,7 @@
     {
       "title": "Shape Up: Stop Running in Circles and Ship Work that Matters",
       "author": "Райан Сингер",
-      "coverUrl":"books/shape-up.jpeg"
+      "coverUrl":"/books/shape-up.jpeg"
     }
   ],
   "2019": [
@@ -162,7 +162,7 @@
     {
       "title": "Изучение английского языка",
       "author": "Рахим Давлеткалиев",
-      "coverUrl":"/books/book-placeholder.svg"
+      "coverUrl":""
     },
     {
       "title": "Цель: процесс непрерывного совершенствования",
@@ -291,7 +291,7 @@
     {
       "title": "Криптономикон",
       "author": "Нил Стивенсон",
-      "coverUrl":"books/5966001855.jpeg"
+      "coverUrl":"/books/5966001855.jpeg"
     },
     {
       "title": "Мы",
@@ -301,7 +301,7 @@
     {
       "title": "О дивный новый мир",
       "author": "Олдос Хаксли",
-      "coverUrl":"books/9785171554514.jpeg"
+      "coverUrl":"/books/9785171554514.jpeg"
     },
     {
       "title": "Туманность Андромеды",
@@ -311,12 +311,12 @@
     {
       "title": "Свидание с Рамой",
       "author": "Артур Кларк",
-      "coverUrl":"books/9785171098711.jpeg"
+      "coverUrl":"/books/9785171098711.jpeg"
     },
     {
       "title": "Ложная слепота",
       "author": "Питер Уоттс",
-      "coverUrl":"books/9785171347796.jpeg"
+      "coverUrl":"/books/9785171347796.jpeg"
     },
     {
       "title": "Марсианские хроники",
