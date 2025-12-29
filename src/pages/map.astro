@@ -1,0 +1,257 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+import { parseKml } from '../utils/parseKml';
+
+const beenKml = fs.readFileSync(
+  path.join(process.cwd(), 'src/data/map/been.kml'),
+  'utf-8'
+);
+const wantKml = fs.readFileSync(
+  path.join(process.cwd(), 'src/data/map/want.kml'),
+  'utf-8'
+);
+
+const beenPlaces = parseKml(beenKml, 'been');
+const wantPlaces = parseKml(wantKml, 'want');
+const allPlaces = [...beenPlaces, ...wantPlaces];
+
+const canonical = 'https://baradusov.ru/map';
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Карта</title>
+    <meta name="description" content="Места, где я был и куда хочу" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content="Карта" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <main>
+      <div class="controls">
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">Все</button>
+          <button class="filter-btn" data-filter="been">Был</button>
+          <button class="filter-btn" data-filter="want">Хочу</button>
+        </div>
+        <select class="city-select" id="city-select">
+          <option value="all">Все города</option>
+          <option value="tbilisi">Тбилиси</option>
+          <option value="spb">Санкт-Петербург</option>
+        </select>
+        <a href="/" class="home-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </a>
+      </div>
+      <div id="map"></div>
+    </main>
+  </body>
+</html>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <script define:vars={{ allPlaces }}>
+    window.__MAP_PLACES__ = allPlaces;
+  </script>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+      const places = window.__MAP_PLACES__;
+
+      const map = L.map('map').setView([41.7151, 44.8271], 12);
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      }).addTo(map);
+
+      const markers = [];
+
+      places.forEach(function(place) {
+        const marker = L.circleMarker([place.lat, place.lng], {
+          radius: 8,
+          fillColor: place.color,
+          color: '#fff',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.8,
+        });
+
+        marker.bindPopup(place.name);
+        marker._category = place.category;
+        marker.addTo(map);
+        markers.push(marker);
+      });
+
+      function filterMarkers(filter) {
+        markers.forEach(function(marker) {
+          const category = marker._category;
+          if (filter === 'all' || category === filter) {
+            marker.addTo(map);
+          } else {
+            map.removeLayer(marker);
+          }
+        });
+      }
+
+      document.querySelectorAll('.filter-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          const target = e.currentTarget;
+          const filter = target.dataset.filter || 'all';
+
+          document.querySelectorAll('.filter-btn').forEach(function(b) {
+            b.classList.remove('active');
+          });
+          target.classList.add('active');
+
+          filterMarkers(filter);
+        });
+      });
+
+      // City bounds for zoom
+      const cityBounds = {
+        tbilisi: { center: [41.7151, 44.8271], zoom: 12 },
+        spb: { center: [59.9343, 30.3351], zoom: 11 }
+      };
+
+      // City select handler
+      document.getElementById('city-select').addEventListener('change', function(e) {
+        const city = e.target.value;
+        if (city === 'all') {
+          if (places.length > 0) {
+            const bounds = L.latLngBounds(places.map(function(p) { return [p.lat, p.lng]; }));
+            map.fitBounds(bounds, { padding: [50, 50] });
+          }
+        } else if (cityBounds[city]) {
+          map.setView(cityBounds[city].center, cityBounds[city].zoom);
+        }
+      });
+
+      if (places.length > 0) {
+        const bounds = L.latLngBounds(places.map(function(p) { return [p.lat, p.lng]; }));
+        map.fitBounds(bounds, { padding: [50, 50] });
+      }
+    });
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    main {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .controls {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .filters {
+      display: flex;
+      gap: 4px;
+      background: rgb(248, 255, 204);
+      padding: 4px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .home-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+      background: rgb(248, 255, 204);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      color: #1d1d1d;
+      text-decoration: none;
+      padding: 0 8px;
+    }
+
+    .home-link:hover {
+      background: #1d1d1d;
+      color: rgb(248, 255, 204);
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 400;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .filter-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .filter-btn.active {
+      background: #1d1d1d;
+      color: rgb(248, 255, 204);
+    }
+
+    .city-select {
+      padding: 0 32px 0 12px;
+      border: none;
+      background: rgb(248, 255, 204);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 400;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231d1d1d' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+
+    .city-select:hover {
+      background-color: #f0f7c4;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+  </style>

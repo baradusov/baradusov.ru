@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+<Document>
+  <Style id="placemark-red">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-red.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-blue">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-blue.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-purple">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-purple.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-yellow">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-yellow.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-pink">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-pink.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-brown">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-brown.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-green">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-green.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-orange">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-orange.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-deeppurple">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-deeppurple.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-lightblue">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-lightblue.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-cyan">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-cyan.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-teal">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-teal.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-lime">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-lime.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-deeporange">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-deeporange.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-gray">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-gray.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="placemark-bluegray">
+    <IconStyle>
+      <Icon>
+        <href>https://omaps.app/placemarks/placemark-bluegray.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <name>been</name>
+  <visibility>1</visibility>
+  <ExtendedData xmlns:mwm="https://omaps.app">
+    <mwm:name>
+      <mwm:lang code="default">been</mwm:lang>
+    </mwm:name>
+    <mwm:annotation>
+    </mwm:annotation>
+    <mwm:description>
+    </mwm:description>
+    <mwm:lastModified>2025-12-29T08:42:17Z</mwm:lastModified>
+    <mwm:accessRules>Local</mwm:accessRules>
+  </ExtendedData>
+  <Placemark>
+    <name>სითი მოლი საბურთალო</name>
+    <TimeStamp><when>2025-10-05T08:02:20Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.73767,41.723883,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">სითი მოლი საბურთალო</mwm:lang>
+        <mwm:lang code="en">City Mall Saburtalo</mwm:lang>
+        <mwm:lang code="uk">Сіті Молл Сабуртало</mwm:lang>
+        <mwm:lang code="ka">სითი მოლი საბურთალო</mwm:lang>
+        <mwm:lang code="ru">Сити Молл Сабуртало</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>shop-mall</mwm:value>
+        <mwm:value>building</mwm:value>
+        <mwm:value>building-has_parts</mwm:value>
+        <mwm:value>internet_access-wlan</mwm:value>
+        <mwm:value>wheelchair-yes</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>17</mwm:scale>
+      <mwm:icon>Shop</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>დოდო პიცა</name>
+    <TimeStamp><when>2025-10-05T13:09:08Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.773419,41.722855,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">დოდო პიცა</mwm:lang>
+        <mwm:lang code="en">Dodo Pizza</mwm:lang>
+        <mwm:lang code="ka">დოდო პიცა</mwm:lang>
+        <mwm:lang code="ru">Додо Пицца</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-fast_food</mwm:value>
+        <mwm:value>cuisine-pizza</mwm:value>
+        <mwm:value>cuisine-sandwich</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>19</mwm:scale>
+      <mwm:icon>FastFood</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>Salty cafe</name>
+    <TimeStamp><when>2025-10-05T13:11:05Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.774522,41.716112,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">Salty cafe</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-cafe</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>19</mwm:scale>
+      <mwm:icon>Cafe</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>ფასანაური</name>
+    <TimeStamp><when>2025-10-12T08:19:54Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.777223,41.717427,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">ფასანაური</mwm:lang>
+        <mwm:lang code="en">Pasanauri</mwm:lang>
+        <mwm:lang code="ka">ფასანაური</mwm:lang>
+        <mwm:lang code="ru">Пасанаури</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-restaurant</mwm:value>
+        <mwm:value>cuisine-georgian</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>17</mwm:scale>
+      <mwm:icon>Food</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>office</name>
+    <TimeStamp><when>2025-10-12T08:55:43Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.788216,41.70542,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">Merab Kostava Street, 14</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>building</mwm:value>
+      </mwm:featureTypes>
+      <mwm:customName>
+        <mwm:lang code="default">office</mwm:lang>
+      </mwm:customName>
+      <mwm:scale>18</mwm:scale>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>ჭიქა</name>
+    <TimeStamp><when>2025-10-13T07:00:54Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.789478,41.705159,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">ჭიქა</mwm:lang>
+        <mwm:lang code="en">Ch'ika</mwm:lang>
+        <mwm:lang code="ka">ჭიქა</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-cafe</mwm:value>
+        <mwm:value>toilets-yes</mwm:value>
+        <mwm:value>internet_access-wlan</mwm:value>
+        <mwm:value>wheelchair-no</mwm:value>
+        <mwm:value>cuisine-coffee_shop</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>18</mwm:scale>
+      <mwm:icon>Cafe</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>იუსტიციის სახლი</name>
+    <TimeStamp><when>2025-10-13T07:01:20Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.806653,41.69904,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">იუსტიციის სახლი</mwm:lang>
+        <mwm:lang code="alt_name">სოკოს სახლი</mwm:lang>
+        <mwm:lang code="en">Public Service Hall</mwm:lang>
+        <mwm:lang code="be">Дом Грамадскіх Паслуг</mwm:lang>
+        <mwm:lang code="hy">Արդարադատության տուն</mwm:lang>
+        <mwm:lang code="es">Casa de Justicia</mwm:lang>
+        <mwm:lang code="ka">იუსტიციის სახლი</mwm:lang>
+        <mwm:lang code="ru">Дом Юстиции</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>office-government</mwm:value>
+        <mwm:value>building</mwm:value>
+        <mwm:value>building-has_parts</mwm:value>
+        <mwm:value>wheelchair-limited</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>18</mwm:scale>
+      <mwm:icon>Building</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>აგროჰაბი</name>
+    <TimeStamp><when>2025-10-13T07:01:51Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.761639,41.72837,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">აგროჰაბი</mwm:lang>
+        <mwm:lang code="en">Agrohub</mwm:lang>
+        <mwm:lang code="ka">აგროჰაბი</mwm:lang>
+        <mwm:lang code="ru">Агрохаб</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>shop-supermarket</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>17</mwm:scale>
+      <mwm:icon>Shop</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>Fabrika</name>
+    <TimeStamp><when>2025-10-14T07:34:18Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.802781,41.709591,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">Fabrika</mwm:lang>
+        <mwm:lang code="en">Fabrika</mwm:lang>
+        <mwm:lang code="ka">ფაბრიკა</mwm:lang>
+        <mwm:lang code="ru">Фабрика</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>tourism-hostel</mwm:value>
+        <mwm:value>building</mwm:value>
+        <mwm:value>internet_access-wlan</mwm:value>
+        <mwm:value>wheelchair-yes</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>19</mwm:scale>
+      <mwm:icon>Hotel</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>AUT</name>
+    <TimeStamp><when>2025-10-14T12:56:30Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.784939,41.704136,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">AUT</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>entrance</mwm:value>
+      </mwm:featureTypes>
+      <mwm:customName>
+        <mwm:lang code="default">AUT</mwm:lang>
+      </mwm:customName>
+      <mwm:scale>20</mwm:scale>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>მო</name>
+    <description>кофейня</description>
+    <TimeStamp><when>2025-10-15T07:16:57Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.745744,41.724464,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">მო</mwm:lang>
+        <mwm:lang code="en">Mo</mwm:lang>
+        <mwm:lang code="ka">მო</mwm:lang>
+      </mwm:name>
+      <mwm:description>
+        <mwm:lang code="default">кофейня</mwm:lang>
+      </mwm:description>
+      <mwm:featureTypes>
+        <mwm:value>amenity-cafe</mwm:value>
+        <mwm:value>cuisine-coffee_shop</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>17</mwm:scale>
+      <mwm:icon>Cafe</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>ლეღვთახევის ჩანჩქერი</name>
+    <TimeStamp><when>2025-10-15T08:02:20Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.808983,41.686796,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">ლეღვთახევის ჩანჩქერი</mwm:lang>
+        <mwm:lang code="be">Вадаспад Легвтахеві</mwm:lang>
+        <mwm:lang code="en">Leghvtakhevi Waterfall</mwm:lang>
+        <mwm:lang code="ru">Легвтахевский водопад</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>waterway-waterfall</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>19</mwm:scale>
+      <mwm:icon>Sights</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>კრედო ბანკი ექსპ</name>
+    <TimeStamp><when>2025-10-15T11:32:17Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.775396,41.709026,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">კრედო ბანკი ექსპ</mwm:lang>
+        <mwm:lang code="en">Credo Bank exp</mwm:lang>
+        <mwm:lang code="ka">კრედო ბანკი ექსპ</mwm:lang>
+        <mwm:lang code="ru">Кредо Банк exp</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-bank</mwm:value>
+        <mwm:value>amenity-atm</mwm:value>
+        <mwm:value>wheelchair-yes</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>17</mwm:scale>
+      <mwm:icon>Bank</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>აგროჰაბი</name>
+    <TimeStamp><when>2025-10-16T12:41:50Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.793638,41.704987,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">აგროჰაბი</mwm:lang>
+        <mwm:lang code="en">Agrohub</mwm:lang>
+        <mwm:lang code="ka">აგროჰაბი</mwm:lang>
+        <mwm:lang code="ru">Агрохаб</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>shop-supermarket</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>19</mwm:scale>
+      <mwm:icon>Shop</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>808</name>
+    <TimeStamp><when>2025-10-17T10:30:33Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.788,41.706272,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">808</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-fast_food</mwm:value>
+        <mwm:value>cuisine-asian</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>20</mwm:scale>
+      <mwm:icon>FastFood</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>Qwerty Film Lab</name>
+    <TimeStamp><when>2025-10-17T10:54:13Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.781321,41.707618,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">Qwerty Film Lab</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>craft</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>20</mwm:scale>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>Cafe</name>
+    <TimeStamp><when>2025-10-18T13:50:50Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.771641,41.723944,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">Cafe</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-cafe</mwm:value>
+        <mwm:value>cuisine-coffee_shop</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>20</mwm:scale>
+      <mwm:icon>Cafe</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>CAFFEINE by Workin</name>
+    <TimeStamp><when>2025-10-18T14:02:27Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.768347,41.726192,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">CAFFEINE by Workin</mwm:lang>
+        <mwm:lang code="en">CAFFEINE by WorkIn</mwm:lang>
+        <mwm:lang code="ka">CAFFEINE by WorkIn</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-cafe</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>18</mwm:scale>
+      <mwm:icon>Cafe</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>სვის კაპიტალი</name>
+    <TimeStamp><when>2025-10-18T14:17:48Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.766075,41.726052,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">სვის კაპიტალი</mwm:lang>
+        <mwm:lang code="en">Swiss Capital</mwm:lang>
+        <mwm:lang code="ka">სვის კაპიტალი</mwm:lang>
+        <mwm:lang code="ru">Свис Капитал</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-bureau_de_change</mwm:value>
+        <mwm:value>shop-money_lender</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>20</mwm:scale>
+      <mwm:icon>Exchange</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>ყავის ლაბორატორია</name>
+    <TimeStamp><when>2025-10-19T09:12:38Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.742781,41.73927,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">ყავის ლაბორატორია</mwm:lang>
+        <mwm:lang code="en">Coffee Lab</mwm:lang>
+        <mwm:lang code="ka">ყავის ლაბორატორია</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-cafe</mwm:value>
+        <mwm:value>cuisine-coffee_shop</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>17</mwm:scale>
+      <mwm:icon>Cafe</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>ლისის ტბა</name>
+    <description><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/2024-05-23_Lisi_Lake_6.jpg" />]]></description>
+    <TimeStamp><when>2025-10-19T09:12:43Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.734537,41.743854,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">ლისის ტბა</mwm:lang>
+        <mwm:lang code="en">Lisi Lake</mwm:lang>
+        <mwm:lang code="ka">ლისის ტბა</mwm:lang>
+        <mwm:lang code="fr">Lac Lissi</mwm:lang>
+        <mwm:lang code="pt">Lago Lissi</mwm:lang>
+        <mwm:lang code="ru">озеро Лиси</mwm:lang>
+        <mwm:lang code="uk">Озеро Лісі</mwm:lang>
+      </mwm:name>
+      <mwm:description>
+        <mwm:lang code="default"><![CDATA[<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/2024-05-23_Lisi_Lake_6.jpg" />]]></mwm:lang>
+      </mwm:description>
+      <mwm:featureTypes>
+        <mwm:value>natural-water-lake</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>15</mwm:scale>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>აქსისპალასის სავაჭრო ცენტრი</name>
+    <TimeStamp><when>2025-12-06T09:57:47Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.769152,41.721406,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">აქსისპალასის სავაჭრო ცენტრი</mwm:lang>
+        <mwm:lang code="en">Axis Palace Shopping Centre</mwm:lang>
+        <mwm:lang code="ka">აქსისპალასის სავაჭრო ცენტრი</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>shop-mall</mwm:value>
+        <mwm:value>building</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>18</mwm:scale>
+      <mwm:icon>Shop</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>ნიკორა</name>
+    <TimeStamp><when>2025-12-14T14:55:38Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.767409,41.724194,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">ნიკორა</mwm:lang>
+        <mwm:lang code="en">Nikora</mwm:lang>
+        <mwm:lang code="ru">Никора</mwm:lang>
+        <mwm:lang code="ka">ნიკორა</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>shop-convenience</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>19</mwm:scale>
+      <mwm:icon>Shop</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>შავი</name>
+    <TimeStamp><when>2025-10-14T07:25:26Z</when></TimeStamp>
+    <styleUrl>#placemark-blue</styleUrl>
+    <Point><coordinates>44.801682,41.711509,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">შავი</mwm:lang>
+        <mwm:lang code="en">Shavi</mwm:lang>
+        <mwm:lang code="ka">შავი</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-cafe</mwm:value>
+        <mwm:value>shop-coffee</mwm:value>
+        <mwm:value>internet_access-wlan</mwm:value>
+        <mwm:value>cuisine-cake</mwm:value>
+        <mwm:value>cuisine-coffee_shop</mwm:value>
+        <mwm:value>cuisine-sandwich</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>17</mwm:scale>
+      <mwm:icon>Cafe</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>აბანო № 5</name>
+    <TimeStamp><when>2025-12-28T09:41:48Z</when></TimeStamp>
+    <styleUrl>#placemark-green</styleUrl>
+    <Point><coordinates>44.811226,41.688643,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">აბანო № 5</mwm:lang>
+        <mwm:lang code="be">Лазьня № 5</mwm:lang>
+        <mwm:lang code="en">Bath #5</mwm:lang>
+        <mwm:lang code="ru">Баня № 5</mwm:lang>
+        <mwm:lang code="ka">აბანო № 5</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>tourism-attraction</mwm:value>
+        <mwm:value>amenity-public_bath</mwm:value>
+        <mwm:value>leisure-sauna</mwm:value>
+        <mwm:value>building</mwm:value>
+        <mwm:value>building-has_parts</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>19</mwm:scale>
+      <mwm:icon>Sights</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+  <Placemark>
+    <name>დეზერტირების ბაზრობა</name>
+    <TimeStamp><when>2025-12-29T08:42:17Z</when></TimeStamp>
+    <styleUrl>#placemark-green</styleUrl>
+    <Point><coordinates>44.79422,41.721166,0</coordinates></Point>
+    <ExtendedData xmlns:mwm="https://omaps.app">
+      <mwm:name>
+        <mwm:lang code="default">დეზერტირების ბაზრობა</mwm:lang>
+        <mwm:lang code="alt_name">Deserter Bazaar</mwm:lang>
+        <mwm:lang code="int_name">Dezertirebis Bazroba</mwm:lang>
+        <mwm:lang code="be">Дэзерцірскі рынак</mwm:lang>
+        <mwm:lang code="en">Dezerter Bazaar</mwm:lang>
+        <mwm:lang code="ka">Дезертирка</mwm:lang>
+        <mwm:lang code="ru">Дезертирский рынок</mwm:lang>
+      </mwm:name>
+      <mwm:featureTypes>
+        <mwm:value>amenity-marketplace</mwm:value>
+        <mwm:value>building</mwm:value>
+      </mwm:featureTypes>
+      <mwm:scale>17</mwm:scale>
+      <mwm:icon>Shop</mwm:icon>
+      <mwm:visibility>1</mwm:visibility>
+    </ExtendedData>
+  </Placemark>
+</Document>
+</kml>
