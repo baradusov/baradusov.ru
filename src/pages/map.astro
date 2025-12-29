@@ -255,10 +255,15 @@ const canonical = 'https://baradusov.ru/map';
       height: 100%;
     }
 
+    /* Hide the flag in Leaflet attribution */
+    :global(.leaflet-control-attribution img) {
+      display: none !important;
+    }
+
     @media (max-width: 900px) {
       .controls {
         top: auto;
-        bottom: 10px;
+        bottom: 40px;
       }
 
       .home-link {
