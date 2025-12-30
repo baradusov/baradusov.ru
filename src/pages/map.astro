@@ -29,12 +29,6 @@ const canonical = 'https://baradusov.ru/map';
     <meta name="description" content="Места, где я был и куда хочу" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content="Карта" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""
-    />
   </head>
   <body>
     <main>
@@ -57,97 +51,97 @@ const canonical = 'https://baradusov.ru/map';
         </a>
       </div>
       <div id="map"></div>
+      <script type="application/json" id="map-data" set:html={JSON.stringify(allPlaces)}></script>
     </main>
   </body>
 </html>
 
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
+  <script>
+    import L from 'leaflet';
+    import 'leaflet/dist/leaflet.css';
 
-  <script define:vars={{ allPlaces }}>
-    window.__MAP_PLACES__ = allPlaces;
-  </script>
+    interface Place {
+      name: string;
+      lat: number;
+      lng: number;
+      color: string;
+      category: 'been' | 'want';
+    }
 
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', function() {
-      const places = window.__MAP_PLACES__;
+    const places: Place[] = JSON.parse(document.getElementById('map-data')?.textContent || '[]');
 
-      const map = L.map('map').setView([41.7151, 44.8271], 12);
+    const map = L.map('map').setView([41.7151, 44.8271], 12);
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      }).addTo(map);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    }).addTo(map);
 
-      const markers = [];
+    const markers: L.CircleMarker[] = [];
 
-      places.forEach(function(place) {
-        const marker = L.circleMarker([place.lat, place.lng], {
-          radius: 8,
-          fillColor: place.color,
-          color: '#fff',
-          weight: 2,
-          opacity: 1,
-          fillOpacity: 0.8,
-        });
-
-        marker.bindPopup(place.name);
-        marker._category = place.category;
-        marker.addTo(map);
-        markers.push(marker);
+    places.forEach((place) => {
+      const marker = L.circleMarker([place.lat, place.lng], {
+        radius: 8,
+        fillColor: place.color,
+        color: '#fff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.8,
       });
 
-      function filterMarkers(filter) {
-        markers.forEach(function(marker) {
-          const category = marker._category;
-          if (filter === 'all' || category === filter) {
-            marker.addTo(map);
-          } else {
-            map.removeLayer(marker);
-          }
-        });
-      }
+      marker.bindPopup(place.name);
+      (marker as any)._category = place.category;
+      marker.addTo(map);
+      markers.push(marker);
+    });
 
-      document.querySelectorAll('.filter-btn').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          const target = e.currentTarget;
-          const filter = target.dataset.filter || 'all';
-
-          document.querySelectorAll('.filter-btn').forEach(function(b) {
-            b.classList.remove('active');
-          });
-          target.classList.add('active');
-
-          filterMarkers(filter);
-        });
-      });
-
-      // City bounds for zoom
-      const cityBounds = {
-        tbilisi: { center: [41.7151, 44.8271], zoom: 12 },
-        spb: { center: [59.9343, 30.3351], zoom: 11 }
-      };
-
-      // City select handler
-      document.getElementById('city-select').addEventListener('change', function(e) {
-        const city = e.target.value;
-        if (city === 'all') {
-          if (places.length > 0) {
-            const bounds = L.latLngBounds(places.map(function(p) { return [p.lat, p.lng]; }));
-            map.fitBounds(bounds, { padding: [50, 50] });
-          }
-        } else if (cityBounds[city]) {
-          map.setView(cityBounds[city].center, cityBounds[city].zoom);
+    function filterMarkers(filter: string) {
+      markers.forEach((marker) => {
+        const category = (marker as any)._category;
+        if (filter === 'all' || category === filter) {
+          marker.addTo(map);
+        } else {
+          map.removeLayer(marker);
         }
       });
+    }
 
-      if (places.length > 0) {
-        const bounds = L.latLngBounds(places.map(function(p) { return [p.lat, p.lng]; }));
-        map.fitBounds(bounds, { padding: [50, 50] });
+    document.querySelectorAll('.filter-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        const filter = target.dataset.filter || 'all';
+
+        document.querySelectorAll('.filter-btn').forEach((b) => {
+          b.classList.remove('active');
+        });
+        target.classList.add('active');
+
+        filterMarkers(filter);
+      });
+    });
+
+    // City bounds for zoom
+    const cityBounds: Record<string, { center: [number, number]; zoom: number }> = {
+      tbilisi: { center: [41.7151, 44.8271], zoom: 12 },
+      spb: { center: [59.9343, 30.3351], zoom: 11 }
+    };
+
+    // City select handler
+    document.getElementById('city-select')?.addEventListener('change', (e) => {
+      const city = (e.target as HTMLSelectElement).value;
+      if (city === 'all') {
+        if (places.length > 0) {
+          const bounds = L.latLngBounds(places.map((p) => [p.lat, p.lng] as [number, number]));
+          map.fitBounds(bounds, { padding: [50, 50] });
+        }
+      } else if (cityBounds[city]) {
+        map.setView(cityBounds[city].center, cityBounds[city].zoom);
       }
     });
+
+    if (places.length > 0) {
+      const bounds = L.latLngBounds(places.map((p) => [p.lat, p.lng] as [number, number]));
+      map.fitBounds(bounds, { padding: [50, 50] });
+    }
   </script>
 
   <style>
