@@ -113,6 +113,49 @@ const canonical = 'https://baradusov.ru/map';
     markers.push(marker);
   });
 
+  // City bounds for zoom
+  const cityBounds: Record<string, { center: [number, number]; zoom: number }> =
+    {
+      tbilisi: { center: [41.7151, 44.8271], zoom: 12 },
+      spb: { center: [59.9343, 30.3351], zoom: 11 },
+    };
+
+  const citySelect = document.getElementById(
+    'city-select',
+  ) as HTMLSelectElement;
+
+  // URL state management
+  function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      filter: params.get('filter') || 'all',
+      city: params.get('city') || 'all',
+    };
+  }
+
+  function updateUrl(filter: string, city: string) {
+    const params = new URLSearchParams();
+    if (filter !== 'all') params.set('filter', filter);
+    if (city !== 'all') params.set('city', city);
+
+    const newUrl = params.toString()
+      ? `${window.location.pathname}?${params}`
+      : window.location.pathname;
+
+    history.replaceState({ filter, city }, '', newUrl);
+  }
+
+  function getCurrentState() {
+    const activeBtn = document.querySelector(
+      '.filter-btn.active',
+    ) as HTMLButtonElement;
+    return {
+      filter: activeBtn?.dataset.filter || 'all',
+      city: citySelect?.value || 'all',
+    };
+  }
+
+  // Filter markers
   function filterMarkers(filter: string) {
     markers.forEach((marker) => {
       const category = (marker as any)._category;
@@ -124,30 +167,26 @@ const canonical = 'https://baradusov.ru/map';
     });
   }
 
-  document.querySelectorAll('.filter-btn').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      const target = e.currentTarget as HTMLButtonElement;
-      const filter = target.dataset.filter || 'all';
-
-      document.querySelectorAll('.filter-btn').forEach((b) => {
-        b.classList.remove('active');
-      });
-      target.classList.add('active');
-
-      filterMarkers(filter);
+  // Apply filter UI
+  function applyFilter(filter: string, updateUrlState = true) {
+    document.querySelectorAll('.filter-btn').forEach((b) => {
+      b.classList.remove('active');
+      if ((b as HTMLButtonElement).dataset.filter === filter) {
+        b.classList.add('active');
+      }
     });
-  });
+    filterMarkers(filter);
 
-  // City bounds for zoom
-  const cityBounds: Record<string, { center: [number, number]; zoom: number }> =
-    {
-      tbilisi: { center: [41.7151, 44.8271], zoom: 12 },
-      spb: { center: [59.9343, 30.3351], zoom: 11 },
-    };
+    if (updateUrlState) {
+      const { city } = getCurrentState();
+      updateUrl(filter, city);
+    }
+  }
 
-  // City select handler
-  document.getElementById('city-select')?.addEventListener('change', (e) => {
-    const city = (e.target as HTMLSelectElement).value;
+  // Apply city UI
+  function applyCity(city: string, updateUrlState = true) {
+    if (citySelect) citySelect.value = city;
+
     if (city === 'all') {
       if (places.length > 0) {
         const bounds = L.latLngBounds(
@@ -158,14 +197,38 @@ const canonical = 'https://baradusov.ru/map';
     } else if (cityBounds[city]) {
       map.setView(cityBounds[city].center, cityBounds[city].zoom);
     }
+
+    if (updateUrlState) {
+      const { filter } = getCurrentState();
+      updateUrl(filter, city);
+    }
+  }
+
+  // Event listeners
+  document.querySelectorAll('.filter-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const filter = target.dataset.filter || 'all';
+      applyFilter(filter);
+    });
   });
 
-  if (places.length > 0) {
-    const bounds = L.latLngBounds(
-      places.map((p) => [p.lat, p.lng] as [number, number]),
-    );
-    map.fitBounds(bounds, { padding: [50, 50] });
-  }
+  citySelect?.addEventListener('change', (e) => {
+    const city = (e.target as HTMLSelectElement).value;
+    applyCity(city);
+  });
+
+  // Handle browser back/forward
+  window.addEventListener('popstate', (e) => {
+    const state = e.state || getUrlParams();
+    applyFilter(state.filter, false);
+    applyCity(state.city, false);
+  });
+
+  // Initialize from URL
+  const initialState = getUrlParams();
+  applyFilter(initialState.filter, false);
+  applyCity(initialState.city, false);
 </script>
 
 <style>
@@ -276,7 +339,7 @@ const canonical = 'https://baradusov.ru/map';
     height: 100%;
   }
 
-  :global(.leaflet-attribution-flag) {
+  :global(.leaflet-control-attribution .leaflet-attribution-flag) {
     display: none !important;
   }
 
