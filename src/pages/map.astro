@@ -124,12 +124,19 @@ const canonical = 'https://baradusov.ru/map';
     'city-select',
   ) as HTMLSelectElement;
 
+  // Valid values
+  const validFilters = ['all', 'been', 'want'];
+  const validCities = ['all', ...Object.keys(cityBounds)];
+
   // URL state management
   function getUrlParams() {
     const params = new URLSearchParams(window.location.search);
+    const filter = params.get('filter') || 'all';
+    const city = params.get('city') || 'all';
+
     return {
-      filter: params.get('filter') || 'all',
-      city: params.get('city') || 'all',
+      filter: validFilters.includes(filter) ? filter : 'all',
+      city: validCities.includes(city) ? city : 'all',
     };
   }
 
