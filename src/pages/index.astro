@@ -7,13 +7,13 @@ import Layout from '../layouts/Layout.astro';
 const projects = await getCollection('projects');
 const allPosts = await getCollection(
   'posts',
-  ({ data }) => data.draft !== true
+  ({ data }) => data.draft !== true,
 );
 
 const postsByYears = allPosts
   .sort(
     (p1, p2) =>
-      new Date(p2.data.created).valueOf() - new Date(p1.data.created).valueOf()
+      new Date(p2.data.created).valueOf() - new Date(p1.data.created).valueOf(),
   )
   .reduce(
     (acc, post) => {
@@ -27,32 +27,43 @@ const postsByYears = allPosts
 
       return acc;
     },
-    {} as Record<string, CollectionEntry<'posts'>[]>
+    {} as Record<string, CollectionEntry<'posts'>[]>,
   );
 
 const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
 ---
 
-<Layout title="Нуриль Барадусов" description="Здесь я собираю всё, чем занимаюсь и пишу дневник.">
+<Layout
+  title="Нуриль Барадусов"
+  description="Здесь я собираю всё, чем занимаюсь и пишу дневник.">
   <main>
     <section>
       <p>
         Фронтендер из <s>Самары</s> → <s>Санкт-Петербурга</s> → Тбилиси.
       </p>
       <p>
-        Здесь я собираю всё, чем занимаюсь, пишу дневник, иногда публикую конспекты или статьи на темы, которые меня интересуют.
+        Здесь я собираю всё, чем занимаюсь, пишу дневник, иногда публикую
+        конспекты или статьи на темы, которые меня интересуют.
       </p>
       <p>
-        Ещё веду список просмотренных <a href="/movies">фильмов</a> и прочитанных <a href="/books">книг</a>.
+        Ещё веду список просмотренных <a href="/movies">фильмов</a> и прочитанных
+        <a href="/books">книг</a>.
       </p>
       <p>
-        Небольшие, но частые заметки пишу <a href="https://t.me/nuril_notes"> в телеграм-канал</a>.
+        Небольшие, но частые заметки пишу <a href="https://t.me/nuril_notes">
+          в телеграм-канал
+        </a>.
       </p>
       <p>
-        Чем я сейчас занимаюсь можно посмотреть на странице <a href="/now">/now</a>.
+        Чем я сейчас занимаюсь можно посмотреть на странице <a href="/now">
+          /now
+        </a>.
       </p>
       <p>
-        Связь — <a href="https://t.me/baradusov">телеграм</a>, почта <a href="mailto:baradusovnh@gmail.com">baradusovnh@gmail.com</a>, <a href="https://github.com/baradusov">гитхаб</a>.
+        Связь — <a href="https://t.me/baradusov">телеграм</a>, почта <a
+          href="mailto:baradusovnh@gmail.com">
+          baradusovnh@gmail.com
+        </a>, <a href="https://github.com/baradusov">гитхаб</a>.
       </p>
     </section>
 
@@ -88,11 +99,11 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
                 {posts.map((post) => {
                   const dateCreated = new Date(post.data.created);
                   const monthCreated = String(
-                    dateCreated.getMonth() + 1
+                    dateCreated.getMonth() + 1,
                   ).padStart(2, '0');
                   const dayCreated = String(dateCreated.getDate()).padStart(
                     2,
-                    '0'
+                    '0',
                   );
 
                   return (

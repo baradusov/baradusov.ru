@@ -7,7 +7,8 @@
     "start": "bunx --bun astro dev",
     "build": "astro check && astro build",
     "preview": "bunx --bun astro preview",
-    "astro": "bunx --bun astro"
+    "astro": "bunx --bun astro",
+    "format": "prettier --write 'src/**/*.{astro,ts,js}'"
   },
   "dependencies": {
     "@astrojs/check": "0.9.4",
@@ -23,6 +24,8 @@
     "@types/leaflet": "^1.9.21",
     "@types/markdown-it": "^14.1.2",
     "@types/sanitize-html": "^2.16.0",
-    "bun-types": "^1.2.22"
+    "bun-types": "^1.2.22",
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }

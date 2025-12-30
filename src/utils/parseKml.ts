@@ -31,7 +31,10 @@ function extractName(content: string, lang: string): string | null {
   return match ? match[1] : null;
 }
 
-export function parseKml(kmlContent: string, category: 'been' | 'want'): Place[] {
+export function parseKml(
+  kmlContent: string,
+  category: 'been' | 'want',
+): Place[] {
   const places: Place[] = [];
 
   const placemarkRegex = /<Placemark>([\s\S]*?)<\/Placemark>/g;
@@ -41,7 +44,9 @@ export function parseKml(kmlContent: string, category: 'been' | 'want'): Place[]
     const placemarkContent = match[1];
 
     const defaultNameMatch = placemarkContent.match(/<name>([^<]*)<\/name>/);
-    const coordMatch = placemarkContent.match(/<coordinates>([^<]*)<\/coordinates>/);
+    const coordMatch = placemarkContent.match(
+      /<coordinates>([^<]*)<\/coordinates>/,
+    );
     const styleMatch = placemarkContent.match(/<styleUrl>#([^<]*)<\/styleUrl>/);
 
     if (defaultNameMatch && coordMatch) {

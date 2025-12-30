@@ -28,7 +28,7 @@ const movies = defineCollection({
       title: z.string(),
       originalTitle: z.string().optional(),
       releaseYear: z.string(),
-    })
+    }),
   ),
 });
 
@@ -39,7 +39,7 @@ const books = defineCollection({
       title: z.string(),
       author: z.string(),
       coverUrl: z.string(),
-    })
+    }),
   ),
 });
 

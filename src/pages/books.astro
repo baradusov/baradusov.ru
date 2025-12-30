@@ -10,7 +10,7 @@ const books = unsortedBooks.sort((a, b) => {
     return -1;
   }
 
-  return Number(b.id) - Number(a.id)
+  return Number(b.id) - Number(a.id);
 });
 
 const counter = books.reduce((acc, year) => year.data.length + acc, 0);
@@ -63,7 +63,7 @@ const counter = books.reduce((acc, year) => year.data.length + acc, 0);
   }
 
   .year-section {
-      margin-bottom: 0;
+    margin-bottom: 0;
   }
 
   .grid {
