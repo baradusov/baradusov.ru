@@ -1,5 +1,26 @@
 {
+  "2026": [
+    {
+      "title": "Марс Экспресс",
+      "originatlTitle": "Mars Express",
+      "releaseYear": "2023"
+    },
+    {
+      "title": "Безумный Макс: Дорога ярости",
+      "originatlTitle": "Mad Max: Fury Road",
+      "releaseYear": "2015"
+    }
+  ],
   "2025": [
+    {
+      "title": "Ширли-мырли",
+      "releaseYear": "1995"
+    },
+    {
+      "title": "Хорошо быть тихоней",
+      "originalTitle": "The Perks of Being a Wallflower",
+      "releaseYear": "2012"
+    },
     {
       "title": "Падшие ангелы",
       "originalTitle": "Fallen Angels",
@@ -100,6 +121,11 @@
     }
   ],
   "2024": [
+    {
+      "title": "Безумный Макс: Дорога ярости",
+      "originatlTitle": "Mad Max: Fury Road",
+      "releaseYear": "2015"
+    },
     {
       "title": "Ковбой Бибоп",
       "originalTitle": "Cowboy Bebop",
@@ -266,6 +292,11 @@
     }
   ],
   "2023": [
+    {
+      "title": "Безумный Макс: Дорога ярости",
+      "originatlTitle": "Mad Max: Fury Road",
+      "releaseYear": "2015"
+    },
     {
       "title": "Залечь на дно в Брюгге",
       "originalTitle": "In Bruges",
@@ -507,6 +538,11 @@
   ],
   "2022": [
     {
+      "title": "Безумный Макс: Дорога ярости",
+      "originatlTitle": "Mad Max: Fury Road",
+      "releaseYear": "2015"
+    },
+    {
       "title": "Я краснею",
       "originalTitle": "Turning Red",
       "releaseYear": "2022"
@@ -655,6 +691,11 @@
     }
   ],
   "2021": [
+    {
+      "title": "Безумный Макс: Дорога ярости",
+      "originatlTitle": "Mad Max: Fury Road",
+      "releaseYear": "2015"
+    },
     {
       "title": "История призрака",
       "originalTitle": "A Ghost Story",
@@ -924,6 +965,11 @@
     }
   ],
   "2020": [
+    {
+      "title": "Безумный Макс: Дорога ярости",
+      "originatlTitle": "Mad Max: Fury Road",
+      "releaseYear": "2015"
+    },
     {
       "title": "Три одинаковых незнакомца",
       "originalTitle": "Three Identical Strangers",
