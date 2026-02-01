@@ -1,5 +1,11 @@
 [
   {
+    "id": "torbox-raycast",
+    "name": "TorBox для Raycast",
+    "url": "https://www.raycast.com/baradusov/torbox",
+    "description": "Raycast-расширение для управлением загрузками в TorBox"
+  },
+  {
     "id": "longstayontheinternet",
     "name": "long stay on the internet",
     "url": "https://t.me/longstayontheinternet",
