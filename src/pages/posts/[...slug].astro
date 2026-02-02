@@ -23,7 +23,8 @@ const localCreated = new Date(post.data.created).toLocaleDateString('ru-RU');
 
 <Layout
   title={`Нуриль Барадусов | ${post.data.title}`}
-  description={metaDescription}>
+  description={metaDescription}
+  image={post.data.image}>
   <main>
     <h1>{post.data.title}</h1>
 

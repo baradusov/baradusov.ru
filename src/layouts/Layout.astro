@@ -4,9 +4,11 @@ import { ClientRouter } from 'astro:transitions';
 interface Props {
   title: string;
   description: string;
+  image?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, image } = Astro.props;
+const ogImage = image ? `https://baradusov.ru${image}` : undefined;
 
 const isIndex = Astro.url.pathname === '/';
 const canonical = `https://baradusov.ru${Astro.url.pathname}`;
@@ -26,10 +28,13 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
 
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
     <meta property="twitter:url" content={canonical} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <link
       rel="alternate"
