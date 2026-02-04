@@ -1,5 +1,11 @@
 [
   {
+    "id": "pochem",
+    "name": "почём?",
+    "url": "https://apps.apple.com/ru/app/%D0%BF%D0%BE%D1%87%D1%91%D0%BC/id6758133115",
+    "description": "iOS-приложение, простой конвертер валют, где видно одновременно четыре разных курса"
+  },
+  {
     "id": "torbox-raycast",
     "name": "TorBox для Raycast",
     "url": "https://www.raycast.com/baradusov/torbox",
