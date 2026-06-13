@@ -1,6 +1,8 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 
+import SlicedImage from '../components/SlicedImage.astro';
+
 interface Props {
   title: string;
   description: string;
@@ -54,13 +56,14 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
     <header>
       {
         isIndex === false && (
-          <a class="not-hero-link" href="/">
-            <img
-              class="not-hero"
+          <a class="not-hero-link" href="/" aria-label="На главную">
+            <SlicedImage
               src="/hero.png"
-              alt=""
-              width="772"
-              height="200"
+              heightPx={260}
+              extraHeightPx={140}
+              maxWidthPx={2560}
+              focusY={0.9}
+              cropHeight={0.65}
             />
           </a>
         )
@@ -101,6 +104,7 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
       -moz-text-size-adjust: none;
       -webkit-text-size-adjust: none;
       text-size-adjust: none;
+      overflow-x: clip;
     }
 
     p,
@@ -285,37 +289,11 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
     .not-hero-link {
       position: relative;
       display: block;
-    }
-
-    .not-hero-link::before,
-    .not-hero-link::after {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 200px;
-      background-color: #fcfae3;
-      z-index: 1;
-    }
-
-    .not-hero-link::before {
-      left: 20%;
-      top: 59px;
-      transform: rotate(-49deg);
-      border-top-right-radius: 20px;
-    }
-
-    .not-hero-link::after {
-      left: 20%;
-      top: -59px;
-      transform: rotate(49deg);
-      border-bottom-right-radius: 20px;
-    }
-
-    .not-hero {
-      max-height: 200px;
-      object-fit: cover;
-      object-position: 0 88%;
-      clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 15% 100%, 0% 50%);
+      overflow: visible;
+      /* full-bleed: break out of the 772px centered column */
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
     }
 
     @media (max-width: 600px) {
@@ -323,11 +301,6 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
         height: 533px;
         object-fit: cover;
         object-position: center;
-      }
-
-      .not-hero-link::before,
-      .not-hero-link::after {
-          display: none;
       }
     }
   </style>

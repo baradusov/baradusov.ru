@@ -1,0 +1,683 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  /** Visible image height in px (desktop). */
+  heightPx?: number;
+  /** Extra vertical room above/below for the wave (desktop). */
+  extraHeightPx?: number;
+  /** Max canvas width in px. The effect never grows past this. */
+  maxWidthPx?: number;
+  /** Vertical focal point of the source, 0 = top … 1 = bottom (like object-position Y). */
+  focusY?: number;
+  /** Fraction of the source height to sample, 0..1. Lower = tighter vertical crop. */
+  cropHeight?: number;
+}
+
+const {
+  src,
+  alt = 'Hero image',
+  heightPx = 420,
+  extraHeightPx = 200,
+  maxWidthPx = 1600,
+  focusY = 0.5,
+  cropHeight = 1,
+} = Astro.props;
+---
+
+<div
+  class="sliced-image"
+  data-src={src}
+  data-height={heightPx}
+  data-extra={extraHeightPx}
+  data-maxw={maxWidthPx}
+  data-focus-y={focusY}
+  data-crop-height={cropHeight}
+  style={`--h:${heightPx}px;--h-mobile:280px;--maxw:${maxWidthPx}px`}>
+  <img
+    class="sliced-image__fallback"
+    src={src}
+    alt={alt}
+    style={`object-position: 50% ${focusY * 100}%`}
+  />
+  <div class="sliced-image__canvas" aria-hidden="true"></div>
+</div>
+
+<style>
+  .sliced-image {
+    position: relative;
+    width: 100%;
+    max-width: var(--maxw, 1600px);
+    margin: 0 auto;
+    overflow: visible;
+    height: var(--h, 420px);
+  }
+  @media (max-width: 768px) {
+    .sliced-image {
+      height: var(--h-mobile, 280px);
+      min-height: var(--h-mobile, 280px);
+    }
+  }
+  .sliced-image__canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    pointer-events: none;
+  }
+  .sliced-image__fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+
+<script>
+  // ---- tunables (identical to the original) ----
+  const MOBILE_BP = 768;
+  const PATH_L_FRAC = 0.2; // image spans 20%..80% of width (desktop)
+  const PATH_R_FRAC = 0.8;
+  const MIN_SLICE = 2;
+  const MAX_SLICE_DESKTOP = 22;
+  const MAX_SLICE_MOBILE = 16;
+  const Y_OFFSET_DESKTOP = 30;
+  const Y_OFFSET_MOBILE = 40;
+  const MOBILE_DRAW_H = 280;
+  const MOBILE_EXTRA_H = 80;
+  const QUANTIZE_STEPS = 90;
+  const BASE_HEIGHT_SCALE = 0.74;
+  const WIDTH_FACTOR = 1.05; // mt = baseWidth * 1.05
+  const INTRO_WIDTH_BASE = 0.35;
+  const INTRO_DURATION = 500;
+  const LEAVE_DURATION = 180;
+  const LONG_PRESS_MS = 350;
+  const HOVER_STRENGTH = 0.75;
+  const HOVER_RADIUS = 60; // px
+
+  const WIDTH_NOISE = {
+    DOMAIN_WARP_A: 0.22,
+    DOMAIN_WARP_B: 0.08,
+    WIDTH_NOISE_SCALE: 0.4,
+    WIDTH_NOISE_SCALE_2: 0.3,
+    WIDTH_NOISE_SCALE_3: 4.3,
+    FBM2_V_FREQ: 0.13,
+    FBM2_V_SCALE: 5,
+    WIDTH_NOISE_CONTRAST: 1.43,
+    WIDTH_BIAS_B: 0.5,
+    WIDTH_GAIN_G: 0.75,
+  };
+  const HEIGHT_NOISE = {
+    HEIGHT_NOISE_SCALE: 3,
+    HEIGHT_VAR_PCT: 0.4,
+    BASE_HEIGHT_SCALE: BASE_HEIGHT_SCALE,
+    Y_NOISE_SCALE_MAIN: 4,
+    Y_NOISE_SCALE_HI: 12.5,
+    Y_NOISE_AMP: 50,
+  };
+  const SHEAR_FREQ = 4.6;
+  const SHEAR_AMP = 0.24;
+
+  const clamp = (v: number, lo: number, hi: number) =>
+    Math.max(lo, Math.min(hi, v));
+
+  // ease-out-cubic
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+  // gaussian-ish hover falloff: 1 at distance 0, smoothly decays
+  const hoverFalloff = (s: number) => {
+    const e = Math.exp(-(s * s) * 0.5);
+    return e * e * (3 - 2 * e);
+  };
+
+  // ---- value-noise generators (Perlin-ish, matching the original) ----
+  type Perlin1 = {
+    perlin: (x: number) => number;
+    noise01: (x: number) => number;
+  };
+  type Perlin2 = {
+    perlin2: (x: number, y: number) => number;
+    noise01: (x: number, y: number) => number;
+  };
+
+  function buildPerm(seed?: number) {
+    const s = (seed ?? Math.floor(Math.random() * 65536)) & 255;
+    const perm = new Array<number>(512);
+    const p = new Array<number>(256);
+    let o = s || 1;
+    for (let r = 0; r < 256; r++) {
+      o = (o * 1103515245 + 12345) & 2147483647;
+      p[r] = r;
+      const m = o % (r + 1);
+      const d = p[r];
+      p[r] = p[m];
+      p[m] = d;
+    }
+    for (let r = 0; r < 512; r++) perm[r] = p[r & 255];
+    return perm;
+  }
+  const fade = (r: number) => r * r * r * (r * (r * 6 - 15) + 10);
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+  function makePerlin1(seed?: number): Perlin1 {
+    const n = buildPerm(seed);
+    const grad = (h: number, x: number) => ((h & 1) === 0 ? x : -x);
+    const perlin = (r: number) => {
+      const m = Math.floor(r) & 255;
+      const d = r - Math.floor(r);
+      const g = fade(d);
+      return lerp(grad(n[m], d), grad(n[m + 1], d - 1), g);
+    };
+    return { perlin, noise01: (r) => (perlin(r) + 1) * 0.5 };
+  }
+
+  function makePerlin2(seed?: number): Perlin2 {
+    const n = buildPerm(seed);
+    const grad = (h: number, x: number, y: number) => {
+      switch (h & 3) {
+        case 0:
+          return x + y;
+        case 1:
+          return -x + y;
+        case 2:
+          return x - y;
+        default:
+          return -x - y;
+      }
+    };
+    const perlin2 = (rx: number, ry: number) => {
+      const d = Math.floor(rx) & 255;
+      const g = Math.floor(ry) & 255;
+      const px = rx - Math.floor(rx);
+      const py = ry - Math.floor(ry);
+      const u = fade(px);
+      const v = fade(py);
+      const aa = n[d + n[g]];
+      const ab = n[d + n[g + 1]];
+      const ba = n[d + 1 + n[g]];
+      const bb = n[d + 1 + n[g + 1]];
+      const x1 = lerp(grad(aa, px, py), grad(ba, px - 1, py), u);
+      const x2 = lerp(grad(ab, px, py - 1), grad(bb, px - 1, py - 1), u);
+      return lerp(x1, x2, v);
+    };
+    return { perlin2, noise01: (rx, ry) => (perlin2(rx, ry) + 1) * 0.5 };
+  }
+
+  // ---- width-noise pipeline ----
+  function biasPow(b: number, t: number) {
+    return Math.pow(t, Math.log(b) / Math.log(0.5));
+  }
+  function gain(g: number, t: number) {
+    return t < 0.5
+      ? 0.5 * biasPow(1 - g, 2 * t)
+      : 1 - 0.5 * biasPow(1 - g, 2 - 2 * t);
+  }
+  function widthFbm(
+    x: number,
+    p1: Perlin1,
+    p2: Perlin2,
+    c: typeof WIDTH_NOISE,
+  ) {
+    const o = clamp(
+      x +
+        c.DOMAIN_WARP_A * p1.perlin(x * 2.2 + 9.1) +
+        c.DOMAIN_WARP_B * p1.perlin(x * 6 + 1.7),
+      0,
+      1,
+    );
+    const i = p1.noise01(x * c.FBM2_V_FREQ + 33.37);
+    const a = p2.noise01(o * c.WIDTH_NOISE_SCALE + 17.123, i * c.FBM2_V_SCALE);
+    const b = p2.noise01(
+      o * (c.WIDTH_NOISE_SCALE * c.WIDTH_NOISE_SCALE_2) + 5.1,
+      i * (c.FBM2_V_SCALE * 0.5),
+    );
+    const d = p2.noise01(
+      o * (c.WIDTH_NOISE_SCALE * c.WIDTH_NOISE_SCALE_3) + 11.7,
+      i * (c.FBM2_V_SCALE * 1.7),
+    );
+    return 0.6 * a + 0.3 * b + 0.1 * d;
+  }
+  function widthNoise(
+    x: number,
+    p1: Perlin1,
+    p2: Perlin2,
+    c: typeof WIDTH_NOISE,
+  ) {
+    const raw = widthFbm(x, p1, p2, c);
+    const n = clamp(0.5 + (raw - 0.5) * c.WIDTH_NOISE_CONTRAST, 0, 1);
+    return clamp(gain(c.WIDTH_GAIN_G, biasPow(c.WIDTH_BIAS_B, n)), 0, 1);
+  }
+
+  // snap a slice width onto a discrete grid with a touch of jitter
+  function quantizeWidth(
+    w: number,
+    x: number,
+    min: number,
+    max: number,
+    steps: number,
+  ) {
+    const step = (max - min) / (steps - 1);
+    const u = Math.sin((x * 123.456 + 0.789) * 43758.5453);
+    const jit = (u - Math.floor(u)) * 2 - 1;
+    const c = w + jit * 0.2 * step;
+    return min + Math.round((c - min) / step) * step;
+  }
+
+  function heightAndDy(
+    x: number,
+    drawH: number,
+    cssH: number,
+    p1: Perlin1,
+    c: typeof HEIGHT_NOISE,
+    baseYOffset: number,
+  ) {
+    const hn = p1.noise01(x * c.HEIGHT_NOISE_SCALE + 231.77);
+    const mult = clamp(
+      1 + (hn - 0.5) * 2 * clamp(c.HEIGHT_VAR_PCT, 0, 1),
+      0.25,
+      2,
+    );
+    const destH = drawH * c.BASE_HEIGHT_SCALE * mult;
+    const main = p1.perlin(x * c.Y_NOISE_SCALE_MAIN + 57.3);
+    const hi = p1.perlin(x * c.Y_NOISE_SCALE_HI + 11.7) * 0.35;
+    const yNoise = (main + hi) * c.Y_NOISE_AMP;
+    const dy = clamp(baseYOffset + yNoise, 0, cssH - destH);
+    return { destH, dy };
+  }
+
+  interface Slice {
+    u: number;
+    xStart: number;
+    baseWidth: number;
+    destHeight: number;
+    baseDy: number;
+    sx: number;
+    srcSliceW: number;
+    sy: number;
+    srcSliceH: number;
+    shear: number;
+  }
+
+  function buildSlices(opts: {
+    cssW: number;
+    cssH: number;
+    drawH: number;
+    isMobile: boolean;
+    imageW: number;
+    imageH: number;
+    focusY: number;
+    cropHeight: number;
+    p1: Perlin1;
+    p2: Perlin2;
+  }): Slice[] {
+    const { cssW, cssH, drawH, isMobile, imageW, imageH, p1, p2 } = opts;
+    const srcSliceH = imageH * clamp(opts.cropHeight, 0, 1);
+    const sy = (imageH - srcSliceH) * clamp(opts.focusY, 0, 1);
+    const lFrac = isMobile ? 0 : PATH_L_FRAC;
+    const rFrac = isMobile ? 1 : PATH_R_FRAC;
+    const maxSlice = isMobile ? MAX_SLICE_MOBILE : MAX_SLICE_DESKTOP;
+    const baseYOffset = isMobile ? Y_OFFSET_MOBILE : Y_OFFSET_DESKTOP;
+
+    const pathL = cssW * lFrac;
+    const pathR = cssW * rFrac;
+    const pathW = Math.max(1, pathR - pathL);
+    const texel = (drawH * BASE_HEIGHT_SCALE) / imageH;
+
+    // pass 1: walk the path, sampling raw noise widths
+    const xs: number[] = [];
+    const raw: number[] = [];
+    let y = pathL;
+    while (y < pathR - 0.5) {
+      const x = pathW > 0 ? (y - pathL) / pathW : 0;
+      const nv = widthNoise(x, p1, p2, WIDTH_NOISE);
+      xs.push(x);
+      raw.push(nv);
+      let w = MIN_SLICE + (maxSlice - MIN_SLICE) * nv;
+      w = quantizeWidth(w, x, MIN_SLICE, maxSlice, QUANTIZE_STEPS);
+      if (y + w > pathR) w = Math.max(1, pathR - y);
+      y += w;
+    }
+
+    // normalize noise range, recompute widths
+    let lo = Infinity;
+    let hi = -Infinity;
+    for (const v of raw) {
+      if (v < lo) lo = v;
+      if (v > hi) hi = v;
+    }
+    if (!Number.isFinite(lo)) lo = 0;
+    if (!Number.isFinite(hi)) hi = 1;
+    const span = Math.max(1e-6, hi - lo);
+    const n = xs.length;
+    const widths = new Array<number>(n);
+    for (let i = 0; i < n; i++) {
+      const norm = (raw[i] - lo) / span;
+      let w = MIN_SLICE + (maxSlice - MIN_SLICE) * norm;
+      w = quantizeWidth(w, xs[i], MIN_SLICE, maxSlice, QUANTIZE_STEPS);
+      widths[i] = Math.max(1, w);
+    }
+    // scale widths to fill the path exactly
+    const sum = widths.reduce((a, b) => a + b, 0);
+    const k = sum > 0 ? pathW / sum : 1;
+
+    const slices: Slice[] = [];
+    let cursor = pathL;
+    for (let i = 0; i < n && cursor < pathR - 0.5; i++) {
+      const x = xs[i];
+      let w = Math.max(1, widths[i] * k);
+      if (i === n - 1 || cursor + w > pathR) w = Math.max(1, pathR - cursor);
+      const srcSliceW = Math.max(1, Math.floor(w / Math.max(1e-4, texel)));
+      const avail = Math.max(1, imageW - srcSliceW);
+      const sx = clamp(Math.floor(x * avail), 0, avail);
+      const { destH, dy } = heightAndDy(
+        x,
+        drawH,
+        cssH,
+        p1,
+        HEIGHT_NOISE,
+        baseYOffset,
+      );
+      const shear = p1.perlin(x * SHEAR_FREQ + 91.7) * SHEAR_AMP;
+      slices.push({
+        u: x,
+        xStart: cursor,
+        baseWidth: w,
+        destHeight: destH,
+        baseDy: dy,
+        sx,
+        srcSliceW,
+        sy,
+        srcSliceH,
+        shear,
+      });
+      cursor += w;
+    }
+    return slices;
+  }
+
+  // ---- per-instance runtime ----
+  function initSlicedImage(root: HTMLElement) {
+    const src = root.dataset.src!;
+    const desktopH = Number(root.dataset.height ?? 420);
+    const extraH = Number(root.dataset.extra ?? 200);
+    const maxW = Number(root.dataset.maxw ?? 1600);
+    const focusY = Number(root.dataset.focusY ?? 0.5);
+    const cropHeight = Number(root.dataset.cropHeight ?? 1);
+    const host = root.querySelector<HTMLElement>('.sliced-image__canvas')!;
+    const fallback = root.querySelector<HTMLImageElement>(
+      '.sliced-image__fallback',
+    )!;
+
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.left = '0';
+    canvas.style.top = '0';
+    canvas.style.display = 'block';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.width = '100%';
+    host.appendChild(canvas);
+    const ctx = canvas.getContext('2d')!;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
+    const p1 = makePerlin1();
+    const p2 = makePerlin2();
+
+    const img = fallback;
+    img.style.display = 'none';
+    let imgReady = img.complete && img.naturalWidth > 0;
+
+    // layout/state
+    let layout = { cssW: 0, cssH: 0, drawH: 0, isMobile: false };
+    let slices: Slice[] = [];
+    let dpr = 1;
+
+    const mouse = { x: 0, y: 0, down: false, downAt: 0 };
+    let pointerInside = false;
+    const leave = { active: false, start: 0, duration: LEAVE_DURATION };
+    const intro = {
+      value: 0,
+      active: false,
+      start: 0,
+      duration: INTRO_DURATION,
+    };
+    let introDone = false;
+    let rafId: number | null = null;
+
+    const isTouch = () =>
+      navigator.maxTouchPoints > 0 ||
+      (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+
+    function rebuild() {
+      const cssW = Math.min(maxW, root.clientWidth);
+      const mob = cssW <= MOBILE_BP;
+      const drawH = mob ? MOBILE_DRAW_H : Math.max(0, desktopH);
+      const cssH = drawH + (mob ? MOBILE_EXTRA_H : extraH);
+      layout = { cssW, cssH, drawH, isMobile: mob };
+
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      canvas.width = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      canvas.style.height = `${cssH}px`;
+      host.style.height = `${cssH}px`;
+
+      mouse.x = cssW * 0.5;
+      mouse.y = drawH * 0.5;
+      pointerInside = false;
+      leave.active = false;
+
+      if (introDone) {
+        intro.value = 1;
+        intro.active = false;
+      } else {
+        intro.value = 0;
+        intro.start = performance.now();
+        intro.active = true;
+      }
+
+      if (imgReady) {
+        slices = buildSlices({
+          cssW,
+          cssH,
+          drawH,
+          isMobile: mob,
+          imageW: Math.max(1, img.naturalWidth || 1),
+          imageH: Math.max(1, img.naturalHeight || 1),
+          focusY,
+          cropHeight,
+          p1,
+          p2,
+        });
+      }
+      requestFrame();
+    }
+
+    function renderFrame(): boolean {
+      const { cssW, cssH, drawH } = layout;
+      // clear
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!imgReady || slices.length === 0) return false;
+
+      const now = performance.now();
+
+      // intro progress
+      if (intro.active) {
+        const t = clamp(
+          (now - intro.start) / Math.max(1, intro.duration),
+          0,
+          1,
+        );
+        intro.value = easeOutCubic(t);
+        if (t >= 1) {
+          intro.value = 1;
+          intro.active = false;
+          introDone = true;
+        }
+      }
+      const K = introDone ? 1 : clamp(intro.value, 0, 1);
+      const introActive = !introDone;
+
+      // global hover strength
+      let strength = 1;
+      if (!pointerInside && !mouse.down) {
+        if (leave.active) {
+          const we = Math.max(
+            0,
+            1 - (now - leave.start) / Math.max(1, leave.duration),
+          );
+          strength = 1 - Math.pow(1 - we, 3);
+          if (we <= 0) {
+            leave.active = false;
+            strength = 0;
+          }
+        } else {
+          strength = 0;
+        }
+      }
+
+      const mx = clamp(mouse.x, 0, cssW);
+      const my = clamp(mouse.y, 0, cssH);
+      const touch = isTouch();
+      const longPress =
+        mouse.down && mouse.downAt > 0 && now - mouse.downAt > LONG_PRESS_MS;
+      const radius = HOVER_RADIUS * strength * HOVER_STRENGTH;
+
+      let keepGoing = strength > 0.001 || introActive;
+
+      for (const s of slices) {
+        const finalCenter = s.xStart + s.baseWidth * 0.5 - cssW * 0.5;
+        const cx = cssW * 0.5 + finalCenter * K; // animated from center on intro
+
+        let se = 0;
+        if (!touch || longPress) {
+          if (radius > 1e-4) {
+            const dist = Math.abs(cx - mx);
+            const t = clamp(dist / radius, 0, 4);
+            se = Math.max(0, hoverFalloff(t) * strength * HOVER_STRENGTH);
+          }
+        }
+        se = clamp(se, 0, 1);
+
+        const V = s.destHeight;
+        const baseTop = s.baseDy;
+        const targetTop = clamp(my, V / 2, cssH - V / 2) - V / 2;
+        const pulledTop = baseTop + (targetTop - baseTop) * se;
+        const centeredTop = clamp(drawH * 0.5 - V / 2, 0, cssH - V);
+        const top = K >= 1 ? pulledTop : centeredTop * (1 - K) + pulledTop * K;
+        const shear = s.shear * (1 - se);
+        const widthFactorIntro = INTRO_WIDTH_BASE + (1 - INTRO_WIDTH_BASE) * K;
+        const mt = s.baseWidth * WIDTH_FACTOR * widthFactorIntro;
+
+        // affine: drawImage maps the source strip into local [0,1]x[0,1],
+        // then this transform places/shears it on the canvas.
+        // canvasX = a*mt + b*(-shear*V) + e
+        // canvasY = a*0  + b*(V)        + f
+        const e = cx - mt / 2 + (shear * V) / 2;
+        const f = top;
+        ctx.setTransform(
+          mt * dpr,
+          0,
+          -shear * V * dpr,
+          V * dpr,
+          e * dpr,
+          f * dpr,
+        );
+        ctx.drawImage(img, s.sx, s.sy, s.srcSliceW, s.srcSliceH, 0, 0, 1, 1);
+
+        if (se > 0.001) keepGoing = true;
+      }
+
+      return (
+        keepGoing || mouse.down || pointerInside || strength > 0 || introActive
+      );
+    }
+
+    function loop() {
+      if (renderFrame()) {
+        rafId = requestAnimationFrame(loop);
+      } else {
+        rafId = null;
+      }
+    }
+    function requestFrame() {
+      if (rafId == null) rafId = requestAnimationFrame(loop);
+    }
+
+    // pointer events on the (visible) root, canvas stays pointer-events:none
+    const rect = () => root.getBoundingClientRect();
+    root.addEventListener('pointerenter', (ev) => {
+      const r = rect();
+      mouse.x = ev.clientX - r.left;
+      mouse.y = ev.clientY - r.top;
+      pointerInside = true;
+      leave.active = false;
+      requestFrame();
+    });
+    root.addEventListener('pointermove', (ev) => {
+      if (isTouch() && !mouse.down) return;
+      const r = rect();
+      mouse.x = ev.clientX - r.left;
+      mouse.y = ev.clientY - r.top;
+      pointerInside = true;
+      leave.active = false;
+      requestFrame();
+    });
+    root.addEventListener('pointerdown', (ev) => {
+      const r = rect();
+      mouse.down = true;
+      mouse.downAt = performance.now();
+      mouse.x = ev.clientX - r.left;
+      mouse.y = ev.clientY - r.top;
+      pointerInside = true;
+      leave.active = false;
+      requestFrame();
+    });
+    root.addEventListener('pointerup', () => {
+      mouse.down = false;
+      mouse.downAt = 0;
+    });
+    root.addEventListener('pointerleave', () => {
+      mouse.down = false;
+      mouse.downAt = 0;
+      pointerInside = false;
+      leave.active = true;
+      leave.start = performance.now();
+      requestFrame();
+    });
+    window.addEventListener('resize', () => {
+      if (root.isConnected) rebuild();
+    });
+
+    if (imgReady) {
+      rebuild();
+    } else {
+      img.addEventListener('load', () => {
+        imgReady = true;
+        rebuild();
+      });
+      img.addEventListener('error', () => {
+        img.style.display = '';
+        console.error('Failed to load sliced-image source', src);
+      });
+    }
+  }
+
+  function boot() {
+    document.querySelectorAll<HTMLElement>('.sliced-image').forEach((el) => {
+      if (el.dataset.sliceInit) return;
+      el.dataset.sliceInit = '1';
+      initSlicedImage(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+  // Astro view transitions / client routing
+  document.addEventListener('astro:page-load', boot);
+</script>
