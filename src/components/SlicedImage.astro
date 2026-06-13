@@ -12,6 +12,8 @@ interface Props {
   focusY?: number;
   /** Fraction of the source height to sample, 0..1. Lower = tighter vertical crop. */
   cropHeight?: number;
+  /** Max width of the no-JS fallback image. Capping it keeps the crop stable on wide screens. */
+  fallbackWidthPx?: number;
 }
 
 const {
@@ -22,6 +24,7 @@ const {
   maxWidthPx = 1600,
   focusY = 0.5,
   cropHeight = 1,
+  fallbackWidthPx = 772,
 } = Astro.props;
 ---
 
@@ -38,7 +41,7 @@ const {
     class="sliced-image__fallback"
     src={src}
     alt={alt}
-    style={`object-position: 50% ${focusY * 100}%`}
+    style={`object-position: 50% ${focusY * 100}%; max-width: ${fallbackWidthPx}px`}
   />
   <div class="sliced-image__canvas" aria-hidden="true"></div>
 </div>
@@ -66,12 +69,11 @@ const {
     pointer-events: none;
   }
   .sliced-image__fallback {
-    position: absolute;
-    inset: 0;
+    display: block;
     width: 100%;
     height: 100%;
+    margin: 0 auto;
     object-fit: cover;
-    display: block;
   }
 </style>
 
