@@ -4,10 +4,13 @@ description: 'Очень задротский месяц'
 created: '2026-02-28'
 tags: 'лог'
 draft: false
-image: '/img/2026/dog-and-building.jpeg'
+image: './assets/dog-and-building.jpeg'
 ---
 
-<img src="/img/2026/dog-and-building.jpeg" width="756" height="1008" />
+import { Image } from 'astro:assets';
+import dogAndBuilding from './assets/dog-and-building.jpeg';
+
+<Image src={dogAndBuilding} alt="Собака на фоне здания" />
 
 Задротский вышел месяц. На улицу я выходил мало, зато до и после работы много сидел за ноутом, чтобы делать свои проекты. Как говорят в интернете The Great Lock In, только у меня он случился в феврале и январе.
 

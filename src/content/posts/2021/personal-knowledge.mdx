@@ -4,6 +4,16 @@ created: '2021-06-29'
 draft: false
 ---
 
+import { Image } from 'astro:assets';
+import commonplaceBook from './assets/commonplace-book.jpg';
+import leonardoFoetus from './assets/leonardo-foetus.jpg';
+import silvaRerum from './assets/silva-rerum.jpg';
+import treeOfVices from './assets/tree-of-vices-and-virtues.jpg';
+import mundaneumCards from './assets/mundaneum-cards.jpg';
+import zettelkasten from './assets/zettelkasten.jpg';
+import libraryOfAshurbanipal from './assets/library-of-ashurbanipal.jpg';
+import memex from './assets/memex.jpg';
+
 Есть такое понятие как [управление личными знаниями](https://en.wikipedia.org/wiki/Personal_knowledge_management). В Википедии написано, что это сбор, обработка, хранение и использование знаний. Есть ещё такие понятия как управление личной информацией, [личная база знаний](https://en.wikipedia.org/wiki/Personal_knowledge_base), личная вики, второй мозг, экзомозг. В целом это всё одно и тоже.
 
 За всю жизнь мы узнаем много полезной информации, но наш мозг не может запомнить всё или моментально вспомнить что-то, поэтому люди начали придумывать способы сохранять личные знания.
@@ -13,7 +23,7 @@ draft: false
 Начиная с эпохи Возрождения и до начала 20 века, популярным способом хранения личных знаний были записные книжки ([commonplace books](https://en.wikipedia.org/wiki/Commonplace_book)). Они были больше похожи на скрапбуки, в которые записывали всё подряд: от рецептов и цитат до таблицы весов и формул.
 
 <figure>
-  <img src="/img/800px-Commonplace_book_mid_17th_century.jpg" />
+  <Image src={commonplaceBook} alt="Записная книга, середина 17-го века" />
   <figcaption>
     Записная книга, середина 17-го века.
     Источник: <a href="https://commons.wikimedia.org/w/index.php?curid=11825444">Википедия</a>.
@@ -23,7 +33,7 @@ draft: false
 Предшественниками записных книжек были дневники римских и греческих философов. Но они в основном записывали свои мысли и цитаты других философов (например, [«К самому себе» Марка Аврелия](https://ru.wikipedia.org/wiki/%D0%9A_%D1%81%D0%B0%D0%BC%D0%BE%D0%BC%D1%83_%D1%81%D0%B5%D0%B1%D0%B5)). Одна из самых известных записных книжек — это [дневник Леонардо да Винчи](https://en.wikipedia.org/wiki/Leonardo_da_Vinci#Journals_and_notes), в котором почти 13000 страниц заметок и рисунков. Ещё один пример из Италии 15 века — дзибальдоне ([zibaldone](https://www.atlasobscura.com/articles/how-to-keep-a-zibaldone-a-13thcentury-answer-to-tumblr)). Неизвестный итальянец записал свои знания, а потом всё это печаталось как руководство для торговцев, написанное простым языком. Одна из функций этой книги — научить полезным [математическим навыкам](https://www.maa.org/press/periodicals/convergence/mathematical-treasure-problems-from-the-zibaldone-da-canal) молодого торговца, используя задачи с практическими проблемами, например, насколько велико дерево или сколько времени потребуется, чтобы добраться до Рима.
 
 <figure>
-  <img src="/img/467px-Leonardo_da_Vinci_-_Studies_of_the_foetus_in_the_womb.jpg" />
+  <Image src={leonardoFoetus} alt="Исследование Леонардо плода в утробе матери" />
   <figcaption>
     Страница с изображением исследования Леонардо плода в утробе матери (ок. 1510 г.).
     Источник: <a href="https://commons.wikimedia.org/w/index.php?curid=42138639">Википедия</a>.
@@ -33,7 +43,7 @@ draft: false
 Похожие книги были в других странах. Например, в Китае они назывались [биджи](https://ru.wikipedia.org/wiki/%D0%91%D0%B8%D1%86%D0%B7%D0%B8), в Японии — [дзуйхицу](https://ru.wikipedia.org/wiki/%D0%94%D0%B7%D1%83%D0%B9%D1%85%D0%B8%D1%86%D1%83) (например, [«Записки у изголовья»](https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D1%83_%D0%B8%D0%B7%D0%B3%D0%BE%D0%BB%D0%BE%D0%B2%D1%8C%D1%8F)). В Польше и Литве в 16-18 веках многие семьи вели [silva rerum](https://en.wikipedia.org/wiki/Silva_rerum). Это были домашние, многопоколенченские хроники, в которых записывали семейные традиции, дневниковые записи, текущие события, мемуары, письма, шутки, генеалогические древа, советы и т.п.
 
 <figure>
-  <img src="/img/Silva_rerum.JPG" />
+  <Image src={silvaRerum} alt="Silva rerum из рода Krassowscy" />
   <figcaption>
     Silva rerum из рода Krassowscy.
     Источник: <a href="https://commons.wikimedia.org/w/index.php?curid=3957543">Википедия</a>.
@@ -50,7 +60,7 @@ draft: false
 
 
 <figure>
-  <img src="/img/800px-A_Tree_of_twenty_vices_and_twenty_virtues_Wellcome_L0029368.jpg" />
+  <Image src={treeOfVices} alt="Древо двадцати пороков и двадцати добродетелей" />
   <figcaption>
     Древо двадцати пороков и двадцати добродетелей, Средневековье века.
     Источник: <a href="https://commons.wikimedia.org/w/index.php?curid=36033151">Википедия</a>.
@@ -62,7 +72,7 @@ draft: false
 В конце 18 века, когда [Карл Линней](https://ru.wikipedia.org/wiki/%D0%9B%D0%B8%D0%BD%D0%BD%D0%B5%D0%B9,_%D0%9A%D0%B0%D1%80%D0%BB) выпускал уже 12 издание своей [«Системы природы»](https://en.wikipedia.org/wiki/Carl_Linnaeus#Systema_Naturae), в которой количество видов растений достигло около 5000 тысяч, чтобы справиться с информационной перегрузкой он начал использовать [индексные карточки](https://en.wikipedia.org/wiki/Index_card) как инструмент для управления данными. Позже индексные карточки стали стандартом для библиотек. Или, например, они использовались в информационном хранилище [Mundaneum](https://en.wikipedia.org/wiki/Mundaneum), целью которого было объединение в одном месте всех знаний о мире во всех его формах (книги, плакаты, газеты со всего мира и т. д.) в гигантской библиографии. Хранилище это считается предшественником интернета, хотя больше похоже на Википедию. В какой-то момент они даже запустили поисковый сервис, которым мог воспользоваться любой человек в мире, надо было просто прислать запрос почтой или телеграфом, такой Google конца 19 века.
 
 <figure>
-  <img src="/img/800px-Mundaneum_Tir%C3%A4ng_Karteikaarten.jpg" />
+  <Image src={mundaneumCards} alt="Ящики с индексными карточками в Mundaneum" />
   <figcaption>
     Ящики с индексными карточками в Mundaneum.
     Источник: <a href="https://commons.wikimedia.org/w/index.php?curid=4427401">Википедия</a>.
@@ -80,7 +90,7 @@ draft: false
 Популярность в современности связана с немецким социологом [Никласом Луманом](https://ru.wikipedia.org/wiki/%D0%9B%D1%83%D0%BC%D0%B0%D0%BD,_%D0%9D%D0%B8%D0%BA%D0%BB%D0%B0%D1%81#%D0%9A%D0%B0%D1%80%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0). Его картотека насчитывала 90 тысяч заметок, а за всю жизнь он написал более 70 книг и около 500 статей на социологические темы. Он описал зеттелькастен в своём эссе Kommunikation mit Zettelkästen (на английском [Communicating with Slip Boxes](https://luhmann.surge.sh/communicating-with-slip-boxes)).
 
 <figure>
-  <img src="/img/ZK_1_01_01_001_V_N_NB_1_1.jpg" />
+  <Image src={zettelkasten} alt="Пример карточки зеттелькастена Лумана" />
   <figcaption>
     Пример карточки.
     Источник: <a href="https://niklas-luhmann-archiv.de">Niklas Luhmann-Archiv</a>.
@@ -94,7 +104,7 @@ draft: false
 Думаю, стоит упомянуть и [личные библиотеки](https://en.wikipedia.org/wiki/Private_library), как один из самых старых способов хранения знаний. Обычно такими библиотеками владеют небольшой круг людей или один человек. Самая первая известная на сегодняшний день личная библиотека — это глиняная [библиотека Ашшурбанапала](https://en.wikipedia.org/wiki/Library_of_Ashurbanipal), царя Ассирии.
 
 <figure>
-  <img src="/img/800px-Library_of_Ashurbanipal.jpg" />
+  <Image src={libraryOfAshurbanipal} alt="Библиотека Ашшурбанапала в Британском музее" />
   <figcaption>
     Библиотека Ашшурбанапала в Британском музее.
     Источник: <a href="https://commons.wikimedia.org/w/index.php?curid=91138912">Википедия</a>.
@@ -112,7 +122,7 @@ draft: false
 Мемекс представлял из себя большой рабочий стол, в который были встроены устройства для чтения и записи микрофильмов. На столе находились полупрозрачные экраны, на которых выводились материалы, записанные на микрофильмы. На столешнице также было подобие сканера, на которое можно было положить документ, сфотографировать и добавить получившееся изображение в хранилище.
 
 <figure>
-  <img src="/img/The_Memex_(3002477109).jpg" />
+  <Image src={memex} alt="Иллюстрация к статье «As We May Think»" />
   <figcaption>
     Иллюстрация к статье «As We May Think».
     Источник: <a href="https://commons.wikimedia.org/w/index.php?curid=64881877">Википедия</a>.

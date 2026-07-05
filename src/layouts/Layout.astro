@@ -10,9 +10,8 @@ interface Props {
 }
 
 const { title, description, image } = Astro.props;
-const ogImage = image
-  ? `https://baradusov.ru${image}`
-  : 'https://baradusov.ru/hero.png';
+
+const ogImage = image ?? 'https://baradusov.ru/hero.png';
 
 const isIndex = Astro.url.pathname === '/';
 const canonical = `https://baradusov.ru${Astro.url.pathname}`;

@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { getImage } from 'astro:assets';
 
 import Layout from '../../layouts/Layout.astro';
 
@@ -19,12 +20,22 @@ const { Content } = await render(post);
 const description = post.data.description ?? post.body;
 const metaDescription = description ? description.slice(0, 100) + '...' : '';
 const localCreated = new Date(post.data.created).toLocaleDateString('ru-RU');
+
+let ogImage: string | undefined;
+if (post.data.image) {
+  const optimized = await getImage({
+    src: post.data.image,
+    width: 1200,
+    format: 'webp',
+  });
+  ogImage = new URL(optimized.src, Astro.site).href;
+}
 ---
 
 <Layout
   title={`Нуриль Барадусов | ${post.data.title}`}
   description={metaDescription}
-  image={post.data.image}>
+  image={ogImage}>
   <main>
     <h1>{post.data.title}</h1>
 

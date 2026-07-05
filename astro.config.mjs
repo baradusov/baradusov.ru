@@ -5,4 +5,7 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://baradusov.ru',
   integrations: [mdx()],
+  image: {
+    layout: 'constrained',
+  },
 });

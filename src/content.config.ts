@@ -3,14 +3,15 @@ import { defineCollection, z } from 'astro:content';
 
 const posts = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/posts' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    created: z.coerce.date(),
-    tags: z.string().optional(),
-    draft: z.boolean().optional(),
-    image: z.string().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string().optional(),
+      created: z.coerce.date(),
+      tags: z.string().optional(),
+      draft: z.boolean().optional(),
+      image: image().optional(),
+    }),
 });
 
 const projects = defineCollection({
