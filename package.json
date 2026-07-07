@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "bunx --bun astro dev",
+    "dev:host": "bunx --bun astro dev --host",
     "start": "bunx --bun astro dev",
     "build": "astro check && astro build",
     "preview": "bunx --bun astro preview",
