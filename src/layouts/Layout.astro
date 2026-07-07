@@ -148,6 +148,10 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
     }
 
     /* global */
+    :root {
+      --gap: 14px;
+    }
+
     @font-face {
       font-family: 'IBM Plex Sans';
       font-style: normal;
@@ -239,10 +243,14 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
       }
     }
 
-    /* post page */
-    :root {
-      --gap: 14px;
+    blockquote {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+      border-left: 2px solid rgba(0, 0, 0, 0.2);
     }
+
+    /* post page */
 
     .content {
       display: flex;
