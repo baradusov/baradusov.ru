@@ -11,6 +11,16 @@ a {
   color: inherit;
 }
 
+#header {
+  margin-bottom: 30px;
+}
+
+#header a {
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 body img {
   max-width: 100%;
 }
