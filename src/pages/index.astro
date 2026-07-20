@@ -4,7 +4,9 @@ import { getCollection } from 'astro:content';
 
 import Layout from '../layouts/Layout.astro';
 
-const projects = await getCollection('projects');
+const projects = (await getCollection('projects')).sort(
+  (p1, p2) => p1.data.order - p2.data.order,
+);
 const allPosts = await getCollection(
   'posts',
   ({ data }) => data.draft !== true,

@@ -3,54 +3,63 @@
     "id": "pochem",
     "name": "почём?",
     "url": "https://apps.apple.com/ru/app/%D0%BF%D0%BE%D1%87%D1%91%D0%BC/id6758133115",
-    "description": "iOS-приложение, простой конвертер валют, где видно одновременно четыре разных курса"
+    "description": "iOS-приложение, простой конвертер валют, где видно одновременно четыре разных курса",
+    "order": 1
   },
   {
     "id": "torbox-raycast",
     "name": "TorBox для Raycast",
     "url": "https://www.raycast.com/baradusov/torbox",
-    "description": "Raycast-расширение для управлением загрузками в TorBox"
+    "description": "Raycast-расширение для управлением загрузками в TorBox",
+    "order": 2
   },
   {
     "id": "longstayontheinternet",
     "name": "long stay on the internet",
     "url": "https://t.me/longstayontheinternet",
-    "description": "Телеграм-канал с картинками из интернета"
+    "description": "Телеграм-канал с картинками из интернета",
+    "order": 3
   },
   {
     "id": "tightpussies",
     "name": "тесные киски",
     "url": "https://t.me/tightpussies",
-    "description": "Телеграм-канал про кошек, оказавшихся в тесных местах"
+    "description": "Телеграм-канал про кошек, оказавшихся в тесных местах",
+    "order": 4
   },
   {
     "id": "russianstreetwear",
     "name": "russianstreetwear.club",
     "url": "https://russianstreetwear.club",
-    "description": "Каталог российских брендов одежды"
+    "description": "Каталог российских брендов одежды",
+    "order": 5
   },
   {
     "id": "russiancyclingclub",
     "name": "local cycling club",
     "url": "https://russiancyclingclub.notion.site/9194bd45ae91420a97b24aac471d62f0?v=4941fe8e6dac4b2abfc0ad5e9c042706",
-    "description": "Каталог локальных производителей велосипедов, одежды и аксессуаров, а также локальные велосообщества"
+    "description": "Каталог локальных производителей велосипедов, одежды и аксессуаров, а также локальные велосообщества",
+    "order": 6
   },
   {
     "id": "oblique-strategies",
     "name": "Oblique Strategies",
     "url": "https://t.me/ObliqueStrategiesOfBrianEnoBot",
-    "description": "Телеграм-бот, основанный на одноимённом наборе карточек Брайана Ино и Питера Шмидта"
+    "description": "Телеграм-бот, основанный на одноимённом наборе карточек Брайана Ино и Питера Шмидта",
+    "order": 7
   },
   {
     "id": "pdf-bot",
     "name": "Webpage to PDF bot",
     "url": "https://t.me/html_to_pdf_bot",
-    "description": "Телеграм-бот, который помогает сохранять статьи как pdf-файл. Кидаешь ссылку — получаешь читабельную пдфку"
+    "description": "Телеграм-бот, который помогает сохранять статьи как pdf-файл. Кидаешь ссылку — получаешь читабельную пдфку",
+    "order": 8
   },
   {
     "id": "gtpfl",
     "name": "GTFPL",
     "url": "https://github.com/baradusov/get-the-fucking-public-link-bot",
-    "description": "Телеграм-бот для получения публичной ссылки на файл"
+    "description": "Телеграм-бот для получения публичной ссылки на файл",
+    "order": 9
   }
 ]
