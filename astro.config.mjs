@@ -8,7 +8,4 @@ export default defineConfig({
   image: {
     layout: 'constrained',
   },
-  experimental: {
-    incrementalBuild: true,
-  },
 });
