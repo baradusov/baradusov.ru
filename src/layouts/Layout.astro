@@ -77,10 +77,13 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
 
     <slot />
 
+    <hr />
+
     <footer>
       <p>
-        Следить за обновлениями на сайте можно через <a href="/feed.xml">RSS</a> или
-        <a href="https://t.me/nuril_notes">телеграм-канал</a>.
+        Следить за обновлениями на сайте можно через <a href="/feed.xml">RSS</a> или{
+          ' '
+        }<a href="https://t.me/nuril_notes">телеграм-канал</a>.
       </p>
     </footer>
   </body><style is:global>
