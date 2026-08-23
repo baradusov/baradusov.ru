@@ -1,0 +1,515 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Гостевая книга — Нуриль Барадусов" description="Гостевая книга">
+  <main>
+    <section data-postcard>
+      <h1>Гостевая книга</h1>
+
+      <div class="content">
+        <p>
+          Здесь вы можете оставить записку: нарисовать, прикрепить сообщение и
+          ссылку. Они публикуются после моей модерации, и только те, которые мне
+          понравятся.
+        </p>
+      </div>
+
+      <div class="pc-stage">
+        <div class="pc-tools" role="toolbar" aria-label="Инструменты">
+          <div class="pc-group">
+            <button
+              class="pc-btn"
+              data-tool="pen"
+              aria-pressed="true"
+              type="button">
+              Перо
+            </button>
+            <button
+              class="pc-btn"
+              data-tool="eraser"
+              aria-pressed="false"
+              type="button">
+              Ластик
+            </button>
+          </div>
+
+          <div class="pc-group" role="group" aria-label="Толщина">
+            <button
+              class="pc-btn pc-btn--dot"
+              data-size="3"
+              aria-pressed="false"
+              aria-label="Тонко"
+              type="button">
+              <span style="--d: 5px"></span>
+            </button>
+            <button
+              class="pc-btn pc-btn--dot"
+              data-size="7"
+              aria-pressed="true"
+              aria-label="Средне"
+              type="button">
+              <span style="--d: 10px"></span>
+            </button>
+            <button
+              class="pc-btn pc-btn--dot"
+              data-size="16"
+              aria-pressed="false"
+              aria-label="Толсто"
+              type="button">
+              <span style="--d: 16px"></span>
+            </button>
+          </div>
+
+          <div class="pc-group">
+            <button class="pc-btn" data-act="undo" type="button">
+              Отменить
+            </button>
+            <button class="pc-btn" data-act="redo" type="button">
+              Вернуть
+            </button>
+            <button class="pc-btn" data-act="clear" type="button">
+              Стереть
+            </button>
+          </div>
+        </div>
+
+        <div class="pc-card">
+          <canvas
+            class="pc-canvas"
+            width="480"
+            height="800"
+            aria-label="Холст открытки">
+          </canvas>
+        </div>
+      </div>
+
+      <div class="pc-form">
+        <label class="pc-field">
+          <span>Имя или сообщение</span>
+          <input class="pc-message" type="text" maxlength="70" />
+        </label>
+
+        <label class="pc-field">
+          <span>Ссылка</span>
+          <input
+            class="pc-link"
+            type="url"
+            maxlength="200"
+            placeholder="example.com"
+          />
+        </label>
+
+        <button class="pc-btn pc-btn--primary pc-send" type="button">
+          Отправить
+        </button>
+      </div>
+
+      <p class="pc-status" role="status" hidden></p>
+
+      <h2 class="pc-heading">Записки от гостей</h2>
+
+      <p class="pc-empty" hidden></p>
+
+      <ul class="pc-gallery"></ul>
+      <template class="pc-item-tpl">
+        <li class="pc-item">
+          <button class="pc-item__button" type="button">
+            <canvas class="pc-item__canvas" width="480" height="800"></canvas>
+          </button>
+          <div class="pc-item__name">
+            <a
+              class="pc-caption-link"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              hidden>
+            </a>
+            <span class="pc-caption-plain"></span>
+            <span class="pc-caption-note" hidden></span>
+          </div>
+        </li>
+      </template>
+
+      <dialog class="pc-viewer">
+        <div class="pc-viewer__box">
+          <div class="pc-card pc-card--flat">
+            <canvas class="pc-viewer__canvas" width="480" height="800"></canvas>
+          </div>
+          <div class="pc-viewer__bar">
+            <span class="pc-viewer__who">
+              <a
+                class="pc-caption-link"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                hidden>
+              </a>
+              <span class="pc-caption-plain"></span>
+            </span>
+
+            <span class="pc-group">
+              <button
+                class="pc-btn pc-viewer__prev"
+                type="button"
+                aria-label="Предыдущая">
+                ←
+              </button>
+              <button
+                class="pc-btn pc-viewer__next"
+                type="button"
+                aria-label="Следующая">
+                →
+              </button>
+              <button class="pc-btn pc-viewer__close" type="button">
+                Закрыть
+              </button>
+            </span>
+          </div>
+        </div>
+      </dialog>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  import '../scripts/postcard';
+</script>
+
+<style>
+  .pc-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  @media (min-width: 620px) {
+    .pc-stage {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .pc-tools {
+      order: 2;
+      flex-direction: column;
+      gap: 14px;
+      width: 190px;
+      padding-top: 4px;
+    }
+  }
+
+  .pc-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  .pc-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pc-field input:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 1px #000;
+  }
+
+  .pc-btn:focus:not(:focus-visible),
+  .pc-item__button:focus:not(:focus-visible),
+  .pc-caption-link:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  .pc-btn:focus-visible,
+  .pc-item__button:focus-visible,
+  .pc-caption-link:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
+
+  .pc-btn {
+    padding: 6px 12px;
+    border: 2px solid #000;
+    background: transparent;
+    color: inherit;
+    font-size: 15px;
+    line-height: 1.2;
+    cursor: pointer;
+  }
+
+  .pc-btn:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.08);
+  }
+
+  .pc-btn[aria-pressed='true'] {
+    background: #000;
+    color: #fcfae3;
+  }
+
+  .pc-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .pc-btn--dot {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    padding: 6px;
+  }
+
+  .pc-btn--dot span {
+    width: var(--d);
+    height: var(--d);
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .pc-btn--primary {
+    background: #000;
+    color: #fcfae3;
+    padding-inline: 24px;
+  }
+
+  .pc-btn--primary:hover:not(:disabled) {
+    background: #333;
+  }
+
+  .pc-card {
+    position: relative;
+    flex: none;
+    width: min(100%, 400px);
+    background: #fff;
+    border: 2px solid #000;
+    box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.13);
+  }
+
+  .pc-card--flat {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .pc-canvas,
+  .pc-viewer__canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 5;
+    touch-action: none;
+  }
+
+  .pc-canvas {
+    cursor: crosshair;
+  }
+
+  .pc-card--flying {
+    position: fixed;
+    z-index: 60;
+    margin: 0;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .pc-form {
+    display: grid;
+    gap: 12px;
+    justify-items: start;
+    max-width: 420px;
+    margin-top: 20px;
+  }
+
+  .pc-field {
+    display: grid;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .pc-field span {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .pc-field input {
+    width: 100%;
+    padding: 6px 12px;
+    border: 2px solid #000;
+    background: transparent;
+    font-size: 15px;
+  }
+
+  .pc-heading {
+    margin-top: 32px;
+  }
+
+  .pc-status,
+  .pc-empty {
+    margin-top: 12px;
+    max-width: 420px;
+    font-size: 15px;
+  }
+
+  .pc-status[data-kind='error'] {
+    padding: 6px 12px;
+    border: 2px solid #000;
+  }
+
+  .pc-empty {
+    opacity: 0.6;
+  }
+
+  .pc-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .pc-gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .pc-item {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    margin: 0;
+    border: 2px solid #000;
+    background: #fff;
+  }
+
+  .pc-item:hover {
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.13);
+  }
+
+  .pc-item__button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: #fff;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .pc-item__canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 5;
+  }
+
+  .pc-item__name {
+    display: block;
+    padding: 6px 10px;
+    border-top: 2px solid #000;
+    background: #fcfae3;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .pc-item__name::after {
+    content: '\200b';
+  }
+
+  .pc-item.is-pending {
+    border-color: #a8a49a;
+  }
+
+  .pc-item.is-pending .pc-item__button {
+    opacity: 0.38;
+  }
+
+  .pc-item.is-pending .pc-item__name {
+    border-top-color: #a8a49a;
+    color: #7d7a72;
+  }
+
+  .pc-caption-note {
+    display: block;
+    font-size: 13px;
+    opacity: 0.6;
+  }
+
+  .pc-item.is-pending .pc-caption-note {
+    opacity: 1;
+  }
+
+  .pc-caption-note[hidden],
+  .pc-caption-link[hidden],
+  .pc-viewer__site[hidden] {
+    display: none;
+  }
+
+  .pc-item.is-new {
+    animation: pc-land 0.34s ease-out;
+  }
+
+  @keyframes pc-land {
+    from {
+      transform: scale(1.07);
+    }
+  }
+
+  .pc-viewer {
+    margin: 0;
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    padding: 24px 12px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    overflow: auto;
+    overscroll-behavior: contain;
+    display: none;
+  }
+
+  .pc-viewer[open] {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .pc-viewer__box {
+    margin: auto;
+    width: min(92vw, 424px);
+    padding: 12px;
+    border: 2px solid #000;
+    background: #fcfae3;
+  }
+
+  .pc-viewer::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .pc-viewer__bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .pc-viewer__bar .pc-group {
+    flex-wrap: nowrap;
+    margin-left: auto;
+  }
+
+  .pc-viewer__who {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pc-item.is-new {
+      animation: none;
+    }
+  }
+</style>
