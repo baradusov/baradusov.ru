@@ -341,6 +341,13 @@ function init() {
   canvas.addEventListener('pointerup', endStroke, { signal });
   canvas.addEventListener('pointercancel', endStroke, { signal });
 
+  const holdTouch = (e: TouchEvent) => {
+    if (e.cancelable) e.preventDefault();
+  };
+
+  canvas.addEventListener('touchstart', holdTouch, { passive: false, signal });
+  canvas.addEventListener('touchmove', holdTouch, { passive: false, signal });
+
   for (const button of root.querySelectorAll<HTMLButtonElement>(
     '[data-tool]',
   )) {
