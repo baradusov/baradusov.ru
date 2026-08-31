@@ -63,10 +63,17 @@
     "order": 9
   },
   {
+    "id": "anydoc-bot",
+    "name": "AnyDoc bot",
+    "url": "https://t.me/anydoc_to_md_bot",
+    "description": "Телеграм-бот, который конвертирует любой документ в маркдаун",
+    "order": 10
+  },
+  {
     "id": "gtpfl",
     "name": "GTFPL",
     "url": "https://github.com/baradusov/get-the-fucking-public-link-bot",
     "description": "Телеграм-бот для получения публичной ссылки на файл",
-    "order": 10
+    "order": 11
   }
 ]
