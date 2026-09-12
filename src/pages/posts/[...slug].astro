@@ -46,10 +46,15 @@ if (post.data.image) {
       <Content />
     </div>
 
-    <time date-time={`${post.data.created}T00:00:00.000Z`}>
-      <a href={`/posts/${post.id}`}>
-        {localCreated}
-      </a>
+    <time class="published" date-time={`${post.data.created}T00:00:00.000Z`}>
+      <a href={`/posts/${post.id}`}>{localCreated}</a>
     </time>
   </main>
 </Layout>
+
+<style>
+  .published {
+    display: block;
+    font-size: var(--text-s);
+  }
+</style>

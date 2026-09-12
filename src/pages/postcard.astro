@@ -181,7 +181,7 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: var(--space-s);
   }
 
   @media (min-width: 620px) {
@@ -189,65 +189,51 @@ import Layout from '../layouts/Layout.astro';
       flex-direction: row;
       align-items: flex-start;
       justify-content: center;
-      gap: 24px;
+      gap: var(--space-l);
     }
 
     .pc-tools {
       order: 2;
       flex-direction: column;
-      gap: 14px;
+      gap: var(--space-s);
       width: 190px;
-      padding-top: 4px;
     }
   }
 
   .pc-tools {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 16px;
+    gap: var(--space-xs) var(--space-m);
   }
 
   .pc-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: var(--space-2xs);
   }
 
   .pc-field input:focus {
     outline: none;
-    box-shadow: inset 0 0 0 1px #000;
-  }
-
-  .pc-btn:focus:not(:focus-visible),
-  .pc-item__button:focus:not(:focus-visible),
-  .pc-caption-link:focus:not(:focus-visible) {
-    outline: none;
-  }
-
-  .pc-btn:focus-visible,
-  .pc-item__button:focus-visible,
-  .pc-caption-link:focus-visible {
-    outline: 2px solid #000;
-    outline-offset: 2px;
+    box-shadow: inset 0 0 0 1px var(--color-ink);
   }
 
   .pc-btn {
-    padding: 6px 12px;
-    border: 2px solid #000;
+    padding: var(--space-2xs) var(--space-s);
+    border: 2px solid var(--color-ink);
     background: transparent;
     color: inherit;
-    font-size: 15px;
-    line-height: 1.2;
+    font-size: var(--text-s);
+    line-height: var(--leading-tight);
     cursor: pointer;
   }
 
   .pc-btn:hover:not(:disabled) {
-    background: rgba(0, 0, 0, 0.08);
+    background: var(--color-hover);
   }
 
   .pc-btn[aria-pressed='true'] {
-    background: #000;
-    color: #fcfae3;
+    background: var(--color-ink);
+    color: var(--color-bg);
   }
 
   .pc-btn:disabled {
@@ -259,7 +245,7 @@ import Layout from '../layouts/Layout.astro';
     display: grid;
     place-items: center;
     width: 40px;
-    padding: 6px;
+    padding: var(--space-2xs);
   }
 
   .pc-btn--dot span {
@@ -270,22 +256,25 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .pc-btn--primary {
-    background: #000;
-    color: #fcfae3;
-    padding-inline: 24px;
+    background: var(--color-ink);
+    color: var(--color-bg);
+    padding-inline: var(--space-l);
   }
 
   .pc-btn--primary:hover:not(:disabled) {
-    background: #333;
+    opacity: 0.85;
+    background: var(--color-ink);
   }
 
+  /* Открытка — всегда белая бумага с чёрными чернилами, независимо от темы:
+     рисунки хранятся как штрихи на белом. */
   .pc-card {
     position: relative;
     flex: none;
     width: min(100%, 400px);
-    background: #fff;
-    border: 2px solid #000;
-    box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.13);
+    background: var(--color-paper);
+    border: 2px solid var(--color-ink);
+    box-shadow: 7px 7px 0 var(--color-rule);
   }
 
   .pc-card--flat {
@@ -316,55 +305,54 @@ import Layout from '../layouts/Layout.astro';
 
   .pc-form {
     display: grid;
-    gap: 12px;
+    gap: var(--space-s);
     justify-items: start;
     max-width: 420px;
-    margin-top: 20px;
   }
 
   .pc-field {
     display: grid;
-    gap: 4px;
+    gap: var(--space-2xs);
     width: 100%;
   }
 
   .pc-field span {
-    font-weight: 700;
-    font-size: 15px;
+    font-weight: var(--weight-bold);
+    font-size: var(--text-s);
   }
 
   .pc-field input {
     width: 100%;
-    padding: 6px 12px;
-    border: 2px solid #000;
+    padding: var(--space-2xs) var(--space-s);
+    border: 2px solid var(--color-ink);
     background: transparent;
-    font-size: 15px;
-  }
-
-  .pc-heading {
-    margin-top: 32px;
+    color: inherit;
+    font-size: var(--text-s);
   }
 
   .pc-status,
   .pc-empty {
-    margin-top: 12px;
     max-width: 420px;
-    font-size: 15px;
+    font-size: var(--text-s);
   }
 
   .pc-status[data-kind='error'] {
-    padding: 6px 12px;
-    border: 2px solid #000;
+    padding: var(--space-2xs) var(--space-s);
+    border: 2px solid var(--color-ink);
   }
 
   .pc-empty {
-    opacity: 0.6;
+    opacity: 0.65;
   }
 
   .pc-gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: var(--space-m);
+  }
+
+  .pc-gallery > li + li {
+    margin-top: 0;
   }
 
   @media (max-width: 600px) {
@@ -377,12 +365,12 @@ import Layout from '../layouts/Layout.astro';
     display: grid;
     grid-template-rows: auto 1fr;
     margin: 0;
-    border: 2px solid #000;
-    background: #fff;
+    border: 2px solid var(--color-ink);
+    background: var(--color-paper);
   }
 
   .pc-item:hover {
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.13);
+    box-shadow: 5px 5px 0 var(--color-rule);
   }
 
   .pc-item__button {
@@ -390,7 +378,7 @@ import Layout from '../layouts/Layout.astro';
     width: 100%;
     padding: 0;
     border: 0;
-    background: #fff;
+    background: var(--color-paper);
     color: inherit;
     text-align: left;
     cursor: pointer;
@@ -405,38 +393,29 @@ import Layout from '../layouts/Layout.astro';
 
   .pc-item__name {
     display: block;
-    padding: 6px 10px;
-    border-top: 2px solid #000;
-    background: #fcfae3;
-    font-size: 15px;
-    line-height: 1.5;
+    padding: var(--space-2xs) var(--space-xs);
+    border-top: 2px solid var(--color-ink);
+    background: var(--color-bg);
+    font-size: var(--text-s);
+    line-height: var(--leading-snug);
   }
 
   .pc-item__name::after {
     content: '\200b';
   }
 
+  /* Записка на модерации гасится прозрачностью целиком, а не серым текстом. */
   .pc-item.is-pending {
-    border-color: #a8a49a;
+    opacity: 0.5;
   }
 
   .pc-item.is-pending .pc-item__button {
     opacity: 0.38;
   }
 
-  .pc-item.is-pending .pc-item__name {
-    border-top-color: #a8a49a;
-    color: #7d7a72;
-  }
-
   .pc-caption-note {
     display: block;
-    font-size: 13px;
-    opacity: 0.6;
-  }
-
-  .pc-item.is-pending .pc-caption-note {
-    opacity: 1;
+    font-size: var(--text-2xs);
   }
 
   .pc-caption-note[hidden],
@@ -461,7 +440,7 @@ import Layout from '../layouts/Layout.astro';
     max-width: none;
     height: 100dvh;
     max-height: none;
-    padding: 24px 12px;
+    padding: var(--space-l) var(--space-s);
     border: 0;
     background: transparent;
     color: inherit;
@@ -479,9 +458,9 @@ import Layout from '../layouts/Layout.astro';
   .pc-viewer__box {
     margin: auto;
     width: min(92vw, 424px);
-    padding: 12px;
-    border: 2px solid #000;
-    background: #fcfae3;
+    padding: var(--space-s);
+    border: 2px solid var(--color-ink);
+    background: var(--color-bg);
   }
 
   .pc-viewer::backdrop {
@@ -492,8 +471,8 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 12px;
-    margin-top: 12px;
+    gap: var(--space-s);
+    margin-top: var(--space-s);
   }
 
   .pc-viewer__bar .pc-group {
@@ -504,8 +483,8 @@ import Layout from '../layouts/Layout.astro';
   .pc-viewer__who {
     flex: 1 1 auto;
     min-width: 0;
-    font-size: 15px;
-    line-height: 1.5;
+    font-size: var(--text-s);
+    line-height: var(--leading-snug);
     overflow-wrap: anywhere;
   }
 

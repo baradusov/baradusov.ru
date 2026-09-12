@@ -13,7 +13,7 @@ const counter = movies.reduce((acc, year) => year.data.length + acc, 0);
   <main>
     <h1>Просмотренные фильмы ({counter})</h1>
 
-    <div>
+    <div class="years">
       {
         movies.map((moviesByYear) => (
           <section>
@@ -23,8 +23,8 @@ const counter = movies.reduce((acc, year) => year.data.length + acc, 0);
               {moviesByYear.data.map((movie) => {
                 return (
                   <li class="list-item">
-                    <p class="title">{movie.title}</p>
-                    <p>
+                    <p class="movie-title">{movie.title}</p>
+                    <p class="movie-meta">
                       {movie.releaseYear} {movie.originalTitle ? '·' : null}{' '}
                       {movie.originalTitle}
                     </p>
@@ -40,18 +40,19 @@ const counter = movies.reduce((acc, year) => year.data.length + acc, 0);
 </Layout>
 
 <style>
-  .list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  .years > section + section {
+    margin-top: var(--space-2xl);
   }
 
-  .list-item {
-    margin-bottom: 0;
+  .list > li + li {
+    margin-top: var(--space-s);
   }
 
-  .title {
-    font-size: 20px;
-    font-weight: 700;
+  .movie-title {
+    font-weight: var(--weight-bold);
+  }
+
+  .movie-meta {
+    font-size: var(--text-s);
   }
 </style>

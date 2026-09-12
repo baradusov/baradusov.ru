@@ -36,7 +36,7 @@ import Layout from '../layouts/Layout.astro';
           <!-- todo: сделать отдельную секцию с тем, что уже не делаю -->
           <li><s>работаю фронтендером в цифровой логистике</s></li>
           <li>
-            <s>учусь в школе современной фотографии</s>
+            <s>учусь в школе современной фотографии</s>{' '}
             <a
               href="https://www.docdocdoc.ru/laterna-magica?ref=baradusov.ru"
               target="_blank"
@@ -46,8 +46,14 @@ import Layout from '../layouts/Layout.astro';
           </li>
         </ul>
 
-        <p>Обновлено 13 июня 2026 года.</p>
+        <p class="updated">Обновлено 13 июня 2026 года.</p>
       </div>
     </section>
   </main>
 </Layout>
+
+<style>
+  .updated {
+    font-size: var(--text-s);
+  }
+</style>

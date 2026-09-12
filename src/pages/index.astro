@@ -41,10 +41,8 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
   <main>
     <section>
       <p>
-        Привет! Меня зовут <span style="font-style: italic;">Нуриль</span>. Я
-        работаю фронтендером в финтехе и живу в <s>Самаре</s> → <s>
-          Санкт-Петербурге
-        </s> → Тбилиси.
+        Привет! Меня зовут <em>Нуриль</em>. Я работаю фронтендером в финтехе и
+        живу в <s>Самаре</s> → <s>Санкт-Петербурге</s> → Тбилиси.
       </p>
       <p>
         Здесь я собираю всё, чем занимаюсь, пишу дневник, иногда публикую
@@ -72,43 +70,20 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
     <section>
       <h2 id="b-contacts">Связь</h2>
 
-      <ul>
+      <ul class="contacts">
         <li>
-          <div>
-            <p>
-              телеграм-канал — <a href="https://t.me/nuril_notes">
-                @nuril_notes
-              </a>
-            </p>
-          </div>
+          телеграм-канал — <a href="https://t.me/nuril_notes">@nuril_notes</a>
         </li>
-
+        <li>телеграм — <a href="https://t.me/baradusov">@baradusov</a></li>
         <li>
-          <div>
-            <p>
-              телеграм — <a href="https://t.me/baradusov">@baradusov</a>
-            </p>
-          </div>
+          почта — <a href="mailto:baradusovnh@gmail.com">
+            baradusovnh@gmail.com
+          </a>
         </li>
-
         <li>
-          <div>
-            <p>
-              почта — <a href="mailto:baradusovnh@gmail.com">
-                baradusovnh@gmail.com
-              </a>
-            </p>
-          </div>
-        </li>
-
-        <li>
-          <div>
-            <p>
-              гитхаб — <a href="https://github.com/baradusov">
-                github.com/baradusov
-              </a>
-            </p>
-          </div>
+          гитхаб — <a href="https://github.com/baradusov">
+            github.com/baradusov
+          </a>
         </li>
       </ul>
     </section>
@@ -116,14 +91,12 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
     <section>
       <h2 id="b-makings">Делаю</h2>
 
-      <ul>
+      <ul class="projects">
         {
           projects.map((project) => (
             <li>
-              <div>
-                <a href={project.data.url}>{project.data.name}</a>
-                <p>{project.data.description}</p>
-              </div>
+              <a href={project.data.url}>{project.data.name}</a>
+              <p>{project.data.description}</p>
             </li>
           ))
         }
@@ -141,7 +114,7 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
             <section>
               <h3 class="year">{year}</h3>
 
-              <ul style={{ gridColumnStart: 2, gridColumnEnd: -1 }}>
+              <ul class="posts">
                 {posts.map((post) => {
                   const dateCreated = new Date(post.data.created);
                   const monthCreated = String(
@@ -154,7 +127,7 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
 
                   return (
                     <li>
-                      <div style="display:flex;justify-content:space-between;">
+                      <div class="post-link">
                         <a href={`/posts/${post.id}`}>
                           <h3>{post.data.title}</h3>
                         </a>
@@ -175,11 +148,11 @@ const years = Object.keys(postsByYears).sort((a, b) => Number(b) - Number(a));
 </Layout>
 
 <style>
-  @media (min-width: 601px) {
-    .year {
-      position: sticky;
-      top: 0;
-      align-self: self-start;
-    }
+  .contacts > li + li {
+    margin-top: var(--space-xs);
+  }
+
+  .projects > li + li {
+    margin-top: var(--space-m);
   }
 </style>
