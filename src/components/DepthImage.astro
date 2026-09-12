@@ -1,0 +1,414 @@
+---
+interface Props {
+  /** Colour image. */
+  src: string;
+  /** Grayscale depth map, same aspect ratio. White = near, black = far. */
+  depth: string;
+  alt?: string;
+  width: number;
+  height: number;
+  /** Max parallax shift at full deflection, as a fraction of image width. */
+  strength?: number;
+  /** How much to zoom in, to hide the edges the displacement pulls in. */
+  zoom?: number;
+  /** Depth value that stays put. Anything nearer moves with the cursor,
+   *  anything further drifts the other way. */
+  pivot?: number;
+  /** Optional cut-out layer: a subject moved as a rigid sprite instead of being
+   *  warped, plus the background painted in behind it. Without this, the subject
+   *  smears the background it uncovers, because a single photo has no data there. */
+  cutout?: {
+    /** Background with the subject painted out, cropped to `rect`. */
+    fill: string;
+    /** Subject coverage, white on black, cropped to `rect`. */
+    mask: string;
+    /** [x, y, w, h] of the crop within the image, 0..1. */
+    rect: [number, number, number, number];
+    /** Depth the subject sits at. */
+    depth: number;
+  };
+  class?: string;
+}
+
+const {
+  src,
+  depth,
+  alt = '',
+  width,
+  height,
+  strength = 0.02,
+  zoom = 1.05,
+  pivot = 0.2,
+  cutout,
+  class: className,
+} = Astro.props;
+---
+
+<div
+  class:list={['depth-image', className]}
+  data-depth-image
+  data-src={src}
+  data-depth={depth}
+  data-strength={strength}
+  data-zoom={zoom}
+  data-pivot={pivot}
+  data-cutout={cutout ? JSON.stringify(cutout) : undefined}
+  style={`--depth-ar: ${width} / ${height}`}>
+  <img
+    class="depth-image__fallback"
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+  />
+</div>
+
+<style>
+  .depth-image {
+    position: relative;
+    /* The wrapper owns the box, so a consumer can override the height
+       (mobile crop) without fighting the fallback image for it. */
+    aspect-ratio: var(--depth-ar);
+  }
+
+  .depth-image__fallback {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .depth-image :global(canvas) {
+    /* top/left only, never `inset`: the minifier rewrites the four longhands
+       into the shorthand, and a browser new enough to run the module but too
+       old for `inset` would drop it and lay the canvas out below the image.
+       The size below already covers what right/bottom would do. */
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* the wrapper handles pointer events */
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const VERT = `
+    attribute vec2 aPos;
+    varying vec2 vUv;
+    void main() {
+      vUv = aPos * 0.5 + 0.5;
+      vUv.y = 1.0 - vUv.y;
+      gl_Position = vec4(aPos, 0.0, 1.0);
+    }
+  `;
+
+  const FRAG = `
+    #ifdef GL_FRAGMENT_PRECISION_HIGH
+    precision highp float;
+    #else
+    precision mediump float;
+    #endif
+    #define STEPS 32
+    varying vec2 vUv;
+    uniform sampler2D uImage;
+    uniform sampler2D uDepth;
+    uniform sampler2D uFill;
+    uniform sampler2D uMask;
+    uniform vec2 uOffset;
+    uniform float uZoom;
+    uniform float uPivot;
+    uniform vec4 uRect;
+    uniform float uFgDepth;
+
+    vec2 rectUv(vec2 uv) {
+      return (uv - uRect.xy) / uRect.zw;
+    }
+
+    float coverage(vec2 q) {
+      vec2 b = step(vec2(0.0), q) * step(q, vec2(1.0));
+      float a = b.x * b.y * texture2D(uMask, clamp(q, 0.0, 1.0)).r;
+      // Tighten the bilinear ramp: a soft alpha would blend the subject into
+      // the background and invent colours the dither palette does not have.
+      return smoothstep(0.35, 0.65, a);
+    }
+
+    // The image with the cut-out subject removed and the gap painted in.
+    vec3 plate(vec2 uv) {
+      vec2 q = rectUv(uv);
+      return mix(
+        texture2D(uImage, uv).rgb,
+        texture2D(uFill, clamp(q, 0.0, 1.0)).rgb,
+        coverage(q)
+      );
+    }
+
+    void main() {
+      vec2 uv = (vUv - 0.5) / uZoom + 0.5;
+
+      // Walk the view ray from the near plane backwards and stop at the first
+      // surface it meets. A fixed-point iteration is cheaper, but at a silhouette
+      // it has two valid solutions and picks both, which doubles the foreground.
+      // Taking the nearest hit instead gives proper occlusion.
+      float s = 1.0;
+      float ds = 1.0 / float(STEPS);
+      float hit = 0.0;
+      for (int i = 0; i < STEPS; i++) {
+        vec2 t = clamp(uv + uOffset * (s - uPivot), 0.0, 1.0);
+        if (texture2D(uDepth, t).r >= s) {
+          hit = s;
+          break;
+        }
+        s -= ds;
+      }
+
+      vec3 color = plate(clamp(uv + uOffset * (hit - uPivot), 0.0, 1.0));
+
+      // The subject travels as one rigid piece, so its own pixels never stretch.
+      vec2 sp = clamp(uv + uOffset * (uFgDepth - uPivot), 0.0, 1.0);
+      color = mix(color, texture2D(uImage, sp).rgb, coverage(rectUv(sp)));
+
+      gl_FragColor = vec4(color, 1.0);
+    }
+  `;
+
+  function compile(gl: WebGLRenderingContext, type: number, source: string) {
+    const shader = gl.createShader(type)!;
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      console.error(gl.getShaderInfoLog(shader));
+      return null;
+    }
+    return shader;
+  }
+
+  function makeTexture(
+    gl: WebGLRenderingContext,
+    img: HTMLImageElement,
+    crisp: boolean,
+  ) {
+    const tex = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    // NEAREST on magnification keeps the dither crunchy when the canvas
+    // backing store is larger than the source; LINEAR on minification avoids
+    // moire when it is smaller. The depth map wants smooth interpolation
+    // either way, or the ray march lands on blocky depth steps.
+    gl.texParameteri(
+      gl.TEXTURE_2D,
+      gl.TEXTURE_MAG_FILTER,
+      crisp ? gl.NEAREST : gl.LINEAR,
+    );
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    return tex;
+  }
+
+  function ready(img: HTMLImageElement) {
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve(img);
+    return new Promise<HTMLImageElement>((resolve, reject) => {
+      img.addEventListener('load', () => resolve(img));
+      img.addEventListener('error', () => reject(new Error(img.src)));
+    });
+  }
+
+  function load(src: string) {
+    return new Promise<HTMLImageElement>((resolve, reject) => {
+      const img = new Image();
+      img.decoding = 'async';
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error(`failed to load ${src}`));
+      img.src = src;
+    });
+  }
+
+  async function init(root: HTMLElement) {
+    const strength = Number(root.dataset.strength ?? 0.02);
+    const zoom = Number(root.dataset.zoom ?? 1.05);
+    const pivot = Number(root.dataset.pivot ?? 0.2);
+    const cutout: {
+      fill: string;
+      mask: string;
+      rect: [number, number, number, number];
+      depth: number;
+    } | null = root.dataset.cutout ? JSON.parse(root.dataset.cutout) : null;
+    const fallback = root.querySelector<HTMLImageElement>(
+      '.depth-image__fallback',
+    )!;
+
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl', {
+      alpha: false,
+      antialias: false,
+      premultipliedAlpha: false,
+    });
+    if (!gl) return;
+
+    const [image, depth, fill, mask] = await Promise.all([
+      // Reuse the fallback element rather than fetching the same URL twice.
+      ready(fallback),
+      load(root.dataset.depth!),
+      cutout ? load(cutout.fill) : null,
+      cutout ? load(cutout.mask) : null,
+    ]);
+
+    const vs = compile(gl, gl.VERTEX_SHADER, VERT);
+    const fs = compile(gl, gl.FRAGMENT_SHADER, FRAG);
+    if (!vs || !fs) return;
+    const program = gl.createProgram()!;
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      console.error(gl.getProgramInfoLog(program));
+      return;
+    }
+    gl.useProgram(program);
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array([-1, -1, 3, -1, -1, 3]),
+      gl.STATIC_DRAW,
+    );
+    const aPos = gl.getAttribLocation(program, 'aPos');
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+    const uOffset = gl.getUniformLocation(program, 'uOffset');
+    const uRect = gl.getUniformLocation(program, 'uRect');
+    const uFgDepth = gl.getUniformLocation(program, 'uFgDepth');
+    const uZoom = gl.getUniformLocation(program, 'uZoom');
+    const uPivot = gl.getUniformLocation(program, 'uPivot');
+
+    gl.activeTexture(gl.TEXTURE0);
+    makeTexture(gl, image, true);
+    gl.uniform1i(gl.getUniformLocation(program, 'uImage'), 0);
+    gl.activeTexture(gl.TEXTURE1);
+    makeTexture(gl, depth, false);
+    gl.uniform1i(gl.getUniformLocation(program, 'uDepth'), 1);
+
+    if (fill && mask && cutout) {
+      gl.activeTexture(gl.TEXTURE2);
+      makeTexture(gl, fill, true);
+      gl.uniform1i(gl.getUniformLocation(program, 'uFill'), 2);
+      gl.activeTexture(gl.TEXTURE3);
+      makeTexture(gl, mask, false);
+      gl.uniform1i(gl.getUniformLocation(program, 'uMask'), 3);
+      gl.uniform4f(uRect, ...cutout.rect);
+      gl.uniform1f(uFgDepth, cutout.depth);
+    } else {
+      // No cut-out: park the rect off-image so coverage() is always zero.
+      gl.uniform4f(uRect, 2.0, 2.0, 1.0, 1.0);
+      gl.uniform1f(uFgDepth, 0.0);
+    }
+
+    gl.uniform1f(uZoom, zoom);
+    gl.uniform1f(uPivot, pivot);
+
+    root.appendChild(canvas);
+    fallback.style.visibility = 'hidden';
+
+    let cssW = 0;
+    let cssH = 0;
+    function resize() {
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      const rect = root.getBoundingClientRect();
+      if (rect.width === cssW && rect.height === cssH) return;
+      cssW = rect.width;
+      cssH = rect.height;
+      canvas.width = Math.max(1, Math.round(cssW * dpr));
+      canvas.height = Math.max(1, Math.round(cssH * dpr));
+      gl!.viewport(0, 0, canvas.width, canvas.height);
+    }
+
+    // target = where the pointer wants the parallax; current eases toward it
+    const target = { x: 0, y: 0 };
+    const current = { x: 0, y: 0 };
+    const aspect = image.naturalHeight / image.naturalWidth;
+    let raf: number | null = null;
+    let lost = false;
+
+    function draw() {
+      raf = null;
+      if (lost) return;
+      resize();
+
+      current.x += (target.x - current.x) * 0.12;
+      current.y += (target.y - current.y) * 0.12;
+
+      gl!.uniform2f(
+        uOffset,
+        current.x * strength,
+        // Damped: a full vertical shift drags rooflines up into the sky, where
+        // the disocclusion has nothing behind it, and reads as a comb.
+        current.y * strength * (1 / aspect) * 0.45,
+      );
+      gl!.drawArrays(gl!.TRIANGLES, 0, 3);
+
+      if (
+        Math.abs(target.x - current.x) > 0.0005 ||
+        Math.abs(target.y - current.y) > 0.0005
+      ) {
+        schedule();
+      }
+    }
+
+    function schedule() {
+      if (!lost && raf == null) raf = requestAnimationFrame(draw);
+    }
+
+    // A lost context leaves a blank canvas, and by now the fallback is hidden.
+    // Hand the image back rather than showing an empty header.
+    canvas.addEventListener('webglcontextlost', () => {
+      lost = true;
+      if (raf != null) cancelAnimationFrame(raf);
+      raf = null;
+      canvas.remove();
+      fallback.style.visibility = '';
+    });
+
+    root.addEventListener('pointermove', (event) => {
+      if (event.pointerType !== 'mouse') return;
+      const rect = root.getBoundingClientRect();
+      // -1..1, inverted so the foreground trails the cursor
+      target.x = -(((event.clientX - rect.left) / rect.width) * 2 - 1);
+      target.y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
+      schedule();
+    });
+    root.addEventListener('pointerleave', () => {
+      target.x = 0;
+      target.y = 0;
+      schedule();
+    });
+    window.addEventListener('resize', schedule);
+
+    draw();
+  }
+
+  function boot() {
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!fine.matches || still.matches) return;
+
+    document
+      .querySelectorAll<HTMLElement>('[data-depth-image]')
+      .forEach((el) => {
+        if (el.dataset.depthInit) return;
+        el.dataset.depthInit = '1';
+        init(el).catch((error) => console.error(error));
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+  document.addEventListener('astro:page-load', boot);
+</script>

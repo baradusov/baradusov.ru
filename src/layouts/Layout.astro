@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 
+import DepthImage from '../components/DepthImage.astro';
 import SlicedImage from '../components/SlicedImage.astro';
 
 interface Props {
@@ -70,7 +71,20 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
 
       {
         isIndex && (
-          <img class="hero" src="/hero.png" alt="" width="772" height="686" />
+          <DepthImage
+            class="hero"
+            src="/hero.png"
+            depth="/hero-depth.png"
+            alt=""
+            width={772}
+            height={686}
+            cutout={{
+              fill: '/hero-fill.png',
+              mask: '/hero-mask.png',
+              rect: [0.415486, 0.638004, 0.176582, 0.303609],
+              depth: 0.749,
+            }}
+          />
         )
       }
     </header>
@@ -307,8 +321,6 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
     @media (max-width: 600px) {
       .hero {
         height: 533px;
-        object-fit: cover;
-        object-position: center;
       }
     }
   </style>
