@@ -63,12 +63,6 @@ export const initNameReel = () => {
   const back = () => widthAt(index - 1) + gap;
 
   const render = () => {
-    const span = shift < 0 ? forward() : back();
-    const current = widthAt(index);
-    const target = widthAt(shift < 0 ? index + 1 : index - 1);
-    const progress = span ? Math.min(1, Math.abs(shift) / span) : 0;
-
-    host.style.width = `${current + (target - current) * progress}px`;
     slide.style.transform = `translateX(${shift}px)`;
   };
 
@@ -112,11 +106,19 @@ export const initNameReel = () => {
   };
 
   const settle = () => {
-    shift =
-      shift <= -forward() / 2 ? -forward() : shift >= back() / 2 ? back() : 0;
+    const landing =
+      shift <= -forward() / 2
+        ? index + 1
+        : shift >= back() / 2
+          ? index - 1
+          : index;
 
-    host.style.transition = `width ${EASE}`;
+    shift = landing > index ? -forward() : landing < index ? back() : 0;
+
+    // Ширину меняем следом за доводкой, а не вместе с ней.
     slide.style.transition = `transform ${EASE}`;
+    host.style.transition = `width ${EASE} 180ms`;
+    host.style.width = `${widthAt(landing)}px`;
     render();
 
     settling = window.setTimeout(() => {
@@ -131,7 +133,7 @@ export const initNameReel = () => {
       host.style.width = '';
       host.style.transition = '';
       slide.style.transition = '';
-    }, 200);
+    }, 400);
   };
 
   const spin = () => {
@@ -183,8 +185,10 @@ export const initNameReel = () => {
     speed = 0;
     moment = performance.now();
 
+    // Окно замирает на текущей ширине: пока крутим, текст справа не двигается.
     host.style.transition = 'none';
     slide.style.transition = 'none';
+    host.style.width = `${widthAt(index)}px`;
     host.classList.add('is-dragging');
 
     pointer = event.clientX;
