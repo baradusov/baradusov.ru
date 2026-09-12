@@ -200,7 +200,7 @@ const hello = typographizeHtml(`
 
       if (ctx) paintAll(ctx, card.strokes);
 
-      if (who) who.textContent = card.message || 'Без подписи';
+      if (who) who.textContent = card.message;
     });
   };
 
@@ -375,6 +375,11 @@ const hello = typographizeHtml(`
     font-size: var(--text-2xs);
     line-height: var(--leading-snug);
     overflow-wrap: anywhere;
+  }
+
+  /* Держит строку, когда подписи нет: иначе карточки разной высоты. */
+  .card__who::after {
+    content: '\200b';
   }
 
   .card__link:hover .card__who {
