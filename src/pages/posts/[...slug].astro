@@ -10,7 +10,9 @@ export const getStaticPaths = async () => {
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
-    cacheKey: post.digest,
+    // `digest` is on the runtime entry but not on the public CollectionEntry
+    // type. It keys the experimental incremental build, so it has to stay.
+    cacheKey: (post as typeof post & { digest?: string | number }).digest,
   }));
 };
 
