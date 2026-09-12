@@ -38,7 +38,7 @@ const latestMovies = movies[0]?.data.slice(0, MOVIES) ?? [];
 const POSTCARDS = 4;
 
 const hello = typographizeHtml(`
-  Меня зовут <em>Нуриль</em>. Я работаю фронтендером в финтехе и живу
+  Меня зовут <em class="name" data-name>Нуриль</em>. Я работаю фронтендером в финтехе и живу
   в <s>Самаре</s> → <s>Санкт-Петербурге</s> → Тбилиси. Здесь я собираю всё,
   чем <a href="/now">занимаюсь</a>, и пишу дневник.
 `);
@@ -154,6 +154,7 @@ const hello = typographizeHtml(`
 <script>
   import { fetchPostcards, paintAll } from '../scripts/postcard-shared';
   import { initModuleDrag } from '../scripts/module-drag';
+  import { initNameReel } from '../scripts/name-reel';
 
   // Всё ищем внутри: при переходе «назад» ClientRouter подменяет DOM,
   // и ссылки, взятые при загрузке модуля, указывали бы на старые узлы.
@@ -209,6 +210,9 @@ const hello = typographizeHtml(`
   document.addEventListener('astro:page-load', () => {
     try {
       initModuleDrag();
+    } catch {}
+    try {
+      initNameReel();
     } catch {}
   });
 </script>
@@ -281,7 +285,9 @@ const hello = typographizeHtml(`
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .module {
+    .module,
+    .lead :global(.name),
+    .lead :global(.name__slide) {
       transition: none !important;
     }
   }
@@ -307,6 +313,49 @@ const hello = typographizeHtml(`
   .lead {
     font-size: var(--text-l);
     line-height: var(--leading-snug);
+  }
+
+  .lead :global(.name) {
+    --reel-gap: 0.5em;
+    --reel-mask: linear-gradient(
+        90deg,
+        transparent,
+        #000 12%,
+        #000 88%,
+        transparent
+      )
+      no-repeat;
+
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .lead :global(.name.is-live) {
+    cursor: ew-resize;
+  }
+
+  .lead :global(.name.is-dragging) {
+    user-select: none;
+    -webkit-mask: var(--reel-mask);
+    mask: var(--reel-mask);
+  }
+
+  .lead :global(.name__slide) {
+    position: relative;
+    display: inline-block;
+  }
+
+  .lead :global(.name.is-dragging .name__slide::before) {
+    content: attr(data-prev);
+    position: absolute;
+    right: calc(100% + var(--reel-gap));
+  }
+
+  .lead :global(.name.is-dragging .name__slide::after) {
+    content: attr(data-next);
+    position: absolute;
+    left: calc(100% + var(--reel-gap));
   }
 
   .entries > li + li {
