@@ -153,35 +153,35 @@ const hello = typographizeHtml(`
 </Layout>
 
 <script>
-  import { PAPER, fetchPostcards, paintAll } from '../scripts/postcard-shared';
+  import { fetchPostcards, paintAll } from '../scripts/postcard-shared';
 
-  const root = document.querySelector<HTMLElement>('[data-guestbook]');
-  const items = [...(root?.querySelectorAll<HTMLElement>('.card') ?? [])];
-  const note = root?.querySelector<HTMLElement>('[data-note]');
-
-  const say = (text: string) => {
-    if (!note) return;
-    note.textContent = text;
-    note.hidden = false;
-  };
-
-  const clear = () => items.forEach((item) => item.remove());
-
+  // Всё ищем внутри: при переходе «назад» ClientRouter подменяет DOM,
+  // и ссылки, взятые при загрузке модуля, указывали бы на старые узлы.
   const load = async () => {
+    const root = document.querySelector<HTMLElement>('[data-guestbook]');
+    if (!root) return;
+
+    const items = [...root.querySelectorAll<HTMLElement>('.card')];
+    const note = root.querySelector<HTMLElement>('[data-note]');
     if (!items.length) return;
+
+    const say = (text: string) => {
+      items.forEach((item) => item.remove());
+      if (!note) return;
+      note.textContent = text;
+      note.hidden = false;
+    };
 
     let cards;
 
     try {
       cards = await fetchPostcards(items.length);
     } catch {
-      clear();
       say('Не получилось загрузить записки.');
       return;
     }
 
     if (!cards.length) {
-      clear();
       say('Пока пусто — можно быть первым.');
       return;
     }
@@ -204,7 +204,7 @@ const hello = typographizeHtml(`
     });
   };
 
-  void load();
+  document.addEventListener('astro:page-load', load);
 </script>
 
 <style is:global>
