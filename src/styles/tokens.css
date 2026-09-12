@@ -11,7 +11,6 @@
   --space-xl: 32px;
   --space-2xl: 48px;
 
-  /* Смысловые псевдонимы для вёрстки текста. */
   --space-para: var(--space-m); /* между абзацами */
   --space-after-heading: var(--space-s); /* от заголовка до его текста */
   --space-before-heading: var(

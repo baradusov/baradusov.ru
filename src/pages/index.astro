@@ -6,7 +6,6 @@ import SectionLabel from '../components/SectionLabel.astro';
 import { typographize, typographizeHtml } from '../utils/typography.mjs';
 import { countByYear, formatDate, getPosts } from '../utils/posts';
 
-/** Сколько показываем в модулях, где список усечён. */
 const POSTS = 9;
 const SHELF = 3;
 const MOVIES = 6;
@@ -212,8 +211,6 @@ const hello = typographizeHtml(`
     max-width: var(--page-width-wide);
   }
 
-  /* Шапка и подвал остаются в текстовой колонке: широкая сетка — только
-     для модулей. */
   body:has(.hub) header > *,
   body:has(.hub) footer {
     max-width: var(--page-width);
@@ -237,7 +234,6 @@ const hello = typographizeHtml(`
     grid-column: 1 / -1;
   }
 
-  /* Слева «Привет» и «Связь», справа во всю их высоту — «Пишу». */
   .module--hello {
     grid-column: 1;
     grid-row: 1;
@@ -253,7 +249,6 @@ const hello = typographizeHtml(`
     grid-row: 1 / span 2;
   }
 
-  /* Идиома открытки из гостевой: рамка и жёсткая тень, без скруглений. */
   .module {
     display: flex;
     flex-direction: column;
@@ -267,7 +262,6 @@ const hello = typographizeHtml(`
     margin-top: var(--space-s);
   }
 
-  /* Прижата к низу, чтобы край модулей совпадал при любой длине списка. */
   .more {
     margin-top: auto;
     padding-top: var(--space-s);
@@ -343,8 +337,6 @@ const hello = typographizeHtml(`
     border-top: 0;
   }
 
-  /* --- Гостевая книга --- */
-
   .cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -371,15 +363,11 @@ const hello = typographizeHtml(`
 
   .card__who {
     display: block;
+    min-height: 1lh;
     margin-top: var(--space-2xs);
     font-size: var(--text-2xs);
     line-height: var(--leading-snug);
     overflow-wrap: anywhere;
-  }
-
-  /* Держит строку, когда подписи нет: иначе карточки разной высоты. */
-  .card__who::after {
-    content: '\200b';
   }
 
   .card__link:hover .card__who {
@@ -413,7 +401,6 @@ const hello = typographizeHtml(`
       grid-template-columns: minmax(0, 1fr);
     }
 
-    /* В одну колонку верхний ряд — это первый проект. */
     .projects > li:nth-child(-n + 3) {
       padding-top: var(--space-xs);
       border-top: 1px solid var(--color-rule);

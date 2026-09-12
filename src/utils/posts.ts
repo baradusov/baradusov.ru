@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 
 type Post = CollectionEntry<'posts'>;
 
-/** Опубликованные записи, новые сверху. */
 export async function getPosts(): Promise<Post[]> {
   const posts = await getCollection('posts', ({ data }) => data.draft !== true);
 
@@ -13,7 +12,6 @@ export async function getPosts(): Promise<Post[]> {
   );
 }
 
-/** Годы по убыванию и записи каждого года. */
 export function byYear(posts: Post[]) {
   const groups = posts.reduce<Record<string, Post[]>>((acc, post) => {
     const year = new Date(post.data.created).getFullYear();
@@ -38,7 +36,6 @@ export function formatDate(value: Date | string, withYear = false) {
   return withYear ? `${day}.${month}.${year}` : `${day}.${month}`;
 }
 
-/** Сколько всего в коллекции, разложенной по годам. */
 export function countByYear(entries: { data: unknown[] }[]) {
   return entries.reduce((acc, entry) => entry.data.length + acc, 0);
 }

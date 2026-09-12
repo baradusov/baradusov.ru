@@ -137,7 +137,6 @@ blockquote {
 }
 
 @media (max-width: 600px) {
-  /* На узкой колонке без переносов правый край рвётся в клочья. */
   p,
   li,
   blockquote {
@@ -190,7 +189,6 @@ pre {
   line-height: var(--leading-snug);
 }
 
-/* Ссылку отличает подчёркивание, а не цвет. */
 a {
   color: inherit;
   text-decoration-line: underline;
@@ -256,7 +254,6 @@ main :is(section, .content) > :is(h1, h2, h3, h4) + * {
   margin-top: var(--space-xs);
 }
 
-/* Цитату видно по отступу, курсив не нужен. */
 blockquote {
   padding-left: var(--space-m);
   border-left: 2px solid var(--color-rule);
@@ -271,7 +268,6 @@ figure > figcaption {
   font-style: italic;
 }
 
-/* Моноширинные цифры, чтобы столбик дат не плясал. */
 time {
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum' 1;

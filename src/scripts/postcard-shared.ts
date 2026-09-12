@@ -1,6 +1,5 @@
 // Общее для страницы гостевой книги и модуля на главной.
 
-/** Исходные координаты холста — рисуем в них. */
 export const W = 480;
 export const H = 800;
 
@@ -85,7 +84,6 @@ export function paintAll(ctx: CanvasRenderingContext2D, strokes: Stroke[]) {
   for (const stroke of strokes) paintStroke(ctx, stroke);
 }
 
-/** Последние записки; бросает, если хранилище недоступно. */
 export async function fetchPostcards(limit: number): Promise<Card[]> {
   const response = await fetch(`${API}/api/postcards?limit=${limit}`);
 

@@ -3,12 +3,10 @@
 
 const NBSP = ' ';
 
-/** Прямые кавычки → «ёлочки», вложенные → „лапки“. */
 function quotes(value) {
   let depth = 0;
 
   return value.replace(/"/g, () => {
-    // Открывающая, если глубина чётная; на нечётной — закрываем.
     const open = depth % 2 === 0;
     const pair = depth < 2 ? ['«', '»'] : ['„', '“'];
 
@@ -35,8 +33,6 @@ function typographize(value) {
 
   s = s.replace(/(\p{L})'(\p{L})/gu, '$1’$2');
 
-  // --- Неразрывные пробелы ---
-
   // Предлоги в один-два знака. Лукбехайнд, иначе в «и в лесу»
   // второй остался бы без неразрывного.
   s = s.replace(
@@ -58,10 +54,8 @@ function typographize(value) {
 
 /** То же по строке с разметкой: теги не трогает, но видит сквозь них. */
 function typographizeHtml(html) {
-  // Схлопываем переносы: правилам нужен одиночный пробел.
   const flat = html.replace(/\s+/g, ' ').trim();
 
-  // Нечётные куски — теги, отдаём как есть.
   let s = flat
     .split(/(<[^>]+>)/)
     .map((part, i) => (i % 2 ? part : typographize(part)))
@@ -73,7 +67,6 @@ function typographizeHtml(html) {
     `$1${NBSP}`,
   );
 
-  // Тире и стрелка сразу после закрывающего тега.
   s = s.replace(/(<\/[^>]+>) ([—→])/g, `$1${NBSP}$2`);
 
   return s;

@@ -2,7 +2,6 @@
 
 import { typographize } from '../utils/typography.mjs';
 
-/** Узлы, внутрь которых лезть нельзя. */
 const OPAQUE = new Set(['code', 'inlineCode', 'html', 'mdxjsEsm']);
 
 export default function remarkTypography() {
