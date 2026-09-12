@@ -333,6 +333,8 @@ const hello = typographizeHtml(`
 
   .lead :global(.name.is-live) {
     cursor: ew-resize;
+    touch-action: pan-y;
+    -webkit-touch-callout: none;
   }
 
   .lead :global(.name.is-dragging) {

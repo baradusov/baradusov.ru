@@ -1,5 +1,9 @@
 const NAMES = ['Нуриль', 'Нурик', 'Юрий', 'Николай'];
 const EASE = '180ms ease';
+const FRICTION = 0.94;
+const MAX_SPEED = 3;
+const MIN_SPEED = 0.05;
+const CALM = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 export const initNameReel = () => {
   const host = document.querySelector<HTMLElement>('[data-name]');
@@ -21,7 +25,10 @@ export const initNameReel = () => {
   let gap = 0;
   let shift = 0;
   let settling = 0;
+  let spinning = 0;
   let pointer = 0;
+  let speed = 0;
+  let moment = 0;
 
   const wrap = (position: number) =>
     ((position % NAMES.length) + NAMES.length) % NAMES.length;
@@ -82,7 +89,17 @@ export const initNameReel = () => {
   };
 
   const onMove = (event: PointerEvent) => {
-    shift += event.clientX - pointer;
+    const now = performance.now();
+    const step = event.clientX - pointer;
+    const passed = now - moment;
+
+    if (passed > 0) {
+      const last = step / passed;
+      speed = passed > 100 ? last : speed * 0.3 + last * 0.7;
+    }
+
+    moment = now;
+    shift += step;
     pointer = event.clientX;
     normalize();
     render();
@@ -91,12 +108,10 @@ export const initNameReel = () => {
   const stop = () => {
     window.removeEventListener('pointermove', onMove);
     window.removeEventListener('pointerup', onUp);
-    window.removeEventListener('pointercancel', onUp);
+    window.removeEventListener('pointercancel', onCancel);
   };
 
-  const onUp = () => {
-    stop();
-
+  const settle = () => {
     shift =
       shift <= -forward() / 2 ? -forward() : shift >= back() / 2 ? back() : 0;
 
@@ -119,13 +134,54 @@ export const initNameReel = () => {
     }, 200);
   };
 
+  const spin = () => {
+    const now = performance.now();
+    const passed = Math.min(now - moment, 50);
+
+    moment = now;
+    shift += speed * passed;
+    speed *= FRICTION ** (passed / 16.7);
+    normalize();
+    render();
+
+    if (Math.abs(speed) < MIN_SPEED) {
+      settle();
+      return;
+    }
+
+    spinning = requestAnimationFrame(spin);
+  };
+
+  const onUp = () => {
+    stop();
+
+    if (CALM.matches || Math.abs(speed) < MIN_SPEED) {
+      settle();
+      return;
+    }
+
+    speed = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, speed));
+    moment = performance.now();
+    spinning = requestAnimationFrame(spin);
+  };
+
+  // Отмену шлёт браузер, когда забирает жест себе, — крутить уже нечего.
+  const onCancel = () => {
+    speed = 0;
+    onUp();
+  };
+
   const onDown = (event: PointerEvent) => {
-    if (event.button !== 0 || event.pointerType === 'touch') return;
+    if (event.button !== 0) return;
 
     event.preventDefault();
     clearTimeout(settling);
+    cancelAnimationFrame(spinning);
     stop();
     measure();
+
+    speed = 0;
+    moment = performance.now();
 
     host.style.transition = 'none';
     slide.style.transition = 'none';
@@ -136,7 +192,7 @@ export const initNameReel = () => {
 
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerup', onUp);
-    window.addEventListener('pointercancel', onUp);
+    window.addEventListener('pointercancel', onCancel);
   };
 
   host.addEventListener('pointerdown', onDown);
@@ -146,6 +202,7 @@ export const initNameReel = () => {
     'astro:before-swap',
     () => {
       clearTimeout(settling);
+      cancelAnimationFrame(spinning);
       stop();
       host.removeEventListener('pointerdown', onDown);
     },
