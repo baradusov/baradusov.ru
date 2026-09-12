@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 
 import Layout from '../layouts/Layout.astro';
+import { countByYear } from '../utils/posts';
 
 const unsortedBooks = await getCollection('books');
 
@@ -13,7 +14,7 @@ const books = unsortedBooks.sort((a, b) => {
   return Number(b.id) - Number(a.id);
 });
 
-const counter = books.reduce((acc, year) => year.data.length + acc, 0);
+const counter = countByYear(books);
 ---
 
 <Layout title="Книги | Нуриль Барадусов" description="Книжная полка">

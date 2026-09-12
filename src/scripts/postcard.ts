@@ -1,16 +1,19 @@
-const W = 480;
-const H = 800;
-
-const INK = '#000000';
-const PAPER = '#ffffff';
+import {
+  API,
+  H,
+  INK,
+  PAPER,
+  W,
+  paintAll,
+  paintStroke,
+  type Card,
+  type Stroke,
+  type Tool,
+} from './postcard-shared';
 
 const DRAFT = 'postcards.draft.v1';
 const MINE = 'postcards.mine.v1';
 const MINE_TTL = 30 * 24 * 60 * 60 * 1000;
-
-const API =
-  import.meta.env.PUBLIC_POSTCARDS_API?.replace(/\/$/, '') ??
-  'http://localhost:4400';
 
 const TEXT = {
   emptyBox: 'Здесь пока пусто.',
@@ -38,83 +41,11 @@ const TEXT = {
 
 const MESSAGE_MAX = 70;
 
-type Tool = 'pen' | 'eraser';
-
-type Stroke = {
-  tool: Tool;
-  size: number;
-  points: number[];
-};
-
-type Card = {
-  id: string;
-  pending?: boolean;
-  message: string;
-  link: string;
-  createdAt: number;
-  strokes: Stroke[];
-};
-
 const canAnimate = () => typeof Element.prototype.animate === 'function';
 
 const calm = () =>
   !canAnimate() ||
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-function paintStroke(
-  ctx: CanvasRenderingContext2D,
-  stroke: Stroke,
-  upTo = Infinity,
-) {
-  const p = stroke.points;
-  const count = Math.min(p.length / 2, upTo);
-  if (count < 1) return;
-
-  const color = stroke.tool === 'eraser' ? PAPER : INK;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  ctx.lineWidth = stroke.size;
-  ctx.strokeStyle = color;
-  ctx.fillStyle = color;
-
-  if (count === 1) {
-    ctx.beginPath();
-    ctx.arc(p[0], p[1], stroke.size / 2, 0, Math.PI * 2);
-    ctx.fill();
-    return;
-  }
-
-  ctx.beginPath();
-  ctx.moveTo(p[0], p[1]);
-
-  if (count === 2) {
-    ctx.lineTo(p[2], p[3]);
-  } else {
-    for (let i = 1; i < count - 1; i++) {
-      const cx = p[i * 2];
-      const cy = p[i * 2 + 1];
-      ctx.quadraticCurveTo(
-        cx,
-        cy,
-        (cx + p[i * 2 + 2]) / 2,
-        (cy + p[i * 2 + 3]) / 2,
-      );
-    }
-    ctx.lineTo(p[(count - 1) * 2], p[(count - 1) * 2 + 1]);
-  }
-
-  ctx.stroke();
-}
-
-function paintAll(ctx: CanvasRenderingContext2D, strokes: Stroke[]) {
-  ctx.save();
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.fillStyle = PAPER;
-  ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-  ctx.restore();
-
-  for (const stroke of strokes) paintStroke(ctx, stroke);
-}
 
 function safeUrl(raw: string): string {
   const value = raw.trim();

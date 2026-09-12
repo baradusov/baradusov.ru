@@ -121,79 +121,10 @@ const canonical = `https://baradusov.ru${Astro.url.pathname}`;
       margin-top: var(--space-block);
     }
 
+    /* Под центрованным разделителем. */
     footer {
       font-size: var(--text-s);
-    }
-
-    /* --- Лента постов на главной ---------------------------------------- */
-
-    .feed section {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-    }
-
-    /* В сетке ритм задают колонки, а не вертикальные отступы: обе колонки
-       начинаются от верха строки, иначе год уезжает от списка. */
-    .feed .year,
-    .feed .posts {
-      margin-top: 0;
-    }
-
-    .feed .year {
-      grid-column: 1;
-    }
-
-    .feed .posts {
-      grid-column: 2 / -1;
-    }
-
-    .feed .posts > li + li {
-      margin-top: var(--space-xs);
-    }
-
-    .feed .post-link {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: var(--space-m);
-    }
-
-    /* Год и заголовки постов набраны одинаково — за счёт этого первые строки
-       в колонках стоят на одной базовой линии. */
-    .feed .year,
-    .feed .post-link h3 {
-      font-size: var(--text-l);
-      line-height: var(--leading-snug);
-    }
-
-    .feed .post-link h3 {
-      text-wrap: pretty;
-    }
-
-    .feed .post-link time {
-      flex: none;
-    }
-
-    @media (min-width: 601px) {
-      .feed .year {
-        position: sticky;
-        top: 0;
-        align-self: self-start;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .feed section {
-        display: block;
-      }
-
-      .feed .year {
-        margin-bottom: var(--space-s);
-      }
-    }
-
-    .feed > * + * {
-      margin-top: var(--space-block);
+      text-align: center;
     }
 
     /* --- Шапка с картинкой ---------------------------------------------- */

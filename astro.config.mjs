@@ -15,4 +15,11 @@ export default defineConfig({
   image: {
     layout: 'constrained',
   },
+  vite: {
+    server: {
+      // Чтобы дев-сервер открывался с телефона по MagicDNS-имени тейлнета.
+      // На сборку и прод не влияет.
+      allowedHosts: ['.ts.net'],
+    },
+  },
 });

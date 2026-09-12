@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { byYear, formatDate, getPosts } from '../utils/posts';
+
+const posts = await getPosts();
+const years = byYear(posts);
+---
+
+<Layout
+  title="Архив | Нуриль Барадусов"
+  description="Все записи дневника с 2018 года.">
+  <main>
+    <h1>Архив ({posts.length})</h1>
+
+    <div class="feed">
+      {
+        years.map(({ year, posts }) => (
+          <section>
+            <h3 class="year">{year}</h3>
+
+            <ul class="posts">
+              {posts.map((post) => (
+                <li>
+                  <div class="post-link">
+                    <a href={`/posts/${post.id}`}>
+                      <h3>{post.data.title}</h3>
+                    </a>
+                    <time datetime={String(post.data.created)}>
+                      {formatDate(post.data.created)}
+                    </time>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .feed section {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  /* В сетке ритм задают колонки: обе начинаются от верха строки. */
+  .feed .year,
+  .feed .posts {
+    margin-top: 0;
+  }
+
+  .feed .year {
+    grid-column: 1;
+  }
+
+  .feed .posts {
+    grid-column: 2 / -1;
+  }
+
+  .feed .posts > li + li {
+    margin-top: var(--space-xs);
+  }
+
+  .feed .post-link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-m);
+  }
+
+  /* Год и заголовки набраны одинаково — первые строки стоят на одной линии. */
+  .feed .year,
+  .feed .post-link h3 {
+    font-size: var(--text-l);
+    line-height: var(--leading-snug);
+  }
+
+  .feed .post-link h3 {
+    text-wrap: pretty;
+  }
+
+  .feed .post-link time {
+    flex: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .feed > * + * {
+    margin-top: var(--space-block);
+  }
+
+  @media (min-width: 601px) {
+    .feed .year {
+      position: sticky;
+      top: 0;
+      align-self: self-start;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .feed section {
+      display: block;
+    }
+
+    .feed .year {
+      margin-bottom: var(--space-s);
+    }
+  }
+</style>
