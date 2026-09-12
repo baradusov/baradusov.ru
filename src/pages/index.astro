@@ -48,7 +48,7 @@ const hello = typographizeHtml(`
   title="Нуриль Барадусов"
   description="Здесь я собираю всё, чем занимаюсь и пишу дневник.">
   <main class="hub">
-    <div class="modules">
+    <div class="modules" data-modules>
       <section class="module module--hello">
         <SectionLabel title="Привет" />
         <p class="lead" set:html={hello} />
@@ -153,6 +153,7 @@ const hello = typographizeHtml(`
 
 <script>
   import { fetchPostcards, paintAll } from '../scripts/postcard-shared';
+  import { initModuleDrag } from '../scripts/module-drag';
 
   // Всё ищем внутри: при переходе «назад» ClientRouter подменяет DOM,
   // и ссылки, взятые при загрузке модуля, указывали бы на старые узлы.
@@ -204,6 +205,12 @@ const hello = typographizeHtml(`
   };
 
   document.addEventListener('astro:page-load', load);
+  // Пасхалка не должна ронять страницу, если что-то в ней сломается.
+  document.addEventListener('astro:page-load', () => {
+    try {
+      initModuleDrag();
+    } catch {}
+  });
 </script>
 
 <style is:global>
@@ -224,6 +231,7 @@ const hello = typographizeHtml(`
   }
 
   .modules {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-l);
@@ -247,6 +255,35 @@ const hello = typographizeHtml(`
   .module--writing {
     grid-column: 2;
     grid-row: 1 / span 2;
+  }
+
+  .modules.is-dragging {
+    user-select: none;
+    overflow-anchor: none;
+  }
+
+  .modules.is-dragging .module {
+    overflow: hidden;
+  }
+
+  .module :global(.section-label) {
+    cursor: grab;
+  }
+
+  .module.is-dragging {
+    position: relative;
+    z-index: 2;
+    box-shadow: 10px 10px 0 var(--color-rule);
+  }
+
+  .module.is-dragging :global(.section-label) {
+    cursor: grabbing;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .module {
+      transition: none !important;
+    }
   }
 
   .module {
