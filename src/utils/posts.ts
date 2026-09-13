@@ -40,11 +40,7 @@ export function countByYear(entries: { data: unknown[] }[]) {
   return entries.reduce((acc, entry) => entry.data.length + acc, 0);
 }
 
-/**
- * Полка: сначала разделы с именем («Читаю», «Смотрю»), следом годы от свежих
- * к старым. Числовые ключи в JS-объекте сами лезут в начало по возрастанию,
- * поэтому порядок задаём явно.
- */
+/** Разделы с именем, следом годы по убыванию. */
 export function sortByShelf<T extends { id: string }>(entries: T[]) {
   return [...entries].sort((a, b) => {
     const na = Number(a.id);
@@ -57,4 +53,23 @@ export function sortByShelf<T extends { id: string }>(entries: T[]) {
 
     return nb - na;
   });
+}
+
+/** Что в процессе, добор законченными сквозь годы. Ещё отдаёт число текущих. */
+export function buildShelf<T>(
+  entries: { id: string; data: T[] }[],
+  current: string,
+  size: number,
+) {
+  const now = entries.find((entry) => entry.id === current)?.data ?? [];
+
+  const done = entries
+    .filter((entry) => entry.id !== current)
+    .sort((a, b) => Number(b.id) - Number(a.id))
+    .flatMap((entry) => entry.data);
+
+  return {
+    items: [...now, ...done].slice(0, size),
+    active: Math.min(now.length, size),
+  };
 }

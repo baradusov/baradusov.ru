@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import { typographize, typographizeHtml } from '../utils/typography.mjs';
-import { countByYear, formatDate, getPosts } from '../utils/posts';
+import { buildShelf, countByYear, formatDate, getPosts } from '../utils/posts';
 
 const POSTS = 9;
 const SHELF = 3;
@@ -18,27 +18,21 @@ const posts = await getPosts();
 const books = await getCollection('books');
 const booksCount = countByYear(books);
 
-// В «Читаю» две книги, а полке нужно три — добираем последними дочитанными.
-const lastYear = [...books]
-  .filter((entry) => entry.id !== 'Читаю')
-  .sort((a, b) => Number(b.id) - Number(a.id))[0];
-
-const readingNow = books.find((entry) => entry.id === 'Читаю')?.data ?? [];
-const reading = [...readingNow, ...(lastYear?.data ?? [])].slice(0, SHELF);
-const readingActive = Math.min(readingNow.length, SHELF);
+const { items: reading, active: readingActive } = buildShelf(
+  books,
+  'Читаю',
+  SHELF,
+);
 const readingDone = reading.length > readingActive;
 
 const movies = await getCollection('movies');
 const moviesCount = countByYear(movies);
 
-// Как и с книгами: «Смотрю» редко полное, добираем последними просмотренными.
-const lastMovieYear = [...movies]
-  .filter((entry) => entry.id !== 'Смотрю')
-  .sort((a, b) => Number(b.id) - Number(a.id))[0];
-
-const watchingNow = movies.find((entry) => entry.id === 'Смотрю')?.data ?? [];
-const watching = [...watchingNow, ...(lastMovieYear?.data ?? [])].slice(0, SHELF);
-const watchingActive = Math.min(watchingNow.length, SHELF);
+const { items: watching, active: watchingActive } = buildShelf(
+  movies,
+  'Смотрю',
+  SHELF,
+);
 const watchingDone = watching.length > watchingActive;
 
 const POSTCARDS = 4;
@@ -416,7 +410,7 @@ const hello = typographizeHtml(`
   }
 
   /* Подобрана так, чтобы «Читаю» кончалось вровень со «Смотрю». */
-  /* Подпись садится на ту же сетку, что и полка: слово над своей колонкой. */
+  /* Та же сетка, что у полки: слово над своей колонкой. */
   .caption {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

@@ -1,16 +1,6 @@
 /**
- * Разовик: находит фильмы в TMDB и раскладывает постеры в public/movies.
- *
- *   TMDB_API_KEY=... bun run scripts/fetch-posters.ts
- *   TMDB_API_KEY=... bun run scripts/fetch-posters.ts --dry-run
- *   TMDB_API_KEY=... bun run scripts/fetch-posters.ts --force
- *
- * Ключ берётся с themoviedb.org/settings/api — подходит и v3 (api_key),
- * и v4 (Bearer, начинается с «eyJ»).
- *
- * Скрипт идемпотентен: фильмы, у которых posterUrl уже есть и файл на месте,
- * пропускаются. Что не нашлось — печатается списком в конце, такие постеры
- * кладём в public/movies руками и дописываем posterUrl.
+ * Постеры из TMDB в public/movies. Ключ — с themoviedb.org/settings/api.
+ * Флаги: --dry-run, --force, --audit. Без флагов берёт только новое.
  */
 
 import { mkdir, unlink, writeFile } from 'node:fs/promises';
@@ -47,30 +37,26 @@ type Found = {
   year: number;
 };
 
-/**
- * Поиск берёт первый результат с постером, и на неоднозначных названиях
- * промахивается: находит одноимённый мусор с недавним id вместо нужного кино.
- * Здесь — выверенные вручную id по ключу «originalTitle|releaseYear».
- */
+/** Выверенные руками id там, где поиск промахивается. */
 const OVERRIDES: Record<string, { kind: 'movie' | 'tv'; id: number }> = {
-  // Вонг Карвай, 墮落天使 — поиск давал одноимённый фильм-однодневку.
+  // Вонг Карвай, а не однодневка.
   'Fallen Angels|1995': { kind: 'movie', id: 11220 },
   // Сериал, а не фильм.
   'Wayne|2019': { kind: 'tv', id: 84231 },
   'Normal People|2020': { kind: 'tv', id: 89905 },
-  // В данных стоит 2005, у Нила Армфилда с Хитом Леджером — 2006.
+  // В данных 2005, у фильма с Леджером — 2006.
   'Candy|2005': { kind: 'movie', id: 4441 },
-  // Аниме Осиямы, а не одноимённый триллер «Don't Look Back».
+  // Аниме Осиямы, а не «Don't Look Back».
   'Look Back|2024': { kind: 'movie', id: 1244492 },
-  // Сериал Apple TV+, а не одноимённый инди-фильм того же года.
+  // Сериал Apple TV+, а не инди-фильм.
   'Severance|2022': { kind: 'tv', id: 95396 },
-  // Фильм Шан Хидер вышел в 2021-м, и на 2020-й приходится другая «Кода».
+  // Фильм 2021-го, на 2020-й приходится другая «Кода».
   'CODA|2020': { kind: 'movie', id: 776503 },
-  // Фильм Маккарти вышел в 2021-м, а на 2020-й попадает мультсериал про панду.
+  // Фильм 2021-го, на 2020-й — мультсериал про панду.
   'Stillwater|2020': { kind: 'movie', id: 616651 },
 };
 
-/** Для сравнения названий: регистр, пунктуация и пробелы не в счёт. */
+/** Регистр, пунктуация и пробелы не в счёт. */
 function norm(value: string) {
   return stripSeason(value)
     .toLowerCase()
@@ -83,11 +69,7 @@ function stripSeason(title: string) {
   return title.replace(/\s*\([^)]*сезон[^)]*\)\s*$/i, '').trim();
 }
 
-/**
- * JSON.stringify по объекту выкладывает ключи-числа по возрастанию, и годы
- * переворачиваются. Пишем вручную: сначала разделы с именем («Смотрю»),
- * затем годы от свежих к старым — как в файле и заведено.
- */
+/** JSON.stringify перевернул бы годы: ключи-числа он сортирует по возрастанию. */
 function serialize(data: Record<string, Movie[]>) {
   const years = Object.keys(data).sort((a, b) => {
     const na = Number(a);
@@ -165,12 +147,7 @@ async function search(
     (r: Result) => r.poster_path,
   );
 
-  /*
-   * Короткие английские названия («Lamb», «Enemy», «Tetris») выдают кучу
-   * однофамильцев, и первый результат сплошь и рядом не тот. Поэтому сперва
-   * ищем точные совпадения названия и только потом соглашаемся на первое
-   * попавшееся.
-   */
+  /* У «Lamb» или «Tetris» первый результат обычно не тот — нужно точное. */
   const target = norm(query);
   const exact = results.filter((r) =>
     [r.title, r.original_title, r.name, r.original_name]
@@ -189,10 +166,7 @@ async function search(
   }));
 }
 
-/**
- * Пробуем по очереди: оригинальное название с годом, русское с годом,
- * то же самое как сериал, и уже под конец — без года.
- */
+/** Ищет фильм: подмены, потом поиск от строгого к вольному. */
 async function find(movie: Movie): Promise<Found | null> {
   const override =
     OVERRIDES[`${movie.originalTitle ?? movie.title}|${movie.releaseYear}`];
@@ -218,19 +192,16 @@ async function find(movie: Movie): Promise<Found | null> {
   const ru = stripSeason(movie.title);
   const orig = movie.originalTitle ? stripSeason(movie.originalTitle) : null;
 
-  /* «1997-2002» в поиск не годится — берём первый год. */
+  /* «1997-2002» не годится — берём первый год. */
   const year = movie.releaseYear.slice(0, 4);
 
-  /* Диапазон лет или «(1 сезон)» в названии — это сериал, его и ищем первым. */
+  /* Диапазон лет или «сезон» в названии — сериал. */
   const isSeries =
     movie.releaseYear.includes('-') || /сезон/i.test(movie.title);
   const kinds: ('movie' | 'tv')[] = isSeries ? ['tv', 'movie'] : ['movie', 'tv'];
   const queries = [orig, ru].filter((q): q is string => Boolean(q));
 
-  /*
-   * Проходы от строгого к вольному: точное совпадение с годом, точное без
-   * года, и только под конец — первый попавшийся результат.
-   */
+  /* Точное с годом, точное без года, и лишь потом первое попавшееся. */
   const passes: { year?: string; strict: boolean }[] = [
     { year, strict: true },
     { strict: true },
@@ -249,24 +220,15 @@ async function find(movie: Movie): Promise<Found | null> {
 
     if (!found.length) continue;
 
-    /*
-     * Одноимённых работ бывает несколько: «Severance» — сериал Apple TV+ и
-     * инди-фильм того же года, «Виновный» — датский оригинал и американский
-     * ремейк, «Чёрное зеркало» — сериал и полнометражный «Бандерснэтч».
-     */
+    /* Точных совпадений бывает несколько: сериал и фильм, оригинал и ремейк. */
     if (pass.strict) {
       const ours = Number(year);
 
-      /* Меньше — лучше; сравниваем по порядку. */
+      /* Меньше — лучше, сравниваем по порядку. */
       const rank = (c: Found): number[] => [
-        /* У сериала берём сериал: одноимённый фильм рядом бывает всегда. */
+        /* Сериалу — сериал. */
         isSeries && c.kind !== 'tv' ? 1 : 0,
-        /*
-         * Год отсекает ремейки, но у сериала TMDB отдаёт год первого сезона,
-         * а у нас может стоять год седьмого — там сверять нечего. Запись без
-         * даты выхода — обычно мусорный дубль, и её надо штрафовать, а не
-         * засчитывать как точное попадание.
-         */
+        /* Год отсекает ремейки. У сериала он врёт, без даты — мусорный дубль. */
         isSeries ? 0 : c.year ? Math.abs(c.year - ours) : 50,
         -c.popularity,
       ];
@@ -304,10 +266,7 @@ const byYear: Record<string, Movie[]> = JSON.parse(
   await Bun.file(MOVIES_JSON).text(),
 );
 
-/**
- * Сверка: по id из имени файла спрашиваем у TMDB, что это за кино,
- * и сравниваем с нашими названиями. Ничего не качает и не пишет.
- */
+/** Сверка: что за кино под этим id. Ничего не качает и не пишет. */
 if (audit) {
   const checked = new Set<string>();
   const bad: string[] = [];
@@ -352,10 +311,7 @@ if (audit) {
       const theirYear = Number(date.slice(0, 4));
       const ourYear = Number(movie.releaseYear.slice(0, 4));
 
-      /*
-       * У сериала TMDB отдаёт год первого сезона, а в списке может стоять год
-       * седьмого — сверять тут нечего.
-       */
+      /* У сериала TMDB отдаёт год первого сезона — сверять нечего. */
       const isSeries =
         movie.releaseYear.includes('-') || /сезон/i.test(movie.title);
       const yearOk =
@@ -384,7 +340,7 @@ if (audit) {
 
 await mkdir(POSTERS_DIR, { recursive: true });
 
-/** Один и тот же фильм в разных годах (пересмотры) ищем и качаем один раз. */
+/** Пересмотры ищем и качаем один раз. */
 const seen = new Map<string, string | null>();
 const missing: string[] = [];
 const changed: string[] = [];
@@ -454,7 +410,7 @@ for (const [year, movies] of Object.entries(byYear)) {
 if (!dryRun) {
   await writeFile(MOVIES_JSON, serialize(byYear));
 
-  /* Постеры, на которые больше никто не ссылается, в репозитории не нужны. */
+  /* Постеры, на которые больше не ссылаются. */
   const used = new Set(
     Object.values(byYear)
       .flat()
