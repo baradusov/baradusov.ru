@@ -39,3 +39,22 @@ export function formatDate(value: Date | string, withYear = false) {
 export function countByYear(entries: { data: unknown[] }[]) {
   return entries.reduce((acc, entry) => entry.data.length + acc, 0);
 }
+
+/**
+ * Полка: сначала разделы с именем («Читаю», «Смотрю»), следом годы от свежих
+ * к старым. Числовые ключи в JS-объекте сами лезут в начало по возрастанию,
+ * поэтому порядок задаём явно.
+ */
+export function sortByShelf<T extends { id: string }>(entries: T[]) {
+  return [...entries].sort((a, b) => {
+    const na = Number(a.id);
+    const nb = Number(b.id);
+    const aNamed = Number.isNaN(na);
+    const bNamed = Number.isNaN(nb);
+
+    if (aNamed !== bNamed) return aNamed ? -1 : 1;
+    if (aNamed) return 0;
+
+    return nb - na;
+  });
+}

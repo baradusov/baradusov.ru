@@ -9,6 +9,7 @@
     "build": "astro check && astro build",
     "preview": "bunx --bun astro preview",
     "astro": "bunx --bun astro",
+    "posters": "bun run scripts/fetch-posters.ts",
     "format": "prettier --write 'src/**/*.{astro,ts,js}'"
   },
   "dependencies": {

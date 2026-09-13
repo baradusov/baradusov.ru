@@ -31,6 +31,7 @@ const movies = defineCollection({
       title: z.string(),
       originalTitle: z.string().optional(),
       releaseYear: z.string(),
+      posterUrl: z.string().optional(),
     }),
   ),
 });
