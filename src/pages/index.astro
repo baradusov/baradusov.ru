@@ -8,7 +8,6 @@ import { countByYear, formatDate, getPosts } from '../utils/posts';
 
 const POSTS = 9;
 const SHELF = 3;
-const MOVIES = 6;
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => a.data.order - b.data.order,
@@ -24,16 +23,23 @@ const lastYear = [...books]
   .filter((entry) => entry.id !== 'Читаю')
   .sort((a, b) => Number(b.id) - Number(a.id))[0];
 
-const reading = [
-  ...(books.find((entry) => entry.id === 'Читаю')?.data ?? []),
-  ...(lastYear?.data ?? []),
-].slice(0, SHELF);
+const readingNow = books.find((entry) => entry.id === 'Читаю')?.data ?? [];
+const reading = [...readingNow, ...(lastYear?.data ?? [])].slice(0, SHELF);
+const readingActive = Math.min(readingNow.length, SHELF);
+const readingDone = reading.length > readingActive;
 
-const movies = (await getCollection('movies')).sort(
-  (a, b) => Number(b.id) - Number(a.id),
-);
+const movies = await getCollection('movies');
 const moviesCount = countByYear(movies);
-const latestMovies = movies[0]?.data.slice(0, MOVIES) ?? [];
+
+// Как и с книгами: «Смотрю» редко полное, добираем последними просмотренными.
+const lastMovieYear = [...movies]
+  .filter((entry) => entry.id !== 'Смотрю')
+  .sort((a, b) => Number(b.id) - Number(a.id))[0];
+
+const watchingNow = movies.find((entry) => entry.id === 'Смотрю')?.data ?? [];
+const watching = [...watchingNow, ...(lastMovieYear?.data ?? [])].slice(0, SHELF);
+const watchingActive = Math.min(watchingNow.length, SHELF);
+const watchingDone = watching.length > watchingActive;
 
 const POSTCARDS = 4;
 
@@ -99,13 +105,25 @@ const hello = typographizeHtml(`
 
       <section class="module">
         <SectionLabel title="Читаю" count={booksCount} />
+        {
+          (readingActive > 0 || readingDone) && (
+            <p class="caption">
+              {readingActive > 0 && <span>сейчас</span>}
+              {readingDone && (
+                <span style={`grid-column: ${readingActive + 1}`}>
+                  последнее
+                </span>
+              )}
+            </p>
+          )
+        }
         <ul class="covers">
           {
             reading.map((book) => (
               <li>
                 <img src={book.coverUrl} alt="" loading="lazy" />
                 <p class="covers__title">{book.title}</p>
-                <p class="covers__author">{book.author}</p>
+                <p class="covers__meta">{book.author}</p>
               </li>
             ))
           }
@@ -115,12 +133,32 @@ const hello = typographizeHtml(`
 
       <section class="module">
         <SectionLabel title="Смотрю" count={moviesCount} />
-        <ul class="entries">
+        {
+          (watchingActive > 0 || watchingDone) && (
+            <p class="caption">
+              {watchingActive > 0 && <span>сейчас</span>}
+              {watchingDone && (
+                <span style={`grid-column: ${watchingActive + 1}`}>
+                  последнее
+                </span>
+              )}
+            </p>
+          )
+        }
+        <ul class="covers">
           {
-            latestMovies.map((movie) => (
-              <li class="entry">
-                <span>{movie.title}</span>
-                <time>{movie.releaseYear}</time>
+            watching.map((movie) => (
+              <li>
+                <img
+                  src={movie.posterUrl ?? '/movies/movie-placeholder.svg'}
+                  alt=""
+                  loading="lazy"
+                />
+                <p class="covers__title">{movie.title}</p>
+                <p class="covers__meta">
+                  {movie.releaseYear}
+                  {movie.originalTitle ? ` · ${movie.originalTitle}` : null}
+                </p>
               </li>
             ))
           }
@@ -378,6 +416,22 @@ const hello = typographizeHtml(`
   }
 
   /* Подобрана так, чтобы «Читаю» кончалось вровень со «Смотрю». */
+  /* Подпись садится на ту же сетку, что и полка: слово над своей колонкой. */
+  .caption {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-s);
+    max-width: 360px;
+    font-size: var(--text-2xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+  }
+
+  .caption + .covers {
+    margin-top: var(--space-2xs);
+  }
+
   .covers {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -403,7 +457,7 @@ const hello = typographizeHtml(`
     line-height: var(--leading-snug);
   }
 
-  .covers__author {
+  .covers__meta {
     font-size: var(--text-2xs);
     line-height: var(--leading-snug);
   }
