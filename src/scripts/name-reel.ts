@@ -1,4 +1,4 @@
-const NAMES = ['Нуриль', 'Нурик', 'Юрий', 'Николай'];
+const NAMES = ['Нуриль', 'Нурик', 'Юрий', 'Николай', 'Нурсултан'];
 const EASE = '180ms ease';
 const FRICTION = 0.94;
 const MAX_SPEED = 3;
