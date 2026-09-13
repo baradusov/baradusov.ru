@@ -1,3 +1,6 @@
+import { closeSound } from './audio';
+import { lift, thud } from './drag-sound';
+
 type Slot = { col: string; row: number; span: number };
 
 // Повторяет раскладку .modules из index.astro — менять надо вместе.
@@ -157,8 +160,11 @@ export const initModuleDrag = () => {
     pointer.y = event.clientY;
   };
 
-  const drop = (cancelled: boolean) => {
+  // Тихо роняем, когда перетаскивание сворачивает не человек, а мы сами:
+  // смена раскладки на узкую или уход со страницы — это не бросок.
+  const drop = (cancelled: boolean, quiet = false) => {
     if (!drag) return;
+    if (!quiet) thud();
 
     const { el, order: before } = drag;
     const lifted = el.getBoundingClientRect();
@@ -198,6 +204,7 @@ export const initModuleDrag = () => {
     if (!el) return;
 
     event.preventDefault();
+    lift();
     place();
 
     const slots = order.map((moduleIndex) => layoutBox(modules[moduleIndex]));
@@ -242,7 +249,7 @@ export const initModuleDrag = () => {
       if (!untouched()) place();
       return;
     }
-    if (drag) drop(true);
+    if (drag) drop(true, true);
     grid.style.gridTemplateRows = '';
     unplace();
   };
@@ -253,7 +260,8 @@ export const initModuleDrag = () => {
   document.addEventListener(
     'astro:before-swap',
     () => {
-      if (drag) drop(true);
+      if (drag) drop(true, true);
+      closeSound();
       grid.removeEventListener('pointerdown', onDown);
       media.removeEventListener?.('change', sync);
     },

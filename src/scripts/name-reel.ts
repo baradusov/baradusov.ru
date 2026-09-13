@@ -1,3 +1,5 @@
+import { createClicker } from './reel-click';
+
 const NAMES = ['Нуриль', 'Нурик', 'Юрий', 'Николай', 'Нурсултан'];
 const EASE = '180ms ease';
 const FRICTION = 0.94;
@@ -29,6 +31,15 @@ export const initNameReel = () => {
   let pointer = 0;
   let speed = 0;
   let moment = 0;
+  let quiet = false;
+
+  const clicker = createClicker();
+
+  // Чем быстрее идёт барабан, тем громче зубец, — как у настоящей трещотки.
+  const knock = () => {
+    if (quiet) return;
+    clicker.click(0.35 + Math.min(1, Math.abs(speed) / 1.5) * 0.65);
+  };
 
   const wrap = (position: number) =>
     ((position % NAMES.length) + NAMES.length) % NAMES.length;
@@ -78,6 +89,7 @@ export const initNameReel = () => {
         return;
       }
 
+      knock();
       paint();
     }
   };
@@ -115,6 +127,9 @@ export const initNameReel = () => {
 
     shift = landing > index ? -forward() : landing < index ? back() : 0;
 
+    // Барабан встаёт в паз — последний щелчок тише остальных.
+    if (landing !== index) clicker.click(0.3);
+
     // Ширину меняем следом за доводкой, а не вместе с ней.
     slide.style.transition = `transform ${EASE}`;
     host.style.transition = `width ${EASE} 180ms`;
@@ -124,7 +139,10 @@ export const initNameReel = () => {
     settling = window.setTimeout(() => {
       host.style.transition = 'none';
       slide.style.transition = 'none';
+      // Доводку уже озвучили выше, второй раз щёлкать нечем.
+      quiet = true;
       normalize();
+      quiet = false;
       shift = 0;
       render();
       // Класс снимаем только теперь: он держит окно-маску и соседние имена,
@@ -184,6 +202,8 @@ export const initNameReel = () => {
 
     speed = 0;
     moment = performance.now();
+    // Контекст заводим по нажатию: до жеста браузер звук не пустит.
+    clicker.wake();
 
     // Окно замирает на текущей ширине: пока крутим, текст справа не двигается.
     host.style.transition = 'none';
@@ -208,6 +228,7 @@ export const initNameReel = () => {
       clearTimeout(settling);
       cancelAnimationFrame(spinning);
       stop();
+      clicker.close();
       host.removeEventListener('pointerdown', onDown);
     },
     { once: true },
