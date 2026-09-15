@@ -1,9 +1,9 @@
 {
   "Читаю": [
     {
-      "title": "Мост на Дрине",
-      "author": "Иво Андрич",
-      "coverUrl": "/books/most-na-drine.jpeg"
+      "title": "Нагори. Тоска по уходящему сезону",
+      "author": "Рёко Секигути",
+      "coverUrl": "/books/toska-po-uhodyaschemu-sezonu.jpeg"
     },
     {
       "title": "Критическая теория интернета",
@@ -12,6 +12,11 @@
     }
   ],
   "2026": [
+    {
+      "title": "Мост на Дрине",
+      "author": "Иво Андрич",
+      "coverUrl": "/books/most-na-drine.jpeg"
+    },
     {
       "title": "Co-Intelligence: Living and Working with AI",
       "author": "Ethan Mollick",
