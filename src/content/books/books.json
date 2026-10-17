@@ -1,9 +1,9 @@
 {
   "Читаю": [
     {
-      "title": "Нагори. Тоска по уходящему сезону",
-      "author": "Рёко Секигути",
-      "coverUrl": "/books/toska-po-uhodyaschemu-sezonu.jpeg"
+      "title": "Разговоры с друзьями",
+      "author": "Салли Руни",
+      "coverUrl": "/books/razgovory-s-druzyami.jpeg"
     },
     {
       "title": "Критическая теория интернета",
@@ -12,6 +12,11 @@
     }
   ],
   "2026": [
+    {
+      "title": "Нагори. Тоска по уходящему сезону",
+      "author": "Рёко Секигути",
+      "coverUrl": "/books/toska-po-uhodyaschemu-sezonu.jpeg"
+    },
     {
       "title": "Мост на Дрине",
       "author": "Иво Андрич",
