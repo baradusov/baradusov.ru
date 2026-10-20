@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "bunx --bun astro dev",
     "dev:host": "bunx --bun astro dev --host",
+    "stop": "bunx --bun astro dev stop",
     "start": "bunx --bun astro dev",
     "build": "astro check && astro build",
     "preview": "bunx --bun astro preview",
