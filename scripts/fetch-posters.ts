@@ -54,6 +54,8 @@ const OVERRIDES: Record<string, { kind: 'movie' | 'tv'; id: number }> = {
   'CODA|2020': { kind: 'movie', id: 776503 },
   // Фильм 2021-го, на 2020-й — мультсериал про панду.
   'Stillwater|2020': { kind: 'movie', id: 616651 },
+  // Короткометражка 2015-го, по названию находится мусор.
+  'Robot on the Road|2015': { kind: 'movie', id: 375462 },
 };
 
 /** Регистр, пунктуация и пробелы не в счёт. */

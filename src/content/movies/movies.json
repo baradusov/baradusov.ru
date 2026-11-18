@@ -15,6 +15,45 @@
   ],
   "2026": [
     {
+      "title": "Finding Emily",
+      "releaseYear": "2026",
+      "posterUrl": "/movies/movie-1339588.jpg"
+    },
+    {
+      "title": "Robot on the Road",
+      "releaseYear": "2015",
+      "posterUrl": "/movies/movie-375462.jpg"
+    },
+    {
+      "title": "Нет другого выбора",
+      "originalTitle": "어쩔수가없다",
+      "releaseYear": "2025",
+      "posterUrl": "/movies/movie-639988.jpg"
+    },
+    {
+      "title": "Ненависть",
+      "originalTitle": "La Haine",
+      "releaseYear": "1995",
+      "posterUrl": "/movies/movie-406.jpg"
+    },
+    {
+      "title": "Проект «Конец света»",
+      "originalTitle": "Project Hail Mary",
+      "releaseYear": "2026",
+      "posterUrl": "/movies/movie-687163.jpg"
+    },
+    {
+      "title": "100 Meters",
+      "originalTitle": "ひゃくえむ。",
+      "releaseYear": "2025",
+      "posterUrl": "/movies/movie-1295026.jpg"
+    },
+    {
+      "title": "На чём сидят в Тбилиси",
+      "releaseYear": "2026",
+      "posterUrl": "/movies/movie-1602491.jpg"
+    },
+    {
       "title": "SuperПерцы",
       "originalTitle": "Superbad",
       "releaseYear": "2007",
@@ -60,12 +99,6 @@
       "title": "The Cats of Gokogu Shrine",
       "releaseYear": "2024",
       "posterUrl": "/movies/movie-1232797.jpg"
-    },
-    {
-      "title": "100 Meters",
-      "originalTitle": "ひゃくえむ。",
-      "releaseYear": "2025",
-      "posterUrl": "/movies/movie-1295026.jpg"
     },
     {
       "title": "Манчестер у моря",
