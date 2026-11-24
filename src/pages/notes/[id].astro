@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+
+import Layout from '../../layouts/Layout.astro';
+import Note from '../../components/Note.astro';
+import { noteTitle } from '../../utils/posts';
+
+export const getStaticPaths = async () => {
+  const notes = await getCollection('notes');
+
+  return notes.map((note) => ({
+    params: { id: note.id },
+    props: { note },
+  }));
+};
+
+const { note } = Astro.props;
+
+const title = noteTitle(note);
+
+let ogImage: string | undefined;
+if (note.data.image) {
+  const optimized = await getImage({
+    src: note.data.image,
+    width: 1200,
+    format: 'webp',
+  });
+  ogImage = new URL(optimized.src, Astro.site).href;
+}
+---
+
+<Layout
+  title={`Нуриль Барадусов | ${title}`}
+  description={title}
+  image={ogImage}>
+  <main>
+    <Note note={note} heading="h1" />
+    <p class="back"><a href="/notes">Все заметки →</a></p>
+  </main>
+</Layout>
+
+<style>
+  .back {
+    margin-top: var(--space-block);
+    font-size: var(--text-s);
+  }
+</style>

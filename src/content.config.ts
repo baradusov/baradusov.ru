@@ -14,6 +14,25 @@ const posts = defineCollection({
     }),
 });
 
+// Заметки из телеграм-канала. Имя файла — номер сообщения в канале,
+// он же адрес: /notes/123 ↔ t.me/nuril_notes/123.
+const notes = defineCollection({
+  loader: glob({
+    pattern: '**/[^_]*.md',
+    base: './src/content/notes',
+    generateId: ({ entry }) => entry.replace(/^.*\//, '').replace(/\.md$/, ''),
+  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string().optional(),
+      created: z.coerce.date(),
+      draft: z.boolean().optional(),
+      image: image().optional(),
+      forwarded: z.string().optional(),
+      replyTo: z.number().optional(),
+    }),
+});
+
 const projects = defineCollection({
   loader: file('./src/content/projects/projects.json'),
   schema: z.object({
@@ -47,4 +66,4 @@ const books = defineCollection({
   ),
 });
 
-export const collections = { posts, movies, books, projects };
+export const collections = { posts, notes, movies, books, projects };

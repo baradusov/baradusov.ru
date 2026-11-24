@@ -1,0 +1,33 @@
+---
+import FeedSwitch from '../../components/FeedSwitch.astro';
+import Layout from '../../layouts/Layout.astro';
+import Note from '../../components/Note.astro';
+import { getNotes } from '../../utils/posts';
+
+const notes = await getNotes();
+---
+
+<Layout title="Заметки | Нуриль Барадусов" description="заметки нуриля">
+  <main>
+    <h1>Заметки ({notes.length})</h1>
+
+    <FeedSwitch />
+
+    <div class="stream">
+      {
+        notes.map((note, i) => (
+          <>
+            {i > 0 && <hr />}
+            <Note note={note} />
+          </>
+        ))
+      }
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .stream {
+    margin-top: var(--space-block);
+  }
+</style>

@@ -11,6 +11,7 @@
     "preview": "bunx --bun astro preview",
     "astro": "bunx --bun astro",
     "posters": "bun run scripts/fetch-posters.ts",
+    "notes:import": "bun run scripts/import-telegram.ts",
     "format": "prettier --write 'src/**/*.{astro,ts,js}'"
   },
   "dependencies": {

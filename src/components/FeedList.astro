@@ -1,0 +1,132 @@
+---
+import { feedByYear, formatDate, type FeedItem } from '../utils/posts';
+
+interface Props {
+  items: FeedItem[];
+}
+
+const years = feedByYear(Astro.props.items);
+---
+
+<div class="feed">
+  {
+    years.map(({ year, items }) => (
+      <section>
+        <h3 class="year">{year}</h3>
+
+        <ul class="posts">
+          {items.map((item) => (
+            <li>
+              <div
+                class:list={['post-link', { 'is-note': item.kind === 'note' }]}>
+                <a href={item.href}>
+                  <h3>{item.title}</h3>
+                </a>
+                <span class="meta">
+                  {item.kind === 'note' && <span class="kind">заметка</span>}
+                  <time datetime={item.created.toISOString()}>
+                    {formatDate(item.created)}
+                  </time>
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</div>
+
+<style>
+  .feed section {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .feed .year,
+  .feed .posts {
+    margin-top: 0;
+  }
+
+  .feed .year {
+    grid-column: 1;
+  }
+
+  .feed .posts {
+    grid-column: 2 / -1;
+  }
+
+  .feed .posts > li + li {
+    margin-top: var(--space-xs);
+  }
+
+  .feed .post-link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-m);
+  }
+
+  .feed .year,
+  .feed .post-link h3 {
+    font-size: var(--text-l);
+    line-height: var(--leading-snug);
+  }
+
+  .feed .post-link h3 {
+    text-wrap: pretty;
+  }
+
+  .feed .post-link .meta {
+    flex: none;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-xs);
+  }
+
+  .feed .post-link time {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .feed .is-note h3 {
+    font-weight: normal;
+  }
+
+  .kind {
+    font-size: var(--text-2xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+  }
+
+  .feed > * + * {
+    margin-top: var(--space-block);
+  }
+
+  @media (min-width: 601px) {
+    .feed .year {
+      position: sticky;
+      top: 0;
+      align-self: self-start;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .feed section {
+      display: block;
+    }
+
+    .feed .year {
+      margin-bottom: var(--space-s);
+    }
+
+    .feed .post-link {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .feed .post-link .meta {
+      font-size: var(--text-s);
+    }
+  }
+</style>

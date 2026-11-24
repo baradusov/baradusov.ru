@@ -17,7 +17,7 @@ const SLOTS: Slot[] = [
 const ROWS = 5;
 const EDGE = 72;
 const SPEED = 18;
-const WIDE = '(min-width: 701px)';
+const WIDE = '(min-width: 861px)';
 const EASE = 'transform 180ms ease';
 
 type Box = { left: number; top: number; width: number; height: number };

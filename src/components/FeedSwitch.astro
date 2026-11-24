@@ -1,0 +1,33 @@
+---
+const LINKS = [
+  { href: '/archive', label: 'всё' },
+  { href: '/posts', label: 'посты' },
+  { href: '/notes', label: 'заметки' },
+];
+
+const current = Astro.url.pathname.replace(/\/$/, '');
+---
+
+<nav class="switch">
+  {
+    LINKS.map(({ href, label }) =>
+      href === current ? (
+        <span aria-current="page">{label}</span>
+      ) : (
+        <a href={href}>{label}</a>
+      ),
+    )
+  }
+</nav>
+
+<style>
+  .switch {
+    display: flex;
+    gap: var(--space-s);
+    font-size: var(--text-s);
+  }
+
+  .switch [aria-current] {
+    font-weight: var(--weight-bold);
+  }
+</style>

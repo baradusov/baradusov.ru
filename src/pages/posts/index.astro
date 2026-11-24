@@ -1,0 +1,20 @@
+---
+import FeedSwitch from '../../components/FeedSwitch.astro';
+import Layout from '../../layouts/Layout.astro';
+import FeedList from '../../components/FeedList.astro';
+import { getFeed } from '../../utils/posts';
+
+const items = (await getFeed()).filter((item) => item.kind === 'post');
+---
+
+<Layout
+  title="Посты | Нуриль Барадусов"
+  description="Все записи дневника с 2018 года.">
+  <main>
+    <h1>Посты ({items.length})</h1>
+
+    <FeedSwitch />
+
+    <FeedList items={items} />
+  </main>
+</Layout>

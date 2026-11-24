@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import { typographize, typographizeHtml } from '../utils/typography.mjs';
-import { buildShelf, countByYear, formatDate, getPosts } from '../utils/posts';
+import { buildShelf, countByYear, formatDate, getFeed } from '../utils/posts';
 
 const POSTS = 9;
 const SHELF = 3;
@@ -13,7 +13,7 @@ const projects = (await getCollection('projects')).sort(
   (a, b) => a.data.order - b.data.order,
 );
 
-const posts = await getPosts();
+const posts = await getFeed();
 
 const books = await getCollection('books');
 const booksCount = countByYear(books);
@@ -70,11 +70,12 @@ const hello = typographizeHtml(`
         <SectionLabel title="Пишу" count={posts.length} />
         <ul class="entries">
           {
-            posts.slice(0, POSTS).map((post) => (
-              <li class="entry">
-                <a href={`/posts/${post.id}`}>{post.data.title}</a>
-                <time datetime={String(post.data.created)}>
-                  {formatDate(post.data.created, true)}
+            posts.slice(0, POSTS).map((item) => (
+              <li class:list={['entry', { 'is-note': item.kind === 'note' }]}>
+                <a href={item.href}>{item.title}</a>
+                <time datetime={item.created.toISOString()}>
+                  {item.kind === 'note' && <span class="kind">заметка</span>}
+                  {formatDate(item.created, true)}
                 </time>
               </li>
             ))
@@ -409,6 +410,14 @@ const hello = typographizeHtml(`
     font-variant-numeric: tabular-nums;
   }
 
+  .entry .kind {
+    margin-right: var(--space-xs);
+    font-size: var(--text-2xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+  }
+
   /* Подобрана так, чтобы «Читаю» кончалось вровень со «Смотрю». */
   /* Та же сетка, что у полки: слово над своей колонкой. */
   .caption {
@@ -520,11 +529,8 @@ const hello = typographizeHtml(`
     font-size: var(--text-s);
   }
 
-  @media (max-width: 700px) {
-    .hub {
-      padding-inline: var(--space-xs);
-    }
-
+  /* Две колонки модулей тесны раньше, чем остальная вёрстка. */
+  @media (max-width: 860px) {
     .modules {
       grid-template-columns: minmax(0, 1fr);
       gap: var(--space-xl);
@@ -536,6 +542,18 @@ const hello = typographizeHtml(`
     .module--writing {
       grid-column: auto;
       grid-row: auto;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .hub {
+      padding-inline: var(--space-xs);
+    }
+
+    /* Дата и метка уходят под заголовок, чтобы ему хватало ширины. */
+    .entry {
+      flex-direction: column;
+      gap: 0;
     }
 
     .projects {
