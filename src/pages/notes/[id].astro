@@ -7,7 +7,10 @@ import Note from '../../components/Note.astro';
 import { noteTitle } from '../../utils/posts';
 
 export const getStaticPaths = async () => {
-  const notes = await getCollection('notes');
+  const notes = await getCollection(
+    'notes',
+    ({ data }) => import.meta.env.DEV || data.draft !== true,
+  );
 
   return notes.map((note) => ({
     params: { id: note.id },

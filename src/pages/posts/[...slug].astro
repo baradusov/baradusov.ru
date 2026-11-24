@@ -5,7 +5,11 @@ import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 
 export const getStaticPaths = async () => {
-  const posts = await getCollection('posts');
+  // Черновики видно только в dev, в сборку они не попадают.
+  const posts = await getCollection(
+    'posts',
+    ({ data }) => import.meta.env.DEV || data.draft !== true,
+  );
 
   return posts.map((post) => ({
     params: { slug: post.id },
