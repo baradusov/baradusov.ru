@@ -42,7 +42,12 @@ type Note = {
   videos: Video[];
   forwarded?: string;
   replyTo?: number;
+  /** Время последнего сообщения, склеенного в заметку. */
+  last: string;
 };
+
+/** Части альбома телеграм иногда отправляет с разницей в секунду-другую. */
+const ALBUM_GAP_MS = 5_000;
 
 const MONTHS = [
   'January',
@@ -252,8 +257,12 @@ function parse(html: string): Note[] {
 
     const prev = notes.at(-1);
 
-    // Альбом: следующие сообщения с тем же временем и без своего текста.
-    if (joined && prev && prev.created === created && (!text || !prev.text)) {
+    // Альбом: следующие сообщения почти в то же время и без своего текста.
+    const sameMoment =
+      prev && Date.parse(created) - Date.parse(prev.last) <= ALBUM_GAP_MS;
+
+    if (joined && prev && sameMoment && (!text || !prev.text)) {
+      prev.last = created;
       prev.text ||= text;
       prev.photos.push(...photos);
       prev.videos.push(...videos);
@@ -263,7 +272,16 @@ function parse(html: string): Note[] {
 
     if (!text && !photos.length && !videos.length) continue;
 
-    notes.push({ id, created, text, photos, videos, forwarded, replyTo });
+    notes.push({
+      id,
+      created,
+      text,
+      photos,
+      videos,
+      forwarded,
+      replyTo,
+      last: created,
+    });
   }
 
   for (const note of notes) {
